@@ -1,11 +1,10 @@
 /**
  * @file app-core.js
- * @description Script inti untuk fungsionalitas website Karang Taruna Banjarsari.
- * @version 1.1.0 (Fixed Login Gate Logic)
+ * @description Script inti gabungan untuk fungsionalitas website, dengan UI Amazia.
+ * @version 2.0.0 (Merged UI + Performance Upgrades)
  */
 
 const App = (() => {
-  // === STATE & CACHE ===
   const cache = new Map();
   const state = {
     kegiatan: [],
@@ -15,7 +14,6 @@ const App = (() => {
     kontak: [],
   };
 
-  // === PENGATURAN SESI & INAKTIVITAS ===
   const TIMEOUT_DURATION = 20 * 60 * 1000; // 20 menit
   let inactivityTimer;
 
@@ -54,7 +52,6 @@ const App = (() => {
     const submitButton = document.getElementById("submit-button");
     const FORMSPREE_URL = "https://formspree.io/f/myzpjnqg";
 
-    // Cukup tampilkan atau sembunyikan overlay berdasarkan status login
     if (sessionStorage.getItem("isLoggedIn")) {
       overlay.classList.add("hidden");
     } else {
@@ -99,21 +96,14 @@ const App = (() => {
     }
   }
 
-  // === UTILITIES & HELPERS (SHARED) ===
   const loadComponent = async (url, elementId, callback) => {
     const element = document.getElementById(elementId);
     if (!element) return;
     try {
-      if (cache.has(url)) {
-        element.innerHTML = cache.get(url);
-      } else {
-        const response = await fetch(url);
-        if (!response.ok)
-          throw new Error(`Gagal memuat ${url}: Status ${response.status}`);
-        const content = await response.text();
-        cache.set(url, content);
-        element.innerHTML = content;
-      }
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`Gagal memuat ${url}`);
+      const content = await response.text();
+      element.innerHTML = content;
       if (callback) callback();
     } catch (error) {
       console.error(error);
@@ -123,19 +113,16 @@ const App = (() => {
 
   const fetchData = async (key, url) => {
     try {
-      if (
-        cache.has(url) &&
-        state[key] &&
-        (state[key].length > 0 || Object.keys(state[key]).length > 0)
-      ) {
-        return state[key];
+      if (App.cache.has(url)) {
+        App.state[key] = App.cache.get(url);
+        return App.state[key];
       }
       const response = await fetch(url);
       if (!response.ok)
         throw new Error(`HTTP error! status: ${response.status}`);
       const data = await response.json();
-      cache.set(url, data);
-      state[key] = data;
+      App.cache.set(url, data);
+      App.state[key] = data;
       return data;
     } catch (error) {
       console.error(`Gagal memuat data dari ${url}:`, error);
@@ -164,11 +151,11 @@ const App = (() => {
 
   const initScrollAnimations = () => {
     const observer = new IntersectionObserver(
-      (entries, observer) => {
+      (entries, obs) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
+            obs.unobserve(entry.target);
           }
         });
       },
@@ -185,6 +172,10 @@ const App = (() => {
     const navContainer = document.querySelector("nav ul");
     if (!navContainer) return;
 
+    // ▼▼▼ BAGIAN KODE YANG HILANG ADA DI BAWAH INI ▼▼▼
+    let activeLinkElement = null;
+    // ▲▲▲ TAMBAHKAN BARIS INI ▲▲▲
+
     navContainer.querySelectorAll("a").forEach((link) => {
       const parentLi = link.parentElement;
       parentLi.classList.remove("active");
@@ -196,8 +187,24 @@ const App = (() => {
 
       if (isCurrentPage || isArtikelPageAndKegiatanLink) {
         parentLi.classList.add("active");
+        // ▼▼▼ TAMBAHKAN BARIS INI ▼▼▼
+        activeLinkElement = parentLi;
+        // ▲▲▲ BATAS AKHIR ▲▲▲
       }
     });
+
+    // ▼▼▼ SELURUH BLOK KODE INI YANG SEBELUMNYA HILANG ▼▼▼
+    if (activeLinkElement && window.innerWidth <= 768) {
+      const scrollLeftPosition =
+        activeLinkElement.offsetLeft -
+        navContainer.offsetWidth / 2 +
+        activeLinkElement.offsetWidth / 2;
+      navContainer.scrollTo({
+        left: scrollLeftPosition,
+        behavior: "smooth",
+      });
+    }
+    // ▲▲▲ BATAS AKHIR KODE YANG HILANG ▲▲▲
   }
 
   function initParticles() {
@@ -248,25 +255,17 @@ const App = (() => {
     });
   }
 
-  // === MAIN INITIALIZER ===
   const initPage = () => {
-    // ▼▼▼ KODE PERBAIKAN DIMULAI DI SINI ▼▼▼
     const isLoggedIn = sessionStorage.getItem("isLoggedIn");
     const isIndexPage =
       window.location.pathname.endsWith("/") ||
       window.location.pathname.includes("index.html");
 
-    // Pengecekan login dipindahkan ke sini, di luar fungsi lain.
-    // Ini adalah logika yang benar.
     if (!isLoggedIn && !isIndexPage) {
-      // Jika belum login DAN tidak sedang di halaman index, paksa redirect
       logoutUser();
-      return; // Hentikan eksekusi script lebih lanjut agar halaman tidak sempat dimuat
+      return;
     }
-    // ▲▲▲ KODE PERBAIKAN SELESAI DI SINI ▲▲▲
 
-    // Kode di bawah ini hanya akan berjalan jika pengguna sudah login,
-    // atau jika mereka berada di halaman index.
     loadComponent("layout/header.html", "main-header", setActiveNavLink);
     loadComponent("layout/footer.html", "main-footer");
 

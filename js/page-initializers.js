@@ -1,6 +1,6 @@
 /**
  * @file page-initializers.js
- * @description Inisialisasi spesifik untuk setiap halaman Karang Taruna.
+ * @description Inisialisasi spesifik untuk setiap halaman Karang Taruna (UI Amazia).
  */
 
 // === KEGIATAN PAGE ===
@@ -184,55 +184,15 @@ App.initializers.about = async () => {
     '<ul class="pohon-organisasi" id="pohon-organisasi-chart"></ul>';
   const chart = document.getElementById("pohon-organisasi-chart");
 
-  // Logika untuk membangun hierarki...
   const { pengurusInti, bidang } = data;
-  const penasehat = pengurusInti.find((p) => p.jabatan === "Penasehat");
-  const penanggungJawab = pengurusInti.find(
-    (p) => p.jabatan === "Penanggung Jawab"
-  );
   const ketua = pengurusInti.find((p) => p.jabatan === "Ketua");
-  const wakil = pengurusInti.find((p) => p.jabatan === "Wakil");
-  const sekretaris = pengurusInti.find((p) => p.jabatan === "Sekretaris");
-  const bendahara = pengurusInti.find((p) => p.jabatan === "Bendahara");
 
-  let chartContent = "";
-  // Level 1: Penasehat & Penanggung Jawab
-  chartContent += `<li>${createNode(
-    penasehat.jabatan,
-    penasehat.nama,
-    penasehat.foto
-  )}<ul>`;
-  chartContent += `<li>${createNode(
-    penanggungJawab.jabatan,
-    penanggungJawab.nama,
-    penanggungJawab.foto
-  )}<ul>`;
-
-  // Level 2: Ketua
-  let ketuaContent = `<li>${createNode(
+  let chartContent = `<li>${createNode(
     ketua.jabatan,
     ketua.nama,
     ketua.foto
   )}<ul>`;
 
-  // Level 3: Wakil, Sekretaris, Bendahara
-  ketuaContent += `<li>${createNode(
-    wakil.jabatan,
-    wakil.nama,
-    wakil.foto
-  )}</li>`;
-  ketuaContent += `<li>${createNode(
-    sekretaris.jabatan,
-    sekretaris.nama,
-    sekretaris.foto
-  )}</li>`;
-  ketuaContent += `<li>${createNode(
-    bendahara.jabatan,
-    bendahara.nama,
-    bendahara.foto
-  )}</li>`;
-
-  // Level 3.5: Bidang-bidang
   let bidangHtml = '<ul class="bidang-group">';
   bidang.forEach((b) => {
     let anggotaHtml = '<ul class="anggota-grid">';
@@ -245,16 +205,13 @@ App.initializers.about = async () => {
     )}${anggotaHtml}</li>`;
   });
   bidangHtml += "</ul>";
-  ketuaContent += `<li><div class="jabatan">Bidang-Bidang</div>${bidangHtml}</li>`;
 
-  ketuaContent += `</ul></li>`; // close ketua
-  chartContent += ketuaContent;
-  chartContent += `</ul></li>`; // close penanggung jawab
-  chartContent += `</ul></li>`; // close penasehat
+  chartContent += `<li><div class="jabatan">Struktur Kepengurusan</div>${bidangHtml}</li>`;
+
+  chartContent += `</ul></li>`;
 
   chart.innerHTML = chartContent;
 
-  // Zoom and Pan Logic
   const zoomInBtn = document.getElementById("zoom-in-btn");
   const zoomOutBtn = document.getElementById("zoom-out-btn");
   const zoomLevelDisplay = document.getElementById("zoom-level");
@@ -340,7 +297,6 @@ App.initializers.artikel = async () => {
       }
       let currentIndex = 0;
       slides[currentIndex].classList.add("active-slide");
-      // Hapus interval lama jika ada (penting untuk Turbo)
       if (container.dataset.intervalId)
         clearInterval(parseInt(container.dataset.intervalId));
 
@@ -358,27 +314,18 @@ App.initializers.artikel = async () => {
     if (!slug) throw new Error("Slug artikel tidak ditemukan di URL.");
 
     const artikelPath = `konten-kegiatan/${slug}.html`;
-    let artikelHTML;
-    // Gunakan cache dari App.cache
-    if (App.cache.has(artikelPath)) {
-      artikelHTML = App.cache.get(artikelPath);
-    } else {
-      const response = await fetch(artikelPath);
-      if (!response.ok)
-        throw new Error(`Gagal memuat konten artikel: ${response.statusText}`);
-      artikelHTML = await response.text();
-      App.cache.set(artikelPath, artikelHTML);
-    }
+    const response = await fetch(artikelPath);
+    if (!response.ok)
+      throw new Error(`Gagal memuat konten artikel: ${response.statusText}`);
+    const artikelHTML = await response.text();
 
     const parser = new DOMParser();
     const doc = parser.parseFromString(artikelHTML, "text/html");
 
     const title = doc.querySelector("h2").textContent;
     const date = doc.querySelector(".kegiatan-meta").textContent;
-    const content = doc.querySelector(".artikel-konten").innerHTML;
-    const words = doc
-      .querySelector(".artikel-konten")
-      .innerText.split(/\s+/).length;
+    const contentContainer = doc.querySelector(".artikel-konten");
+    const words = contentContainer.innerText.split(/\s+/).length;
     const readingTime = Math.ceil(words / 200);
 
     document.title = `${title} - Karang Taruna Banjarsari`;
@@ -391,7 +338,7 @@ App.initializers.artikel = async () => {
                 </div>
             </div>
             ${doc.querySelector(".slideshow-container")?.outerHTML || ""}
-            <div class="artikel-konten">${content}</div>
+            <div class="artikel-konten">${contentContainer.innerHTML}</div>
             <a href="kegiatan.html" class="tombol-kembali"><i class="fas fa-arrow-left"></i> Kembali ke Daftar Kegiatan</a>
         `;
     initSlideshow();
