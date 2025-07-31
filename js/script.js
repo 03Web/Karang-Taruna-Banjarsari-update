@@ -2,7 +2,7 @@
  * @file script.js
  * @description Script utama untuk fungsionalitas website Karang Taruna Banjarsari.
  * @author Partner Coding
- * @version 7.0.0 (Login dengan Timeout Inaktivitas)
+ * @version 8.0.0 (Login Universal dengan Timeout Inaktivitas)
  */
 
 const App = (() => {
@@ -16,7 +16,16 @@ const App = (() => {
     kontak: [],
   };
 
-  // --- FUNGSI UNTUK MELACAK AKTIVITAS ---
+  // === BAGIAN BARU: PENGATURAN SESI & INAKTIVITAS ===
+  const TIMEOUT_DURATION = 20 * 60 * 1000; // 20 menit dalam milidetik
+  let inactivityTimer;
+
+  function resetInactivityTimer() {
+    clearTimeout(inactivityTimer);
+    inactivityTimer = setTimeout(logoutUser, TIMEOUT_DURATION);
+    sessionStorage.setItem("lastActivityTimestamp", Date.now());
+  }
+
   function startInactivityTracker() {
     const events = [
       "mousemove",
@@ -25,12 +34,17 @@ const App = (() => {
       "scroll",
       "touchstart",
     ];
-    const resetTimer = () => {
-      sessionStorage.setItem("lastActivityTimestamp", Date.now());
-    };
     events.forEach((event) => {
-      window.addEventListener(event, resetTimer, { passive: true });
+      window.addEventListener(event, resetInactivityTimer, { passive: true });
     });
+    resetInactivityTimer(); // Mulai timer saat halaman dimuat
+  }
+
+  function logoutUser() {
+    sessionStorage.removeItem("isLoggedIn");
+    sessionStorage.removeItem("lastActivityTimestamp");
+    // Paksa kembali ke halaman index untuk login ulang
+    window.location.href = "index.html";
   }
 
   // === FUNGSI UNTUK WELCOME SCREEN (LOGIN) ===
@@ -41,15 +55,18 @@ const App = (() => {
     const submitButton = document.getElementById("submit-button");
 
     // !!! PENTING: GANTI URL DI BAWAH INI DENGAN LINK FORMSPREE ANDA !!!
-    const FORMSPREE_URL = "https://formspree.io/f/myzpjnqg";
+    const FORMSPREE_URL = "https://formspree.io/f/myzpjnqg"; // URL ini sudah sesuai dengan kode Anda
 
     const isLoggedIn = sessionStorage.getItem("isLoggedIn");
+    const isIndexPage =
+      window.location.pathname.endsWith("/") ||
+      window.location.pathname.includes("index.html");
+
     if (isLoggedIn) {
       overlay.classList.add("hidden");
-      return;
+    } else if (isIndexPage) {
+      overlay.classList.remove("hidden");
     }
-
-    overlay.classList.remove("hidden");
 
     form.addEventListener("submit", async function (e) {
       e.preventDefault();
@@ -72,10 +89,9 @@ const App = (() => {
           messageEl.textContent = "Terima kasih! Anda akan dialihkan...";
           messageEl.classList.add("success");
           sessionStorage.setItem("isLoggedIn", "true");
-          sessionStorage.setItem("lastActivityTimestamp", Date.now());
-          startInactivityTracker();
           setTimeout(() => {
             overlay.classList.add("hidden");
+            startInactivityTracker(); // Mulai pelacak setelah login berhasil
           }, 1500);
         } else {
           throw new Error("Gagal mengirim data. Coba lagi.");
@@ -630,42 +646,47 @@ const App = (() => {
     });
   }
 
-  // === MAIN INITIALIZER ===
+  // === MAIN INITIALIZER (DIUBAH) ===
   const init = () => {
     const isLoggedIn = sessionStorage.getItem("isLoggedIn");
     const lastActivity = sessionStorage.getItem("lastActivityTimestamp");
-    const TIMEOUT_DURATION = 20 * 60 * 1000; // 20 menit
+    const isIndexPage =
+      window.location.pathname.endsWith("/") ||
+      window.location.pathname.includes("index.html");
 
-    if (
-      isLoggedIn &&
-      lastActivity &&
-      Date.now() - lastActivity > TIMEOUT_DURATION
-    ) {
-      sessionStorage.removeItem("isLoggedIn");
-      sessionStorage.removeItem("lastActivityTimestamp");
+    // Pengecekan utama
+    if (!isLoggedIn && !isIndexPage) {
+      // Jika belum login DAN tidak sedang di halaman index, paksa redirect
+      logoutUser();
+      return; // Hentikan eksekusi script lebih lanjut
+    }
+
+    if (isLoggedIn) {
+      // Jika sudah login, cek waktu inaktivitas
       if (
-        window.location.pathname.includes("index.html") ||
-        window.location.pathname.endsWith("/")
+        lastActivity &&
+        Date.now() - parseInt(lastActivity, 10) > TIMEOUT_DURATION
       ) {
-        window.location.reload();
-      } else {
-        window.location.href = "index.html";
+        logoutUser(); // Logout jika waktu terlampaui
+        return;
       }
-      return;
-    } else if (isLoggedIn) {
+      // Jika sesi masih aktif, mulai pelacak
       startInactivityTracker();
     }
+
+    // Lanjutkan memuat halaman
+    loadComponent("layout/header.html", "main-header", setActiveNavLink);
+    loadComponent("layout/footer.html", "main-footer");
 
     if (document.getElementById("welcome-overlay")) {
       initWelcomeScreen();
     }
 
-    loadComponent("layout/header.html", "main-header", setActiveNavLink);
-    loadComponent("layout/footer.html", "main-footer");
     initScrollAnimations();
     if (document.getElementById("particles-js")) {
       setTimeout(initParticles, 500);
     }
+
     const pageInitializers = {
       "kegiatan-list": initKegiatanPage,
       "album-grid": initGaleriPage,
