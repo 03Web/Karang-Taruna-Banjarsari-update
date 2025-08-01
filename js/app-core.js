@@ -1,10 +1,11 @@
 /**
  * @file app-core.js
- * @description Script inti gabungan untuk fungsionalitas website, dengan UI Amazia.
- * @version 2.0.0 (Merged UI + Performance Upgrades)
+ * @description Script inti untuk fungsionalitas website. Mengelola state, komponen, dan inisialisasi dasar.
+ * @version 8.0.0 (Optimized with Code Splitting & Turbo)
  */
 
 const App = (() => {
+  // === STATE & CACHE ===
   const cache = new Map();
   const state = {
     kegiatan: [],
@@ -14,6 +15,7 @@ const App = (() => {
     kontak: [],
   };
 
+  // === PENGATURAN SESI & INAKTIVITAS ===
   const TIMEOUT_DURATION = 20 * 60 * 1000; // 20 menit
   let inactivityTimer;
 
@@ -52,58 +54,70 @@ const App = (() => {
     const submitButton = document.getElementById("submit-button");
     const FORMSPREE_URL = "https://formspree.io/f/myzpjnqg";
 
+    const isIndexPage =
+      window.location.pathname.endsWith("/") ||
+      window.location.pathname.includes("index.html");
+
     if (sessionStorage.getItem("isLoggedIn")) {
       overlay.classList.add("hidden");
-    } else {
+      startInactivityTracker();
+    } else if (isIndexPage) {
       overlay.classList.remove("hidden");
+    } else {
+      logoutUser();
     }
 
-    if (form) {
-      form.addEventListener("submit", async function (e) {
-        e.preventDefault();
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
-        messageEl.textContent = "Mengirim data...";
-        messageEl.classList.remove("hidden", "success", "error");
-        submitButton.disabled = true;
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+      messageEl.textContent = "Mengirim data...";
+      messageEl.classList.remove("hidden", "success", "error");
+      submitButton.disabled = true;
 
-        try {
-          const response = await fetch(FORMSPREE_URL, {
-            method: "POST",
-            body: JSON.stringify(data),
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-            },
-          });
-          if (response.ok) {
-            messageEl.textContent = "Terima kasih! Anda akan dialihkan...";
-            messageEl.classList.add("success");
-            sessionStorage.setItem("isLoggedIn", "true");
-            setTimeout(() => {
-              overlay.classList.add("hidden");
-              startInactivityTracker();
-            }, 1500);
-          } else {
-            throw new Error("Gagal mengirim data. Coba lagi.");
-          }
-        } catch (error) {
-          messageEl.textContent = error.message;
-          messageEl.classList.add("error");
-          submitButton.disabled = false;
+      try {
+        const response = await fetch(FORMSPREE_URL, {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        });
+        if (response.ok) {
+          messageEl.textContent = "Terima kasih! Anda akan dialihkan...";
+          messageEl.classList.add("success");
+          sessionStorage.setItem("isLoggedIn", "true");
+          setTimeout(() => {
+            overlay.classList.add("hidden");
+            startInactivityTracker();
+          }, 1500);
+        } else {
+          throw new Error("Gagal mengirim data. Coba lagi.");
         }
-      });
-    }
+      } catch (error) {
+        messageEl.textContent = error.message;
+        messageEl.classList.add("error");
+        submitButton.disabled = false;
+      }
+    });
   }
 
+  // === UTILITIES & HELPERS (SHARED) ===
   const loadComponent = async (url, elementId, callback) => {
     const element = document.getElementById(elementId);
     if (!element) return;
     try {
-      const response = await fetch(url);
-      if (!response.ok) throw new Error(`Gagal memuat ${url}`);
-      const content = await response.text();
-      element.innerHTML = content;
+      if (cache.has(url)) {
+        element.innerHTML = cache.get(url);
+      } else {
+        const response = await fetch(url);
+        if (!response.ok)
+          throw new Error(`Gagal memuat ${url}: Status ${response.status}`);
+        const content = await response.text();
+        cache.set(url, content);
+        element.innerHTML = content;
+      }
       if (callback) callback();
     } catch (error) {
       console.error(error);
@@ -112,17 +126,23 @@ const App = (() => {
   };
 
   const fetchData = async (key, url) => {
+    if (
+      state[key] &&
+      (state[key].length > 0 || Object.keys(state[key]).length > 0)
+    ) {
+      return state[key];
+    }
     try {
-      if (App.cache.has(url)) {
-        App.state[key] = App.cache.get(url);
-        return App.state[key];
+      if (cache.has(url)) {
+        state[key] = cache.get(url);
+        return state[key];
       }
       const response = await fetch(url);
       if (!response.ok)
         throw new Error(`HTTP error! status: ${response.status}`);
       const data = await response.json();
-      App.cache.set(url, data);
-      App.state[key] = data;
+      cache.set(url, data);
+      state[key] = data;
       return data;
     } catch (error) {
       console.error(`Gagal memuat data dari ${url}:`, error);
@@ -139,7 +159,7 @@ const App = (() => {
     const fragment = document.createDocumentFragment();
     items.forEach((item) => {
       const element = document.createElement("div");
-      element.innerHTML = templateFn(item).trim();
+      element.innerHTML = templateFn(item);
       while (element.firstChild) {
         fragment.appendChild(element.firstChild);
       }
@@ -151,11 +171,11 @@ const App = (() => {
 
   const initScrollAnimations = () => {
     const observer = new IntersectionObserver(
-      (entries, obs) => {
+      (entries, observer) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("visible");
-            obs.unobserve(entry.target);
+            observer.unobserve(entry.target);
           }
         });
       },
@@ -171,45 +191,33 @@ const App = (() => {
       window.location.pathname.split("/").pop() || "index.html";
     const navContainer = document.querySelector("nav ul");
     if (!navContainer) return;
-
-    // ▼▼▼ BAGIAN KODE YANG HILANG ADA DI BAWAH INI ▼▼▼
     let activeLinkElement = null;
-    // ▲▲▲ TAMBAHKAN BARIS INI ▲▲▲
-
     navContainer.querySelectorAll("a").forEach((link) => {
       const parentLi = link.parentElement;
-      parentLi.classList.remove("active");
       const linkPath = link.getAttribute("href");
-
+      parentLi.classList.remove("active");
       const isCurrentPage = linkPath === currentLocation;
       const isArtikelPageAndKegiatanLink =
         currentLocation === "artikel.html" && linkPath === "kegiatan.html";
-
       if (isCurrentPage || isArtikelPageAndKegiatanLink) {
         parentLi.classList.add("active");
-        // ▼▼▼ TAMBAHKAN BARIS INI ▼▼▼
         activeLinkElement = parentLi;
-        // ▲▲▲ BATAS AKHIR ▲▲▲
       }
     });
-
-    // ▼▼▼ SELURUH BLOK KODE INI YANG SEBELUMNYA HILANG ▼▼▼
     if (activeLinkElement && window.innerWidth <= 768) {
       const scrollLeftPosition =
         activeLinkElement.offsetLeft -
         navContainer.offsetWidth / 2 +
         activeLinkElement.offsetWidth / 2;
-      navContainer.scrollTo({
-        left: scrollLeftPosition,
-        behavior: "smooth",
-      });
+      navContainer.scrollTo({ left: scrollLeftPosition, behavior: "smooth" });
     }
-    // ▲▲▲ BATAS AKHIR KODE YANG HILANG ▲▲▲
   }
 
   function initParticles() {
     if (typeof tsParticles === "undefined") {
-      console.warn("tsParticles library not loaded.");
+      console.warn(
+        "tsParticles library not loaded. Skipping particle initialization."
+      );
       return;
     }
     tsParticles.load("particles-js", {
@@ -255,11 +263,12 @@ const App = (() => {
     });
   }
 
+  // === MAIN INITIALIZER ===
   const initPage = () => {
-    const isLoggedIn = sessionStorage.getItem("isLoggedIn");
     const isIndexPage =
       window.location.pathname.endsWith("/") ||
       window.location.pathname.includes("index.html");
+    const isLoggedIn = sessionStorage.getItem("isLoggedIn");
 
     if (!isLoggedIn && !isIndexPage) {
       logoutUser();
@@ -269,32 +278,34 @@ const App = (() => {
     loadComponent("layout/header.html", "main-header", setActiveNavLink);
     loadComponent("layout/footer.html", "main-footer");
 
-    initWelcomeScreen();
-
-    if (isLoggedIn) {
+    if (document.getElementById("welcome-overlay")) {
+      initWelcomeScreen();
+    } else if (isLoggedIn) {
       startInactivityTracker();
     }
 
     initScrollAnimations();
     if (document.getElementById("particles-js")) {
-      setTimeout(initParticles, 100);
+      setTimeout(initParticles, 500);
     }
 
+    // Jalankan inisialisasi spesifik halaman
     const pageId = document.body.dataset.pageId;
     if (pageId && typeof App.initializers[pageId] === "function") {
       App.initializers[pageId]();
     }
   };
 
+  // expose functions to be used by other files
   return {
     init: initPage,
     fetchData,
     renderItems,
     initScrollAnimations,
     cache,
-    state,
-    initializers: {},
+    initializers: {}, // Namespace for page-specific initializers
   };
 })();
 
+// Event listener untuk Turbo
 document.addEventListener("turbo:load", App.init);
