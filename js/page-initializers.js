@@ -163,6 +163,7 @@ App.initializers.informasi = async () => {
 };
 
 // === ABOUT PAGE (STRUKTUR ORGANISASI) ===
+// === ABOUT PAGE (STRUKTUR ORGANISASI) ===
 App.initializers.about = async () => {
   const container = document.getElementById("pohon-organisasi-container");
   if (!container) return;
@@ -186,32 +187,41 @@ App.initializers.about = async () => {
 
   const { pengurusInti, bidang } = data;
   const ketua = pengurusInti.find((p) => p.jabatan === "Ketua");
+  const sisaPengurusInti = pengurusInti.filter((p) => p.jabatan !== "Ketua");
 
+  // Ketua akan menjadi node paling atas dalam struktur
   let chartContent = `<li>${createNode(
     ketua.jabatan,
     ketua.nama,
     ketua.foto
   )}<ul>`;
 
-  let bidangHtml = '<ul class="bidang-group">';
+  // Membuat kelompok untuk sisa pengurus inti sebagai cabang pertama
+  let pengurusIntiHtml = '<ul class="anggota-grid">';
+  sisaPengurusInti.forEach((p) => {
+    pengurusIntiHtml += `<li>${createNode(p.jabatan, p.nama, p.foto)}</li>`;
+  });
+  pengurusIntiHtml += "</ul>";
+  chartContent += `<li>${createBidangTitleNode(
+    "Pengurus Inti"
+  )}${pengurusIntiHtml}</li>`;
+
+  // Membuat kelompok untuk setiap bidang sebagai cabang berikutnya
   bidang.forEach((b) => {
     let anggotaHtml = '<ul class="anggota-grid">';
     b.anggota.forEach((a) => {
       anggotaHtml += `<li>${createNode(a.jabatan, a.nama, a.foto)}</li>`;
     });
     anggotaHtml += "</ul>";
-    bidangHtml += `<li>${createBidangTitleNode(
+    chartContent += `<li>${createBidangTitleNode(
       b.namaBidang
     )}${anggotaHtml}</li>`;
   });
-  bidangHtml += "</ul>";
-
-  chartContent += `<li><div class="jabatan">Struktur Kepengurusan</div>${bidangHtml}</li>`;
 
   chartContent += `</ul></li>`;
-
   chart.innerHTML = chartContent;
 
+  // --- KODE KONTROL ZOOM & GESER (PAN) ---
   const zoomInBtn = document.getElementById("zoom-in-btn");
   const zoomOutBtn = document.getElementById("zoom-out-btn");
   const zoomLevelDisplay = document.getElementById("zoom-level");
@@ -253,6 +263,14 @@ App.initializers.about = async () => {
     const walk = x - startX;
     container.scrollLeft = scrollLeft - walk;
   });
+
+  // --- BARU: MEMBUAT POSISI DI TENGAH SAAT HALAMAN DIBUKA ---
+  // Diberi sedikit jeda untuk memastikan DOM selesai dimuat
+  setTimeout(() => {
+    const containerWidth = container.offsetWidth;
+    const chartWidth = chart.scrollWidth;
+    container.scrollLeft = (chartWidth - containerWidth) / 2;
+  }, 100);
 };
 
 // === KONTAK PAGE ===
