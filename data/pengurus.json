@@ -182,9 +182,13 @@
         {
           "nama": "Arlin fatoni",
           "jabatan": "Koordinator",
-          "foto": "https://03web.github.io/amaz03/foto/karang-taruna/arikakak.jpeg"
+          "foto": ""
         },
-        { "nama": "Doni ismail", "jabatan": "Anggota", "foto": "" }
+        {
+          "nama": "Doni ismail",
+          "jabatan": "Anggota",
+          "foto": "https://03web.github.io/amaz03/foto/karang-taruna/arlin.jpeg"
+        }
       ]
     },
     {
