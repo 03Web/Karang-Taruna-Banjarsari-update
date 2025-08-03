@@ -1347,28 +1347,20 @@ body[data-page-id="home"] main {
     transform: translate(-50%, -50%);
   }
 
-  /* FASE 3: Logo Diam di Tengah Selama 5 Detik */
-  /* Durasi: dari 19% hingga 60% (sekitar 5 detik dari total 12 detik animasi) */
+  /* FASE 3: Logo Diam di Tengah (durasi disesuaikan) */
   19.01%,
-  60% {
+  85% {
     transform: translate(-50%, -50%);
     opacity: 1;
   }
 
-  /* FASE 4: Logo Menghilang ke Kanan dengan cepat */
-  68% {
+  /* FASE 4: Logo Menghilang ke Kanan, selesai tepat di 100% untuk loop instan */
+  100% {
     transform: translate(150vw, -50%) scale(0.8);
     opacity: 0;
     animation-timing-function: ease-in;
   }
-
-  /* FASE 5: Tetap Menghilang Sampai Loop Berikutnya Dimulai */
-  100% {
-    transform: translate(150vw, -50%);
-    opacity: 0;
-  }
 }
-
 /* Gaya untuk filter container di halaman kegiatan */
 .filter-container {
   display: flex;

@@ -1,7 +1,7 @@
 /**
  * @file app-core.js
  * @description Script inti untuk fungsionalitas website. Mengelola state, komponen, dan inisialisasi dasar.
- * @version 8.1.0 (Added Mobile Top Header with Scroll Behavior)
+ * @version 8.2.0 (Sync with Karang Taruna branding)
  */
 
 const App = (() => {
@@ -302,16 +302,16 @@ const App = (() => {
             <div class="mobile-header-container">
                 <div class="logo">
                     <a href="index.html">
-                        <img src="foto/logoneutrontransparan.png" alt="Logo The Great Apes" />
+                        <img src="foto/ChatGPTlogokarangtaruna.png" alt="Logo Karang Taruna Banjarsari" />
                         <div class="logo-text">
-                            <h1>The Great Apes</h1>
+                            <h1>Karang Taruna Banjarsari</h1>
                         </div>
                     </a>
                 </div>
                 <div class="social-media">
-                     <a href="https://www.instagram.com/kartarbanjarr" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                     <a href="https://github.com/username-anda" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                     <a href="https://x.com/AmaziaKristanto" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                     <a href="https://www.instagram.com/kartarbanjarr?utm_source=ig_web_button_share_sheet&igsh=dzA2aGwwMjdtYzZj" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                     <a href="#" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                     <a href="#" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
         `;
