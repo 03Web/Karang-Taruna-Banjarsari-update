@@ -1217,8 +1217,8 @@ select.sorter:focus {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
-  max-width: 800px;
-  margin: 0 auto;
+  /* max-width: 800px; */ /* <-- INI YANG DIHAPUS */
+  /* margin: 0 auto; */ /* <-- INI JUGA SEBAIKNYA DIHAPUS */
 }
 
 .contact-link-item {
