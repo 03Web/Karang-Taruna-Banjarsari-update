@@ -2,49 +2,69 @@
   "albumFoto": [
     {
       "id": "album-1",
-      "cover": "foto/foto-karang-taruna/kumpulan-karang-taruna-banjarsari1.jpeg",
+      "cover": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/kumpulan-karang-taruna-banjarsari1.jpeg",
       "judul": "picture about Karang Taruna",
       "deskripsi": "10+ Foto",
       "foto": [
         {
-          "src": "foto/foto-karang-taruna/halal1.png",
-          "title": "Halal Bihalal"
-        },
-        {
-          "src": "foto/foto-karang-taruna/kumpulan-karang-taruna-banjarsari1.jpeg",
+          "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/kumpulan-karang-taruna-banjarsari1.jpeg",
           "title": "rapat/kumpulan karang taruna"
         },
         {
-          "src": "foto/foto-karang-taruna/angkringan.jpeg",
+          "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/halal1.png",
+          "title": "Halal Bihalal"
+        },
+        {
+          "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/angkringan.jpeg",
           "title": "Angkringan"
         },
-        { "src": "foto/foto-karang-taruna/wisata.jpeg", "title": "Wisata" },
         {
-          "src": "foto/foto-karang-taruna/17_agurstus_girl.png",
+          "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/angkringan_men.png",
+          "title": "Angkringan"
+        },
+        {
+          "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/bal-balan.jpeg",
+          "title": "bal-balan"
+        },
+        {
+          "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/17agustus_men.png",
           "title": "Peringatan 17 Agustus 2024"
         },
         {
-          "src": "foto/foto-karang-taruna/17agustus_men.png",
+          "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/17_agurstus_girl.png",
           "title": "Peringatan 17 Agustus 2024"
         },
         {
-          "src": "foto/foto-karang-taruna/halal2_girl.png",
+          "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/wisata2.jpeg",
+          "title": "wisata"
+        },
+        {
+          "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/wisata.jpeg",
+          "title": "wisata"
+        },
+        {
+          "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/halal2_girl.png",
           "title": "Halal Bihalal"
         }
       ]
     },
     {
       "id": "album-2",
-      "cover": "foto/foto-karang-taruna/tari.jpeg",
+      "cover": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/hold%20tari%20(1).jpeg",
       "judul": "Kesenian",
       "deskripsi": "10+ Foto",
       "foto": [
-        { "src": "foto/foto-karang-taruna/tari.jpeg", "title": "Tari" },
-        { "src": "foto/foto-karang-taruna/tari.JPG", "title": "Tari" },
-        { "src": "foto/foto-karang-taruna/hold tari.JPG", "title": "Tari" },
         {
-          "src": "foto/foto-karang-taruna/teri topeng ireng.JPG",
-          "title": "Tari Topeng Ireng"
+          "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/tari%20(1).jpeg",
+          "title": "Tari"
+        },
+        {
+          "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/hold%20tari%20(1).jpeg",
+          "title": "Tari"
+        },
+        {
+          "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/teri%20topeng%20ireng.jpeg",
+          "title": "Tari"
         }
       ]
     }
