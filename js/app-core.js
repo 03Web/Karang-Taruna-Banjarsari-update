@@ -88,9 +88,9 @@ const App = (() => {
       if (isEmpty) {
         btn.disabled = true;
         msg.style.color = "rgb(218 49 49)";
-        msg.innerText = "Untuk Masuk Web Pastikan Semua Terisi⚠!!Terserah Mau di Isi Apa Saja Bebas.";
+        msg.innerText = "Untuk Masuk Web Pastikan Semua Terisi⚠!! Terserah Mau di Isi Apa Saja Bebas.";
       } else {
-        msg.innerText = "TERIMAKASIH🙏,Sekarang Anda Bisa Masuk Web Karang Taruna Banjarsari.";
+        msg.innerText = "TERIMAKASIH🙏, Sekarang Anda Bisa Masuk Web Karang Taruna Banjarsari.";
         msg.style.color = "#92ff92";
         btn.disabled = false;
         btn.classList.add("no-shift");
