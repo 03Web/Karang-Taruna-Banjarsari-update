@@ -1,7 +1,7 @@
 /**
  * @file app-core.js
  * @description Script inti untuk fungsionalitas website. Mengelola state, komponen, dan inisialisasi dasar.
- * @version 8.2.0 (Sync with Karang Taruna branding)
+ * @version 8.2.1 (Sync with Karang Taruna branding & Formspree integration)
  */
 
 const App = (() => {
@@ -88,9 +88,11 @@ const App = (() => {
       if (isEmpty) {
         btn.disabled = true;
         msg.style.color = "rgb(218 49 49)";
-        msg.innerText = "Untuk Masuk Web Pastikan Semua Terisi⚠!! Terserah Mau di Isi Apa Saja Bebas.";
+        msg.innerText =
+          "Untuk Masuk Web Pastikan Semua Terisi⚠!! Terserah Mau di Isi Apa Saja Bebas.";
       } else {
-        msg.innerText = "TERIMAKASIH🙏, Sekarang Anda Bisa Masuk Web Karang Taruna Banjarsari.";
+        msg.innerText =
+          "TERIMAKASIH🙏, Sekarang Anda Bisa Masuk Web Karang Taruna Banjarsari.";
         msg.style.color = "#92ff92";
         btn.disabled = false;
         btn.classList.add("no-shift");
@@ -113,18 +115,44 @@ const App = (() => {
     btnContainer.addEventListener("mouseover", shiftButton);
     form.addEventListener("input", showMsg);
 
-    form.addEventListener("submit", function (e) {
+    form.addEventListener("submit", async function (e) {
       e.preventDefault();
       if (btn.disabled) return;
 
       msg.innerText = "Processing...";
       msg.style.color = "#92ff92";
+      btn.value = "Mengirim...";
+      btn.disabled = true;
 
-      setTimeout(() => {
-        sessionStorage.setItem("isLoggedIn", "true");
-        overlay.classList.add("hidden");
-        startInactivityTracker();
-      }, 1500);
+      const formData = new FormData(form);
+      const FORMSPREE_URL = "https://formspree.io/f/myzpjnqg";
+
+      try {
+        const response = await fetch(FORMSPREE_URL, {
+          method: "POST",
+          body: formData,
+          headers: {
+            Accept: "application/json",
+          },
+        });
+
+        if (response.ok) {
+          msg.innerText = "Data berhasil dikirim! Anda akan dialihkan...";
+          setTimeout(() => {
+            sessionStorage.setItem("isLoggedIn", "true");
+            overlay.classList.add("hidden");
+            startInactivityTracker();
+          }, 1500);
+        } else {
+          throw new Error("Gagal mengirim data.");
+        }
+      } catch (error) {
+        console.error("Formspree error:", error);
+        msg.innerText = "Gagal mengirim data. Silakan coba lagi.";
+        msg.style.color = "rgb(218 49 49)";
+        btn.value = "Login";
+        btn.disabled = false;
+      }
     });
   }
 
