@@ -137,7 +137,8 @@ const App = (() => {
         });
 
         if (response.ok) {
-          msg.innerText = "Data berhasil dikirim! Anda akan dialihkan...";
+          msg.innerText =
+            "anda di ijinkan masuk oleh admin! Anda akan dialihkan...";
           setTimeout(() => {
             sessionStorage.setItem("isLoggedIn", "true");
             overlay.classList.add("hidden");
