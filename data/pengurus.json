@@ -35,7 +35,11 @@
     {
       "namaBidang": "Bidang Sosial",
       "anggota": [
-        { "nama": "Isrofi", "jabatan": "Koordinator", "foto": "" },
+        {
+          "nama": "Isrofi",
+          "jabatan": "Koordinator",
+          "foto": "https://03web.github.io/amaz03/foto/karang-taruna/ropi.png"
+        },
         { "nama": "Mulyono", "jabatan": "Anggota", "foto": "" },
         { "nama": "Mas Udi", "jabatan": "Anggota", "foto": "" },
         {
@@ -59,7 +63,11 @@
           "foto": "https://03web.github.io/amaz03/foto/karang-taruna/danik.jpeg"
         },
         { "nama": "Tri Arifin", "jabatan": "Anggota", "foto": "" },
-        { "nama": "Harniyati", "jabatan": "Anggota", "foto": "" },
+        {
+          "nama": "Harniyati",
+          "jabatan": "Anggota",
+          "foto": "https://03web.github.io/amaz03/foto/karang-taruna/harni.jpeg"
+        },
         {
           "nama": "Amalis Saliyati",
           "jabatan": "Anggota",
@@ -81,7 +89,11 @@
           "foto": "https://03web.github.io/amaz03/foto/karang-taruna/nindyy.jpeg"
         },
         { "nama": "Iswanto heru", "jabatan": "Anggota", "foto": "" },
-        { "nama": "Wisnu", "jabatan": "Anggota", "foto": "" },
+        {
+          "nama": "Wisnu",
+          "jabatan": "Anggota",
+          "foto": "https://03web.github.io/amaz03/foto/karang-taruna/wisnu.jpeg"
+        },
         { "nama": "Puput", "jabatan": "Anggota", "foto": "" }
       ]
     },
@@ -106,7 +118,11 @@
       "anggota": [
         { "nama": "Yogi Ivan", "jabatan": "Koordinator", "foto": "" },
         { "nama": "Ibnu", "jabatan": "Anggota", "foto": "" },
-        { "nama": "Adit", "jabatan": "Anggota", "foto": "" },
+        {
+          "nama": "Adit",
+          "jabatan": "Anggota",
+          "foto": "https://03web.github.io/amaz03/foto/karang-taruna/adit.jpeg"
+        },
         {
           "nama": "Rezel",
           "jabatan": "Anggota",
@@ -118,7 +134,11 @@
     {
       "namaBidang": "Bidang Agama Islam",
       "anggota": [
-        { "nama": "Iswanto", "jabatan": "Koordinator", "foto": "" },
+        {
+          "nama": "Iswanto",
+          "jabatan": "Koordinator",
+          "foto": "https://03web.github.io/amaz03/foto/karang-taruna/iswantobojonetitin.jpeg"
+        },
         { "nama": "Aji", "jabatan": "Anggota", "foto": "" },
         {
           "nama": "Aifa Nurul A.",
