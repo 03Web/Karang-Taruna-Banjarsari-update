@@ -2,14 +2,11 @@
   "albumFoto": [
     {
       "id": "album-1",
-      "cover": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/kumpulan-karang-taruna-banjarsari1.jpeg",
-      "judul": "picture about Karang Taruna",
+      "cover": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/angkringan.jpeg",
+      "judul": "Part of karang taruna banjarsari 2020/2024",
       "deskripsi": "10+ Foto",
       "foto": [
-        {
-          "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/kumpulan-karang-taruna-banjarsari1.jpeg",
-          "title": "rapat/kumpulan karang taruna"
-        },
+      
         {
           "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/halal1.png",
           "title": "Halal Bihalal"
@@ -19,8 +16,16 @@
           "title": "Angkringan"
         },
         {
-          "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/angkringan_men.png",
+          "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/angkringa_girl.png",
           "title": "Angkringan"
+        },
+        {
+          "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/lapangan1.png",
+          "title": "lapangan"
+        },
+        {
+          "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/lapangan2.png",
+          "title": "lapangan"
         },
         {
           "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/bal-balan.jpeg",
@@ -50,6 +55,31 @@
     },
     {
       "id": "album-2",
+      "cover": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/kumpulan-karang-taruna-banjarsari1.jpeg",
+      "judul": "Part of karang taruna banjarsari 2025 ",
+      "deskripsi": "10+ Foto",
+      "foto": [
+        {
+          "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/behind%20the%20scene1.png",
+          "title": "behind the scene - film pendek memperingati 17 agustusan 2025"
+        },
+        {
+          "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/behind%20the%20scene2.png",
+          "title": "behind the scene - film pendek memperingati 17 agustusan 2025"
+        },
+        {
+          "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/behind%20the%20scene3.png",
+          "title": "behind the scene - film pendek memperingati 17 agustusan 2025"
+        },
+        {
+          "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/halal1.png",
+          "title": "Halal Bihalal"
+        }
+        
+      ]
+    },
+    {
+      "id": "album-3",
       "cover": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/hold%20tari%20(1).jpeg",
       "judul": "Kesenian",
       "deskripsi": "10+ Foto",
