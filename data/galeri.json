@@ -59,30 +59,39 @@
           "title": "Tari"
         },
         {
+          "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/topeng-ireng05-08-25.jpeg",
+          "title": "kesenian"
+        },
+        {
           "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/hold%20tari%20(1).jpeg",
-          "title": "Tari"
+          "title": "kesenian"
         },
         {
           "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/teri%20topeng%20ireng.jpeg",
-          "title": "Tari"
+          "title": "kesenian"
         }
       ]
     }
   ],
   "dokumentasiVideo": [
     {
-      "tanggal": "2025-05-11",
+      "tanggal": "2025-08-05",
       "src": "https://www.youtube.com/embed/VModK8wPFQA?si=fGXrBdvibO2G7hdl",
       "title": "Video Kegiatan Mei 2025"
     },
     {
-      "tanggal": "2024-05-10",
+      "tanggal": "2024-08-03",
+      "src": "https://www.youtube.com/embed/RTY0e3aInDw?si=Be2ysZ615m0m6CKd",
+      "title": "tari topeng ireng"
+    },
+    {
+      "tanggal": "2024-08-2",
       "src": "https://www.youtube.com/embed/RTY0e3aInDw?si=Be2ysZ615m0m6CKd",
       "title": "Video Kegiatan Mei"
     },
 
     {
-      "tanggal": "2024-04-20",
+      "tanggal": "2010-08-01",
       "src": "https://www.youtube.com/embed/jNQXAC9IVRw",
       "title": "Video Kegiatan April"
     }
