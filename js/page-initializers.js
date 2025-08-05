@@ -66,27 +66,33 @@ App.initializers.galeri = async () => {
   const albumContainer = document.getElementById("album-grid");
   if (albumContainer && data.albumFoto) {
     const createAlbumTemplate = (album) => `
-        <div class="album-item animate-on-scroll">
-            <a href="${album.foto[0].src}" data-lightbox="${
+    <div class="album-item animate-on-scroll">
+        <a href="${album.foto[0].src}" data-lightbox="${
       album.id
     }" data-title="${album.foto[0].title || album.judul}" class="album-cover">
-                <img src="${album.cover}" alt="Cover album ${
+            <img src="${album.cover}" alt="Cover album ${
       album.judul
     }" loading="lazy">
-                <div class="album-info"><h4>${album.judul}</h4><p>${
+            <div class="album-info"><h4>${album.judul}</h4><p>${
       album.deskripsi
     }</p></div>
-            </a>
-            ${album.foto
-              .slice(1)
-              .map(
-                (foto) =>
-                  `<a href="${foto.src}" data-lightbox="${
-                    album.id
-                  }" data-title="${foto.title || album.judul}"></a>`
-              )
-              .join("")}
-        </div>`;
+
+            <div class="click-hint-animated">
+                <i class="fas fa-hand-pointer"></i>
+                <span>Buka Galeri</span>
+            </div>
+
+        </a>
+        ${album.foto
+          .slice(1)
+          .map(
+            (foto) =>
+              `<a href="${foto.src}" data-lightbox="${album.id}" data-title="${
+                foto.title || album.judul
+              }"></a>`
+          )
+          .join("")}
+    </div>`;
     App.renderItems(
       albumContainer,
       data.albumFoto,
