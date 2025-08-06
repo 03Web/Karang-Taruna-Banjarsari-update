@@ -3,100 +3,87 @@
     {
       "id": "album-1",
       "cover": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/angkringan.jpeg",
+      "alt_cover": "Suasana angkringan Karang Taruna Banjarsari",
       "judul": "Part of karang taruna banjarsari 2020/2024",
       "deskripsi": "10+ Foto",
       "foto": [
         {
           "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/halal1.png",
-          "title": "Halal Bihalal"
+          "title": "Halal Bihalal",
+          "alt": "Foto bersama saat Halal Bihalal"
         },
         {
           "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/angkringan.jpeg",
-          "title": "Angkringan"
+          "title": "Angkringan",
+          "alt": "Anggota karang taruna di acara angkringan"
         },
         {
           "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/angkringa_girl.png",
-          "title": "Angkringan"
+          "title": "Angkringan",
+          "alt": "Anggota putri karang taruna di acara angkringan"
         },
         {
           "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/lapangan1.png",
-          "title": "lapangan"
-        },
-        {
-          "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/lapangan2.png",
-          "title": "lapangan"
+          "title": "Kerja Bakti Lapangan",
+          "alt": "Kerja bakti membersihkan lapangan voli"
         },
         {
           "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/bal-balan.jpeg",
-          "title": "bal-balan"
+          "title": "Sepak Bola",
+          "alt": "Pertandingan sepak bola persahabatan"
         },
         {
           "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/17agustus_men.png",
-          "title": "Peringatan 17 Agustus 2024"
+          "title": "Peringatan 17 Agustus 2024",
+          "alt": "Panitia putra 17 Agustus 2024"
         },
         {
           "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/17_agurstus_girl.png",
-          "title": "Peringatan 17 Agustus 2024"
-        },
-        {
-          "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/wisata2.jpeg",
-          "title": "wisata"
+          "title": "Peringatan 17 Agustus 2024",
+          "alt": "Panitia putri 17 Agustus 2024"
         },
         {
           "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/wisata.jpeg",
-          "title": "wisata"
-        },
-        {
-          "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/halal2_girl.png",
-          "title": "Halal Bihalal"
+          "title": "Wisata Bersama",
+          "alt": "Anggota karang taruna berwisata bersama"
         }
       ]
     },
     {
       "id": "album-2",
       "cover": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/kumpulan-karang-taruna-banjarsari1.jpeg",
+      "alt_cover": "Rapat anggota Karang Taruna Banjarsari 2025",
       "judul": "Part of karang taruna banjarsari 2025 ",
-      "deskripsi": "10+ Foto",
+      "deskripsi": "4+ Foto",
       "foto": [
         {
           "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/kumpulan-karang-taruna-banjarsari1.jpeg",
-          "title": "Halal Bihalal"
+          "title": "Rapat Anggota",
+          "alt": "Suasana rapat anggota Karang Taruna 2025"
         },
         {
           "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/behind%20the%20scene1.png",
-          "title": "behind the scene - film pendek memperingati 17 agustusan 2025"
-        },
-        {
-          "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/behind%20the%20scene2.png",
-          "title": "behind the scene - film pendek memperingati 17 agustusan 2025"
-        },
-        {
-          "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/behind%20the%20scene3.png",
-          "title": "behind the scene - film pendek memperingati 17 agustusan 2025"
+          "title": "Behind the Scene - Film Pendek",
+          "alt": "Proses syuting film pendek untuk 17 Agustus 2025"
         }
       ]
     },
     {
       "id": "album-3",
       "cover": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/hold%20tari%20(1).jpeg",
+      "alt_cover": "Pementasan tari tradisional",
       "judul": "Kesenian",
-      "deskripsi": "10+ Foto",
+      "deskripsi": "4+ Foto",
       "foto": [
         {
           "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/tari%20(1).jpeg",
-          "title": "Tari"
+          "title": "Tari Tradisional",
+          "alt": "Penampilan tari tradisional oleh anggota karang taruna"
         },
         {
           "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/topeng-ireng05-08-25.jpeg",
-          "title": "kesenian"
-        },
-        {
-          "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/hold%20tari%20(1).jpeg",
-          "title": "kesenian"
-        },
-        {
-          "src": "https://03web.github.io/amaz03/foto/Karang-taruna-galeri/foto-karang-taruna/teri%20topeng%20ireng.jpeg",
-          "title": "kesenian"
+          "title": "Kesenian Topeng Ireng",
+          "alt": "Pementasan kesenian Topeng Ireng"
         }
       ]
     }
@@ -104,24 +91,13 @@
   "dokumentasiVideo": [
     {
       "tanggal": "2025-08-05",
-      "src": "https://www.youtube.com/embed/VModK8wPFQA?si=fGXrBdvibO2G7hdl",
-      "title": "Video Kegiatan Mei 2025"
+      "src": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      "title": "Contoh Video Kegiatan Agustus 2025"
     },
     {
       "tanggal": "2024-08-03",
-      "src": "https://www.youtube-nocookie.com/embed/e4Hf66XR63Y?si=MuUPPTAiWtQNDCiy&amp;start=5",
-      "title": "tari topeng ireng"
-    },
-    {
-      "tanggal": "2024-08-2",
-      "src": "https://www.youtube.com/embed/RTY0e3aInDw?si=Be2ysZ615m0m6CKd",
-      "title": "Video Kegiatan Mei"
-    },
-
-    {
-      "tanggal": "2010-08-01",
-      "src": "https://www.youtube.com/embed/jNQXAC9IVRw",
-      "title": "Video Kegiatan April"
+      "src": "https://www.youtube-nocookie.com/embed/e4Hf66XR63Y?si=MuUPPTAiWtQNDCiy&start=5",
+      "title": "Tari Topeng Ireng Kridho Turonggo Mudho"
     }
   ]
 }

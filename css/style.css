@@ -34,7 +34,15 @@ body {
 /* ========================================= */
 /* === GAYA HEADER (PROFESIONAL STYLE) === */
 /* ========================================= */
-
+.logo-main-text {
+  font-size: 1.3em;
+  font-weight: 700;
+  margin: 0;
+  color: var(--light-text);
+  font-family: "Poppins", sans-serif;
+  font-style: italic;
+  line-height: 1.1;
+}
 header#main-header {
   position: fixed;
   top: 0; /* Default di atas */
@@ -1797,4 +1805,25 @@ a:hover {
 }
 .lg-outer .lg-thumb-outer {
   background-color: #000;
+}
+/* Salin semua isi file style.css asli Anda ke sini, lalu tambahkan kode di bawah ini di bagian paling akhir */
+
+.logo-main-text {
+  font-size: 1.3em;
+  font-weight: 700;
+  margin: 0;
+  color: var(--light-text);
+  font-family: "Poppins", sans-serif;
+  font-style: italic;
+  line-height: 1.1;
+}
+
+/* Mengganti H3 menjadi H2 di kartu kegiatan */
+.kegiatan-konten h2 {
+  font-size: 0.95em;
+  font-weight: 700;
+  margin: 0 0 5px 0;
+  color: var(--primary-color);
+  text-align: left;
+  line-height: 1.2;
 }

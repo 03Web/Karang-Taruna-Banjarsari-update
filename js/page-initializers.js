@@ -15,12 +15,12 @@ App.initializers.kegiatan = async () => {
       item.tanggal
     }">
       <div class="kegiatan-foto">
-        <img src="${item.gambar}" alt="Gambar untuk ${
-    item.judul
+        <img src="${item.gambar}" alt="${
+    item.alt_gambar || "Gambar Kegiatan " + item.judul
   }" loading="lazy">
       </div>
       <div class="kegiatan-konten">
-        <h3>${item.judul}</h3>
+        <h2>${item.judul}</h2>
         <p class="kegiatan-meta"><i class="fas fa-calendar-alt"></i> ${new Date(
           item.tanggal
         ).toLocaleDateString("id-ID", {
@@ -65,12 +65,11 @@ App.initializers.galeri = async () => {
 
   const albumContainer = document.getElementById("album-grid");
   if (albumContainer && data.albumFoto) {
-    // Template untuk cover album, sekarang dengan data-id untuk targeting
     const createAlbumTemplate = (album) => `
     <div class="album-item">
         <div class="album-cover" id="album-cover-${album.id}">
-            <img src="${album.cover}" alt="Cover album ${
-      album.judul
+            <img src="${album.cover}" alt="${
+      album.alt_cover || "Cover album " + album.judul
     }" loading="lazy">
             <div class="album-info"><h4>${album.judul}</h4><p>${
       album.deskripsi
@@ -86,8 +85,8 @@ App.initializers.galeri = async () => {
                 (foto) =>
                   `<a href="${foto.src}" data-sub-html="<h4>${
                     foto.title || album.judul
-                  }</h4>">
-                      <img src="${foto.src}" />
+                  }</h4>" data-alt="${foto.alt || foto.title}">
+                      <img src="${foto.src}" alt="${foto.alt || foto.title}" />
                   </a>`
               )
               .join("")}
@@ -104,7 +103,6 @@ App.initializers.galeri = async () => {
       </div>
     `;
 
-    // Inisialisasi lightGallery untuk setiap album
     data.albumFoto.forEach((album) => {
       const cover = document.getElementById(`album-cover-${album.id}`);
       const gallery = document.getElementById(`lightgallery-${album.id}`);
@@ -112,7 +110,7 @@ App.initializers.galeri = async () => {
       const lg = lightGallery(gallery, {
         plugins: [lgThumbnail],
         speed: 500,
-        download: false, // Opsional: nonaktifkan tombol download
+        download: false,
         mobileSettings: {
           controls: true,
           showCloseIcon: true,
@@ -120,7 +118,7 @@ App.initializers.galeri = async () => {
       });
 
       cover.addEventListener("click", () => {
-        lg.openGallery(); // Buka galeri saat cover diklik
+        lg.openGallery();
       });
     });
 
@@ -237,9 +235,11 @@ App.initializers.about = async () => {
     container.innerHTML = "<p>Gagal memuat struktur organisasi.</p>";
     return;
   }
-  const createNode = (jabatan, nama, fotoUrl) => {
+  const createNode = (jabatan, nama, fotoUrl, altText) => {
     const imageTag = fotoUrl
-      ? `<img src="${fotoUrl}" alt="Foto ${nama}" class="foto-node" loading="lazy">`
+      ? `<img src="${fotoUrl}" alt="${
+          altText || "Foto " + nama
+        }" class="foto-node" loading="lazy">`
       : `<span class="foto-node foto-node-placeholder fas fa-user"></span>`;
     return `<div>${imageTag}<span class="jabatan">${jabatan}</span><span class="nama">${nama}</span></div>`;
   };
@@ -257,12 +257,18 @@ App.initializers.about = async () => {
   let chartContent = `<li>${createNode(
     ketua.jabatan,
     ketua.nama,
-    ketua.foto
+    ketua.foto,
+    ketua.alt
   )}<ul>`;
 
   let pengurusIntiHtml = '<ul class="anggota-grid">';
   sisaPengurusInti.forEach((p) => {
-    pengurusIntiHtml += `<li>${createNode(p.jabatan, p.nama, p.foto)}</li>`;
+    pengurusIntiHtml += `<li>${createNode(
+      p.jabatan,
+      p.nama,
+      p.foto,
+      p.alt
+    )}</li>`;
   });
   pengurusIntiHtml += "</ul>";
   chartContent += `<li>${createBidangTitleNode(
@@ -272,7 +278,7 @@ App.initializers.about = async () => {
   bidang.forEach((b) => {
     let anggotaHtml = '<ul class="anggota-grid">';
     b.anggota.forEach((a) => {
-      anggotaHtml += `<li>${createNode(a.jabatan, a.nama, a.foto)}</li>`;
+      anggotaHtml += `<li>${createNode(a.jabatan, a.nama, a.foto, a.alt)}</li>`;
     });
     anggotaHtml += "</ul>";
     chartContent += `<li>${createBidangTitleNode(
@@ -408,7 +414,7 @@ App.initializers.artikel = async () => {
     document.title = `${title} - Karang Taruna Banjarsari`;
     container.innerHTML = `
             <div class="artikel-header">
-                <h2>${title}</h2>
+                <h1>${title}</h1>
                 <div class="artikel-meta-info">
                     <span><i class="fas fa-calendar-alt"></i> ${date}</span>
                     <span><i class="fas fa-clock"></i> Estimasi ${readingTime} menit baca</span>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://03web.github.io/Karang-Taruna-Banjarsari/sitemap.xml
