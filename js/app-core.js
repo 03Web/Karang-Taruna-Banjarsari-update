@@ -89,7 +89,7 @@ const App = (() => {
         btn.disabled = true;
         msg.style.color = "rgb(218 49 49)";
         msg.innerText =
-          "Untuk Masuk Web Pastikan Semua Terisi⚠!! Terserah Mau di Isi Apa Saja Bebas.";
+          "Untuk Masuk Web Pastikan Semua Form Terisi⚠!! Terserah Mau di Isi Apa Saja Bebas.";
       } else {
         msg.innerText =
           "TERIMAKASIH🙏, Sekarang Anda Bisa Masuk Web Karang Taruna Banjarsari.";
