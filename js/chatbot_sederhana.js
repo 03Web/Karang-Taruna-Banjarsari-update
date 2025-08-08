@@ -8,16 +8,53 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- KOMPONEN 2: "PENGETAHUAN" WEBSITE (VERSI LENGKAP) ---
   // Ini adalah 'contekan' untuk AI. Semua informasi dari website Anda ada di sini.
   const KNOWLEDGE_BASE = `
-       TENTANG ORGANISASI:
+        INFORMASI UMUM ORGANISASI:
         - Nama Organisasi: Karang Taruna Banjarsari, Temanggung.
         - Deskripsi: Organisasi kepemudaan sebagai wadah bagi generasi muda untuk berkembang, berkreasi, dan berkontribusi secara positif bagi masyarakat Desa Banjarsari.
         - Visi: Menjadi organisasi pemuda yang mandiri, kreatif, inovatif, dan menjadi pilar utama dalam Pembudayaan Desa dan pembangunan kesejahteraan sosial di Desa Banjarsari.
         - Misi: Mengembangkan potensi pemuda, menyelenggarakan kegiatan sosial, keagamaan, kesenian, dan olahraga, membangun kemitraan, serta menjaga kelestarian lingkungan dan kearifan lokal.
         - Alamat Sekretariat: Q5RQ+5R5, Unnamed Road, Banjarsari, Kec. Kandangan, Kabupaten Temanggung, Jawa Tengah 56281.
         - Email: karangtaruna.banjarsari@email.com.
-        - Sosial Media: Instagram @kartarbanjarr, TikTok, dan YouTube.
+        - Sosial Media: Instagram @kartarbanjarr.
 
-        STRUKTUR ORGANISASI LENGKAP (data/pengurus.json):
+        ---
+
+        DETAIL LENGKAP ACARA "GEBYAR MERDEKA 17 AGUSTUS 2025":
+        
+        1. Informasi Umum Acara:
+           - Nama Resmi Acara: "GEBYAR MERDEKA 17 AGUSTUS 2025", juga disebut "RUNDOWN ACARA KEMERDEKAAN" atau "PERLOMBAAN 17 AGUSTUS 2025".
+           - Penyelenggara: Karang Taruna Dusun Banjarsari.
+           - Tanggal Pelaksanaan: 13, 14, dan 15 Agustus 2025.
+           - Lokasi: Lapangan Bola Voly Banjarsari dan Aula Balai Desa Banjarsari.
+           - Tema: Perayaan Dirgahayu ke-80 Republik Indonesia.
+
+        2. Daftar Lengkap Perlombaan:
+           - Kategori Anak-anak: Balap Karung, Estafet Air, Estafet Kelereng, Futsal (tim 5 orang, SMP ke bawah), Kuk Jeru (atau Mpok Jeru), Makan kerupuk, Tiup Gelas Plastik, Ular Tangga Suit.
+           - Kategori Dewasa: Bola Voli (PA/PI), Bulu Tangkis Blabak (Singel Khusus Putri, Ganda Putra, Ganda Campuran), Catur, Estafet Air, Gapyak, Gobak Sodor (atau Cobak Sodor), Karaoke Duet (Lagu Bebas), Makan Kerupuk, Tenis Meja.
+
+        3. Jadwal Rinci Harian:
+           - Rabu, 13 Agustus 2025:
+             - Sesi Siang (14:00 - Selesai): Lomba Makan Kerupuk, Estafet Air, Estafet Kelereng, Futsal Anak.
+             - Sesi Malam (19:00 - Selesai): Catur (PI), Tenis Meja (PI).
+           - Kamis, 14 Agustus 2025:
+             - Sesi Siang (14:00 - Selesai): Ular Tangga Suit, Mpok Jeru, Balap Karung, Tiup Gelas Plastik, Gapyak (PA/PI), Cobak Sodor (PA/PI).
+           - Jumat, 15 Agustus 2025:
+             - Sesi Siang (14:00 - Selesai): Bola Voly (PA/PI), Balap Karung.
+             - Sesi Malam (19:00 - Selesai): Bulu Tangkis Blabak (Singel Khusus Putri, Ganda Putra, Ganda Campuran).
+
+        4. Informasi Hadiah:
+           - Hadiah akan diberikan untuk Juara 1, 2, dan 3 pada kategori Lomba Anak-Anak.
+           - Akan ada penentuan Juara Umum untuk Lomba Antar RT.
+
+        5. Catatan Penting (Perbedaan Informasi):
+           - Jadwal Balap Karung tercatat di dua hari berbeda (Kamis 14 Agustus dan Jumat 15 Agustus). Mohon konfirmasi lebih lanjut.
+           - Kategori Catur & Tenis Meja memiliki info berbeda (ada yang menyebut khusus Putri, ada yang umum).
+           - Jadwal Karaoke Duet belum tercantum secara spesifik di rundown harian.
+           - Terdapat variasi ejaan nama lomba seperti Kuk Jeru/Mpok Jeru dan Gobak Sodor/Cobak Sodor.
+
+        ---
+        
+        STRUKTUR ORGANISASI LENGKAP:
         PENGURUS INTI:
         - Penasehat: Sunirman, S.Ag (No. Telepon: [kosong])
         - Penanggung Jawab: Suryono, S.Pd (No. Telepon: [kosong])
@@ -27,50 +64,23 @@ document.addEventListener("DOMContentLoaded", () => {
         - Bendahara: Yudi Arum S. (No. Telepon: [kosong])
         
         BIDANG-BIDANG:
-        1. Bidang Sosial:
-           - Koordinator: Isrofi (No. Telepon: [kosong])
-           - Anggota: Mulyono, Mas Udi, Nana Mustakimah, Sifa Amadea P.
-        2. Bidang Perekonomian dan Kewirausahaan:
-           - Koordinator: Dani Indri S. (No. Telepon: [kosong])
-           - Anggota: Tri Arifin, Harniyati, Amalis Saliyati.
-        3. Bidang Olahraga dan Seni Budaya:
-           - Koordinator: M. Ardan Maulana (No. Telepon: [kosong])
-           - Anggota: Satria Nindy W., Iswanto heru, Wisnu, Puput.
-        4. Bidang Media:
-           - Koordinator: Haidar Daffa (No. Telepon: [kosong])
-           - Anggota: Azizah Melan, Indra Kurniawan.
-        5. Bidang Lingkungan Hidup Dan Kebersihan:
-           - Koordinator: Yogi Ivan (No. Telepon: [kosong])
-           - Anggota: Ibnu, Adit, Rezel, Jojo.
-        6. Bidang Agama Islam:
-           - Koordinator: Iswanto (No. Telepon: [kosong])
-           - Anggota: Aji, Aifa Nurul A.
-        7. Bidang Agama Kristen:
-           - Koordinator: Margaretha (No. Telepon: [kosong])
-           - Anggota: Amazia, Agatha, Nessa.
-        8. Bidang Keamanan:
-           - Koordinator: Budi Santoso (No. Telepon: [kosong])
-           - Anggota: Rendi Sikun, Satria Juang W., Beni Nurhidayat, Sendi, Imas, Enggar.
-        9. Bidang Pendidikan:
-           - Koordinator: Arlin fatoni (No. Telepon: [kosong])
-           - Anggota: Doni ismail.
-        10. Bidang Organisasi Dan Kaderisasi:
-            - Koordinator: Ari (No. Telepon: [kosong])
-            - Anggota: Titik, M. Nur Fauzi.
+        1. Bidang Sosial: Koordinator: Isrofi (No. Telepon: [kosong]), Anggota: Mulyono, Mas Udi, Nana Mustakimah, Sifa Amadea P.
+        2. Bidang Perekonomian: Koordinator: Dani Indri S. (No. Telepon: [kosong]), Anggota: Tri Arifin, Harniyati, Amalis Saliyati.
+        3. Bidang Olahraga & Seni Budaya: Koordinator: M. Ardan Maulana (No. Telepon: [kosong]), Anggota: Satria Nindy W., Iswanto heru, Wisnu, Puput.
+        4. Bidang Media: Koordinator: Haidar Daffa (No. Telepon: [kosong]), Anggota: Azizah Melan, Indra Kurniawan.
+        5. Bidang Lingkungan & Kebersihan: Koordinator: Yogi Ivan (No. Telepon: [kosong]), Anggota: Ibnu, Adit, Rezel, Jojo.
+        6. Bidang Agama Islam: Koordinator: Iswanto (No. Telepon: [kosong]), Anggota: Aji, Aifa Nurul A.
+        7. Bidang Agama Kristen: Koordinator: Margaretha (No. Telepon: [kosong]), Anggota: Amazia, Agatha, Nessa.
+        8. Bidang Keamanan: Koordinator: Budi Santoso (No. Telepon: [kosong]), Anggota: Rendi Sikun, Satria Juang W., Beni Nurhidayat, Sendi, Imas, Enggar.
+        9. Bidang Pendidikan: Koordinator: Arlin fatoni (No. Telepon: [kosong]), Anggota: Doni ismail.
+        10. Bidang Organisasi & Kaderisasi: Koordinator: Ari (No. Telepon: [kosong]), Anggota: Titik, M. Nur Fauzi.
 
-        NARAHUBUNG (data/kontak.json):
-        - Andri Apri (Ketua Umum): Hubungi untuk informasi umum dan kerja sama. WA: 6285712414558.
-        - Yunita (Wakil Ketua): Hubungi untuk informasi umum dan kegiatan. WA: 6288233496802.
-        - Amaz (Admin Website): Hubungi untuk laporan bug/error website, atau saran. WA: 6285876983793.
+        ---
 
-        INFORMASI & PENGUMUMAN (data/informasi.json):
-        - 7 Juli 2025: Ada jadwal rapat pleno persiapan HUT RI ke-80 pada Sabtu, 19 Juli 2025 pukul 19:30 WIB di Balai Desa Banjarsari.
-        - 6 Juli 2025: Pendaftaran Lomba Cerdas Cermat dibuka hingga 25 Juli 2025.
-        - 5 Juli 2025: Ada update desain kaos resmi Karang Taruna 2025.
-
-        DAFTAR KEGIATAN & ARTIKEL (data/kegiatan.json):
-        - 17 Agustus 2025: Akan ada "GEBYAR MERDEKA 2025" untuk merayakan HUT RI ke-80.
-        - 17 Agustus 2024: Telah dilaksanakan "Semarak Kemerdekaan: Lomba 17 Agustus 2024" untuk memeriahkan HUT RI ke-79.
+        NARAHUBUNG UTAMA:
+        - Andri Apri (Ketua Umum): Info umum & kerja sama. WA: 6285712414558.
+        - Yunita (Wakil Ketua): Info umum & kegiatan. WA: 6288233496802.
+        - Amaz (Admin Website): Laporan bug/saran website. WA: 6285876983793.
     `;
 
   // Ambil elemen-elemen dari HTML
