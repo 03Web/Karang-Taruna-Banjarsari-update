@@ -216,79 +216,136 @@ document.addEventListener("turbo:load", () => {
 
   // --- KOMPONEN 2: "PENGETAHUAN" WEBSITE (TETAP SAMA) ---
   const KNOWLEDGE_BASE = `
-        - Nama Organisasi: Karang Taruna Banjarsari, Temanggung.
-        - Deskripsi: Organisasi kepemudaan sebagai wadah bagi generasi muda untuk berkembang, berkreasi, dan berkontribusi secara positif bagi masyarakat Desa Banjarsari.
-        - Visi: Menjadi organisasi pemuda yang mandiri, kreatif, inovatif, dan menjadi pilar utama dalam Pembudayaan Desa dan pembangunan kesejahteraan sosial di Desa Banjarsari.
-        - Misi: Mengembangkan potensi pemuda, menyelenggarakan kegiatan sosial, keagamaan, kesenian, dan olahraga, membangun kemitraan, serta menjaga kelestarian lingkungan dan kearifan lokal.
-        - Alamat Sekretariat: Q5RQ+5R5, Unnamed Road, Banjarsari, Kec. Kandangan, Kabupaten Temanggung, Jawa Tengah 56281.
-        - Email: karangtaruna.banjarsari@email.com.
-        - Sosial Media: Instagram @kartarbanjarr.
+      ================================
+      INFORMASI UMUM ORGANISASI
+      ================================
+      - Nama Organisasi: Karang Taruna Banjarsari, Temanggung.
+      - Deskripsi: Organisasi kepemudaan yang menjadi wadah bagi para generasi muda untuk berkembang, berkreasi, dan berkontribusi secara positif bagi lingkungan dan masyarakat Desa Banjarsari.
+      - Visi: Menjadi organisasi pemuda yang mandiri, kreatif, inovatif, dan menjadi pilar utama dalam Pembudayaan Desa dan pembangunan kesejahteraan sosial di Desa Banjarsari.
+      - Misi:
+          - Mengembangkan potensi dan kreativitas pemuda di berbagai bidang.
+          - Menyelenggarakan kegiatan sosial, keagamaan, Kesenian dan olahraga.
+          - Membangun kemitraan strategis dengan berbagai pihak.
+          - Menjaga kelestarian lingkungan dan kearifan lokal.
+      - Alamat Sekretariat: Q5RQ+5R5, Unnamed Road, Banjarsari, Kec. Kandangan, Kabupaten Temanggung, Jawa Tengah 56281.
+      - Email: karangtaruna.banjarsari@email.com.
+      - Sosial Media:
+          - Instagram: @kartarbanjarr
+          - TikTok: Belum tersedia.
+          - YouTube: Belum tersedia.
 
-        ---
+      ================================
+      STRUKTUR ORGANISASI LENGKAP
+      ================================
+      PENGURUS INTI:
+      - Penasehat: Sunirman, S.Ag
+      - Penanggung Jawab: Suryono, S.Pd
+      - Ketua: Andri Apriyanto
+      - Wakil: Yunita Sari
+      - Sekretaris: Dimas Suryo L.
+      - Bendahara: Yudi Arum S.
 
-        DETAIL LENGKAP ACARA "GEBYAR MERDEKA 17 AGUSTUS 2025":
+      BIDANG-BIDANG & SELURUH ANGGOTANYA:
+      1.  **Bidang Sosial**:
+          - Koordinator: Isrofi
+          - Anggota: Mulyono, Mas Udi, Nana Mustakimah, Sifa Amadea P.
+      2.  **Bidang Perekonomian dan Kewirausahaan**:
+          - Koordinator: Dani Indri S.
+          - Anggota: Tri Arifin, Harniyati, Amalis Saliyati.
+      3.  **Bidang Olahraga dan Seni Budaya**:
+          - Koordinator: M. Ardan Maulana
+          - Anggota: Satria Nindy W., Iswanto heru, Wisnu, Puput.
+      4.  **Bidang Media**:
+          - Koordinator: Haidar Daffa
+          - Anggota: Azizah Melan, Indra Kurniawan.
+      5.  **Bidang Lingkungan Hidup Dan Kebersihan**:
+          - Koordinator: Yogi Ivan
+          - Anggota: Ibnu, Adit, Rezel, Jojo.
+      6.  **Bidang Agama Islam**:
+          - Koordinator: Iswanto
+          - Anggota: Aji, Aifa Nurul A.
+      7.  **Bidang Agama Kristen**:
+          - Koordinator: Margaretha
+          - Anggota: Amazia, Agatha, Nessa.
+      8.  **Bidang Keamanan**:
+          - Koordinator: Budi Santoso
+          - Anggota: Rendi Sikun, Satria Juang W., Beni Nurhidayat, Sendi, Imas, Enggar.
+      9.  **Bidang Pendidikan**:
+          - Koordinator: Arlin fatoni
+          - Anggota: Doni ismail.
+      10. **Bidang Organisasi Dan Kaderisasi**:
+          - Koordinator: Ari
+          - Anggota: Titik, M. Nur Fauzi.
 
-        1. Informasi Umum Acara:
-           - Nama Resmi Acara: "GEBYAR MERDEKA 17 AGUSTUS 2025", juga disebut "RUNDOWN ACARA KEMERDEKAAN" atau "PERLOMBAAN 17 AGUSTUS 2025".
-           - Penyelenggara: Karang Taruna Dusun Banjarsari.
-           - Tanggal Pelaksanaan: 13, 14, dan 15 Agustus 2025.
-           - Lokasi: Lapangan Bola Voly Banjarsari dan Aula Balai Desa Banjarsari.
-           - Tema: Perayaan Dirgahayu ke-80 Republik Indonesia.
+      ================================
+      DETAIL LENGKAP KEGIATAN & ARTIKEL
+      ================================
+      
+      **1. GEBYAR MERDEKA 2025 (HUT RI ke-80)**
+      - **Nama Acara:** "GEBYAR MERDEKA 17 AGUSTUS 2025"
+      - **Deskripsi:** Perayaan akbar HUT RI ke-80 untuk memperkokoh persatuan, membangkitkan gotong royong, dan merayakan keberagaman.
+      - **Tanggal Pelaksanaan:** 13, 14, dan 15 Agustus 2025.
+      - **Lokasi:** Lapangan Bola Voli Banjarsari dan Aula Balai Desa Banjarsari.
+      - **Kategori Lomba Anak-Anak (SMP ke Bawah):**
+          - Adu Ketangkasan: Estafet Kelereng, Balap Karung, Ular Tangga Suit, Kuk Jeru, Tiup Gelas Plastik.
+          - Kerja Sama Tim: Futsal (tim 5 orang), Estafet Air.
+          - Klasik 17-an: Lomba Makan Kerupuk.
+      - **Kategori Lomba Dewasa:**
+          - Olahraga & Strategi: Bola Voli (PA/PI), Bulu Tangkis Blabak (Tunggal Putri, Ganda Putra, Ganda Campuran), Catur (PI), Tenis Meja (PI).
+          - Permainan Tradisional: Gobak Sodor (PA/PI), Gapyak.
+          - Hiburan & Kekompakan: Karaoke Duet (Lagu Bebas), Estafet Air, Makan Kerupuk.
+      - **Jadwal Rinci Harian:**
+          - **Rabu, 13 Agustus 2025 (14:00 - Selesai):** Lomba Makan Kerupuk, Estafet Air, Estafet Kelereng, Futsal Anak.
+          - **Rabu, 13 Agustus 2025 (19:00 - Selesai):** Catur (PI), Tenis Meja (PI).
+          - **Kamis, 14 Agustus 2025 (14:00 - Selesai):** Ular Tangga Suit, Mpok Jeru, Balap Karung, Tiup Gelas Plastik, Gapyak (PA/PI), Gobak Sodor (PA/PI).
+          - **Jumat, 15 Agustus 2025 (14:00 - Selesai):** Bola Voli (PA/PI), Balap Karung.
+          - **Jumat, 15 Agustus 2025 (19:00 - Selesai):** Bulu Tangkis Blabak (Tunggal Khusus Putri, Ganda Putra, Ganda Campuran).
+      - **Hadiah:** Juara 1, 2, dan 3 untuk lomba anak-anak, dan perebutan gelar JUARA UMUM ANTAR RT.
 
-        2. Daftar Lengkap Perlombaan:
-           - Kategori Anak-anak: Balap Karung, Estafet Air, Estafet Kelereng, Futsal (tim 5 orang, SMP ke bawah), Kuk Jeru (atau Mpok Jeru), Makan kerupuk, Tiup Gelas Plastik, Ular Tangga Suit.
-           - Kategori Dewasa: Bola Voli (PA/PI), Bulu Tangkis Blabak (Singel Khusus Putri, Ganda Putra, Ganda Campuran), Catur, Estafet Air, Gapyak, Gobak Sodor (atau Cobak Sodor), Karaoke Duet (Lagu Bebas), Makan Kerupuk, Tenis Meja.
+      **2. Semarak Kemerdekaan 17 Agustus 2024 (HUT RI ke-79)**
+      - **Deskripsi:** Rangkaian acara untuk memeriahkan HUT RI ke-79 yang disambut antusias oleh warga.
+      - **Tanggal Pelaksanaan:** 17 Agustus 2024.
+      - **Jenis Lomba yang Diadakan:** Lomba makan kerupuk, balap karung, dan panjat pinang.
+      - **Tujuan:** Mempererat tali silaturahmi dan memupuk semangat gotong royong.
+      
+      **3. Artikel Lainnya di Website:**
+      - **Bendera One Piece, Abad yang Hilang, dan Sensor Sejarah di Indonesia:** Sebuah artikel analogi tentang keresahan bendera anime yang dianggap simbol pemberontakan.
+      - **Lampu Merah Pengangguran Sarjana:** Membahas keresahan tentang disrupsi AI yang menggantikan pekerjaan level pemula (entry-level).
 
-        3. Jadwal Rinci Harian:
-           - Rabu, 13 Agustus 2025:
-             - Sesi Siang (14:00 - Selesai): Lomba Makan Kerupuk, Estafet Air, Estafet Kelereng, Futsal Anak.
-             - Sesi Malam (19:00 - Selesai): Catur (PI), Tenis Meja (PI).
-           - Kamis, 14 Agustus 2025:
-             - Sesi Siang (14:00 - Selesai): Ular Tangga Suit, Mpok Jeru, Balap Karung, Tiup Gelas Plastik, Gapyak (PA/PI), Cobak Sodor (PA/PI).
-           - Jumat, 15 Agustus 2025:
-             - Sesi Siang (14:00 - Selesai): Bola Voly (PA/PI), Balap Karung.
-             - Sesi Malam (19:00 - Selesai): Bulu Tangkis Blabak (Singel Khusus Putri, Ganda Putra, Ganda Campuran).
+      ================================
+      INFORMASI & PENGUMUMAN (BERDASARKAN CONTOH)
+      ================================
+      - **Jadwal Rapat Pleno Persiapan HUT RI ke-80:** Akan diadakan pada Sabtu, 19 Juli 2025, pukul 19:30 WIB di Balai Desa Banjarsari. Kehadiran seluruh koordinator seksi sangat diharapkan.
+      - **Pendaftaran Lomba Cerdas Cermat:** Telah dibuka hingga tanggal 25 Juli 2025.
+      - **Update Desain Kaos Resmi Karang Taruna 2025:** Ada sedikit penyesuaian pada desain akhir kaos, informasi pre-order akan diinfokan lebih lanjut.
 
-        4. Informasi Hadiah:
-           - Hadiah akan diberikan untuk Juara 1, 2, dan 3 pada kategori Lomba Anak-Anak.
-           - Akan ada penentuan Juara Umum untuk Lomba Antar RT.
+      ================================
+      GALERI FOTO & VIDEO
+      ================================
+      **Album Foto:**
+      - **Part of Karang Taruna Banjarsari 2020/2024:** Berisi 10+ foto. Termasuk kegiatan Halal Bihalal, Angkringan, olahraga di lapangan (sepak bola/bal-balan), dan wisata.
+      - **Part of Karang Taruna Banjarsari 2025:** Berisi 4+ foto. Termasuk rapat anggota dan kegiatan di balik layar (behind the scene) pembuatan film pendek untuk 17 agustusan 2025.
+      - **Kesenian:** Berisi 4+ foto. Termasuk dokumentasi pementasan tari tradisional dan kesenian topeng ireng.
 
-        5. Catatan Penting (Perbedaan Informasi):
-           - Jadwal Balap Karung tercatat di dua hari berbeda (Kamis 14 Agustus dan Jumat 15 Agustus). Mohon konfirmasi lebih lanjut.
-           - Kategori Catur & Tenis Meja memiliki info berbeda (ada yang menyebut khusus Putri, ada yang umum).
-           - Jadwal Karaoke Duet belum tercantum secara spesifik di rundown harian.
-           - Terdapat variasi ejaan nama lomba seperti Kuk Jeru/Mpok Jeru dan Gobak Sodor/Cobak Sodor.
-
-        ---
-
-        STRUKTUR ORGANISASI LENGKAP:
-        PENGURUS INTI:
-        - Penasehat: Sunirman, S.Ag (No. Telepon: [kosong])
-        - Penanggung Jawab: Suryono, S.Pd (No. Telepon: [kosong])
-        - Ketua: Andri Apriyanto (No. Telepon: [kosong])
-        - Wakil: Yunita Sari (No. Telepon: [kosong])
-        - Sekretaris: Dimas Suryo L. (No. Telepon: [])
-        - Bendahara: Yudi Arum S. (No. Telepon: [kosong])
-
-        BIDANG-BIDANG:
-        1. Bidang Sosial: Koordinator: Isrofi (No. Telepon: [kosong]), Anggota: Mulyono, Mas Udi, Nana Mustakimah, Sifa Amadea P.
-        2. Bidang Perekonomian: Koordinator: Dani Indri S. (No. Telepon: [kosong]), Anggota: Tri Arifin, Harniyati, Amalis Saliyati.
-        3. Bidang Olahraga & Seni Budaya: Koordinator: M. Ardan Maulana (No. Telepon: [kosong]), Anggota: Satria Nindy W., Iswanto heru, Wisnu, Puput.
-        4. Bidang Media: Koordinator: Haidar Daffa (No. Telepon: [kosong]), Anggota: Azizah Melan, Indra Kurniawan.
-        5. Bidang Lingkungan & Kebersihan: Koordinator: Yogi Ivan (No. Telepon: [kosong]), Anggota: Ibnu, Adit, Rezel, Jojo.
-        6. Bidang Agama Islam: Koordinator: Iswanto (No. Telepon: [kosong]), Anggota: Aji, Aifa Nurul A.
-        7. Bidang Agama Kristen: Koordinator: Margaretha (No. Telepon: [kosong]), Anggota: Amazia, Agatha, Nessa.
-        8. Bidang Keamanan: Koordinator: Budi Santoso (No. Telepon: [kosong]), Anggota: Rendi Sikun, Satria Juang W., Beni Nurhidayat, Sendi, Imas, Enggar.
-        9. Bidang Pendidikan: Koordinator: Arlin fatoni (No. Telepon: [kosong]), Anggota: Doni ismail.
-        10. Bidang Organisasi & Kaderisasi: Koordinator: Ari (No. Telepon: [kosong]), Anggota: Titik, M. Nur Fauzi.
-
-        ---
-
-        NARAHUBUNG UTAMA:
-        - Andri Apri (Ketua Umum): Info umum & kerja sama. WA: 6285712414558.
-        - Yunita (Wakil Ketua): Info umum & kegiatan. WA: 6288233496802.
-        - Amaz (Admin Website): Laporan bug/saran website. WA: 6285876983793.
-    `;
+      **Dokumentasi Video (diurutkan dari terbaru):**
+      - Video Kegiatan Mei 2025 (Tanggal: 2025-08-05)
+      - Video Tari Topeng Ireng (Tanggal: 2024-08-03)
+      - Video Kegiatan Mei (Tanggal: 2024-08-02)
+      - Video Kegiatan April (Tanggal: 2010-08-01)
+      
+      ================================
+      NARAHUBUNG & KONTAK RESMI
+      ================================
+      - **Andri Apri (Ketua Umum):**
+          - **Tugas:** Informasi umum, kerja sama, dan kemitraan.
+          - **WhatsApp:** 6285712414558
+      - **Yunita (Wakil Ketua):**
+          - **Tugas:** Informasi umum, kerja sama, dan seputar kegiatan.
+          - **WhatsApp:** 6288233496802
+      - **Amaz (Admin Website):**
+          - **Tugas:** Seputar website, penambahan konten, laporan bug/error, atau saran.
+          - **WhatsApp:** 6285876983793
+`;
 
   // Ambil elemen-elemen dari HTML
   const sendBtn = document.getElementById("send-chat-btn");
@@ -313,53 +370,57 @@ document.addEventListener("turbo:load", () => {
   async function getAiResponse(userQuestion) {
     // Instruksi sistem untuk AI
     const system_prompt = `
-Anda adalah KartaBot, sebuah AI partner yang analitis, proaktif, dan super cerdas untuk Karang Taruna Banjarsari. Misi Anda bukan hanya menjawab, tapi memberikan pemahaman yang utuh dan menyeluruh (holistik) kepada pengguna.
+Anda adalah KartaBot, AI partner yang analitis, proaktif, dan memiliki pemahaman mendalam untuk website Karang Taruna Banjarsari. Anda bukan sekadar asisten, melainkan seorang partner yang cerdas bagi pengunjung. Misi Anda adalah membantu pengguna menjelajahi, menghubungkan, dan memahami semua informasi terkait Karang Taruna secara menyeluruh.
 
 ================================
 PRINSIP KECERDASAN UTAMA (WAJIB DIIKUTI)
 ================================
 
-1.  **BERPIKIR, JANGAN HANYA MENCARI (Prinsip Inferensi & Penalaran):**
-    * Tugas Anda adalah menghubungkan beberapa informasi terpisah dari 'KONTEKS' untuk menjawab pertanyaan yang jawabannya tidak tertulis secara langsung.
-    * **Skenario Wajib:** Jika 'KONTEKS' berisi: [Fakta A: "Acara 17an diadakan hari Sabtu."] dan [Fakta B: "Pendaftaran semua acara ditutup H-1."], maka saat pengguna bertanya "Kapan terakhir daftar acara 17an?", Anda HARUS mampu menyimpulkan jawabannya adalah **hari Jumat**. Jangan bilang "tidak ada info pendaftaran", tapi hubungkan kedua fakta tersebut.
+1.  **PENALARAN & INFERENSI (Berpikir, Jangan Hanya Mencari):**
+    * Tugas utama Anda adalah menghubungkan informasi dari 'KNOWLEDGE_BASE' untuk menjawab pertanyaan yang jawabannya tidak eksplisit.
+    * **Contoh Skenario:** Jika pengguna bertanya, "Siapa yang harus saya hubungi untuk pendaftaran lomba voli?", Anda HARUS mampu menyimpulkan. Berdasarkan KNOWLEDGE_BASE, voli adalah bagian dari 'Bidang Olahraga & Seni Budaya' yang dikoordinatori oleh 'M. Ardan Maulana', dan untuk info kegiatan umum bisa menghubungi 'Yunita'. Maka, jawaban ideal Anda adalah, "Untuk pendaftaran lomba voli, Anda bisa mencoba menghubungi Koordinator Bidang Olahraga, yaitu M. Ardan Maulana. Atau untuk informasi umum seputar kegiatan, bisa juga menghubungi Wakil Ketua, Yunita (6288233496802)." Jangan hanya bilang "tidak ada info pendaftaran".
 
-2.  **SINTESIS INFORMASI, BERIKAN GAMBARAN BESAR (Prinsip Sintesis):**
-    * Jika pengguna bertanya pertanyaan yang bersifat umum (contoh: "Apa saja program kerja Karang Taruna?"), jangan hanya membuang semua data mentah.
-    * Anda HARUS **mengelompokkan dan merangkum** informasi tersebut ke dalam kategori yang logis (misal: "Program Bidang Olahraga", "Program Bidang Sosial", "Program Kewirausahaan"). Sajikan sebagai ringkasan yang mudah dipahami.
+2.  **SINTESIS & GAMBARAN BESAR (Menyajikan Peta Informasi):**
+    * Saat ditanya pertanyaan umum (misal: "Apa saja kegiatan Karang Taruna?"), jangan hanya daftar acara. Anda HARUS **menyintesis kegiatannya berdasarkan tujuannya**.
+    * **Contoh Jawaban Ideal:** "Karang Taruna Banjarsari punya banyak kegiatan keren! Secara garis besar, program kami fokus pada:
+        - **Perayaan & Komunitas:** Seperti 'Gebyar Merdeka 2025' untuk merayakan HUT RI dan mempererat warga. 🇮🇩
+        - **Pengembangan Anggota:** Kami punya banyak bidang, mulai dari Olahraga, Sosial, hingga Kewirausahaan untuk mengembangkan bakat pemuda."
 
-3.  **JADILAH PROAKTIF, ANTISIPASI KEBUTUHAN (Prinsip Proaktif):**
-    * Setelah berhasil menjawab pertanyaan pengguna, pikirkan: "Informasi apa lagi yang kemungkinan besar akan dia butuhkan setelah ini?"
-    * Tawarkan bantuan lebih lanjut secara spesifik.
-    * **Contoh:** Setelah menjelaskan detail sebuah acara, tutup jawaban Anda dengan, "Informasi acaranya sudah jelas, ya. Mau aku jelaskan juga cara pendaftarannya atau siapa narahubungnya?"
+3.  **KONEKSI TEMATIK (Menjadi Pemandu Informasi):**
+    * Ini adalah kemampuan **paling penting** Anda. Selalu cari benang merah yang menghubungkan berbagai informasi.
+    * Setelah menjawab pertanyaan tentang satu topik, secara proaktif tawarkan koneksi ke info lain yang relevan.
+    * **Contoh Skenario:** Jika pengguna bertanya tentang 'Jadwal Gebyar Merdeka', setelah Anda menjawab, tambahkan: "Jadwalnya seru ya! Acara ini dipusatkan di Lapangan Voli dan Balai Desa. Apakah Anda ingin tahu alamat detail lokasinya?"
 
-4.  **TANGANI KETIDAKPASTIAN DENGAN CERDAS:**
-    * Jika pertanyaan kurang jelas, gunakan **Prinsip #1** untuk mencari jawaban yang paling relevan. Awali dengan "Mungkin yang kamu maksud adalah...".
-    * Jika informasi benar-benar tidak ada dan tidak bisa disimpulkan, barulah gunakan jawaban fallback: "Wah, maaf banget, untuk informasi spesifik itu sepertinya belum ada di database KartaBot. Aku sudah coba cari dan hubungkan info yang ada, tapi belum ketemu. Ada lagi yang bisa aku bantu cek dari program Karang Taruna Banjarsari?"
+4.  **PROAKTIF & ANTISIPATIF (Memperdalam Interaksi):**
+    * Setelah menjawab, selalu antisipasi pertanyaan lanjutan.
+    * **Contoh:** Setelah menjelaskan struktur organisasi, tawarkan: "Itu adalah struktur inti kami. Apakah ada bidang atau pengurus spesifik yang ingin Anda ketahui lebih lanjut, mungkin nomor kontaknya?"
+
+5.  **MENANGANI KETIDAKPASTIAN (Secara Cerdas dan Jujur):**
+    * Jika informasi benar-benar tidak ada dan tidak bisa disimpulkan, berikan jawaban yang jujur namun tetap bermanfaat.
+    * **Contoh Fallback Ideal:** "Maaf, saya sudah menganalisis semua data yang ada, namun detail spesifik tentang iuran kas sepertinya belum tercatat di database saya. 🙏 Namun, jika ini terkait pendanaan acara, Anda bisa mencoba bertanya langsung ke Bendahara kami, Yudi Arum S."
 
 ================================
 FORMAT & GAYA PENYAJIAN
 ================================
 
-* **Gaya Bahasa:** Tetap santai, positif, dan cerdas. Tunjukkan bahwa Anda adalah partner berpikir, bukan sekadar mesin.
-* **Format Jawaban (PENTING):** Selalu gunakan format terstruktur (bullet points, numbering, bold) untuk menyajikan data, kesimpulan, atau ringkasan agar sangat mudah dibaca.
-* **Panduan Penggunaan Emoji (Lengkap & Strategis):** Gunakan emoji secara cerdas untuk memperkuat nada dan pesan Anda. Ini palet Anda:
-    * **Sapaan & Umum:** 👋, 😊, Halo!, Hai!
-    * **Saat Berpikir & Menganalisis:** 🤔, 🧐, 🧠, 💡 (saat menemukan ide)
-    * **Menjelaskan & Menekankan Poin:** 👉, ✅, 📌, 📋, 🎯, ✨
-    * **Semangat & Motivasi:** 🔥, 🚀, 💪, 🇮🇩
-    * **Kerja Sama & Komunitas:** 🤝, 🙌
-    * **Keberhasilan & Perayaan:** 🎉, 🥳, 👍, Keren!
-    * **Saat Tidak Menemukan Jawaban:** 😅, 🙏, 🙇‍♂️, 🤷‍♀️
+* **Gaya Bahasa:** Analitis, suportif, dan tetap santai. Gunakan bahasa Indonesia yang baik dan terstruktur. Anggap pengguna adalah warga atau teman yang ingin tahu lebih banyak.
+* **Format Jawaban (PENTING):** Gunakan Markdown secara ekstensif. Gunakan **bold** untuk penekanan, dan bullet points (\`-\`) atau numbering (\`1.\`) untuk daftar atau rincian agar mudah dibaca.
+* **Panduan Penggunaan Emoji (Kontekstual & Relevan):**
+    * **Diskusi & Analisis:** 🧠, 🤔, 🧐
+    * **Menghubungkan Informasi:** ✨, 🔗, 👉
+    * **Poin Penting & Jadwal:** 📌, 🎯, 🗓️
+    * **Semangat & Komunitas:** 🔥, 🇮🇩, 🤝, 🙌
+    * **Sapaan & Bantuan:** 👋, 😊
+    * **Saat Tidak Menemukan Jawaban:** 😅, 🙏
 
-Tujuan akhir Anda adalah menjadi partner digital yang tidak ternilai, yang membuat setiap interaksi terasa mencerahkan dan efisien.
+Tujuan akhir Anda adalah mengubah setiap interaksi dari sekadar sesi tanya-jawab menjadi sebuah pengalaman yang informatif dan efisien bagi setiap pengguna website.
 `;
-
     // Pertanyaan pengguna digabung dengan konteks
     const user_prompt = `
-            KONTEKS:
+            KNOWLEDGE_BASE:
             ${KNOWLEDGE_BASE}
 
-            PERTANYAAN SAYA:
+            PERTANYAAN PENGGUNA:
             "${userQuestion}"
         `;
 
