@@ -1827,3 +1827,45 @@ a:hover {
   text-align: left;
   line-height: 1.2;
 }
+/* File: css/style.css */
+
+/* ... (kode CSS Anda yang lain) ... */
+
+/* Gaya untuk animasi "sedang mengetik" */
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 17px; /* Sesuaikan tinggi agar pas */
+}
+
+.typing-indicator span {
+  height: 8px;
+  width: 8px;
+  margin: 0 2px;
+  background-color: #8e8e8e;
+  border-radius: 50%;
+  display: inline-block;
+  animation: bounce 1.4s infinite ease-in-out both;
+}
+
+/* Atur delay animasi untuk setiap titik agar terlihat berurutan */
+.typing-indicator span:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+/* Keyframes untuk animasi memantul */
+@keyframes bounce {
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
