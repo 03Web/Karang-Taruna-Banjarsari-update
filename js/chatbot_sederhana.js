@@ -266,7 +266,7 @@ document.addEventListener("turbo:load", () => {
           - Anggota: Aji, Aifa Nurul A.
       7.  **Bidang Agama Kristen**:
           - Koordinator: Margaretha
-          - Anggota: Amazia, Agatha, Nessa.
+          - Anggota: Amazia+(admin web), Agatha, Nessa.
       8.  **Bidang Keamanan**:
           - Koordinator: Budi Santoso
           - Anggota: Rendi Sikun, Satria Juang W., Beni Nurhidayat, Sendi, Imas, Enggar.
@@ -274,7 +274,7 @@ document.addEventListener("turbo:load", () => {
           - Koordinator: Arlin fatoni
           - Anggota: Doni ismail.
       10. **Bidang Organisasi Dan Kaderisasi**:
-          - Koordinator: Ari
+          - Koordinator: Ari Aflian
           - Anggota: Titik, M. Nur Fauzi.
 
       ================================
@@ -352,7 +352,7 @@ document.addEventListener("turbo:load", () => {
       - **Yunita (Wakil Ketua):**
           - **Tugas:** Informasi umum, kerja sama, dan seputar kegiatan.
           - **WhatsApp:** 6288233496802
-      - **Amaz (Admin Website):**
+      - **Amazia (Admin Website):**
           - **Tugas:** Seputar website, penambahan konten, laporan bug/error, atau saran.
           - **WhatsApp:** 6285876983793
 `;
