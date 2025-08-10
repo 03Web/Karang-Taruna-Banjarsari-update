@@ -278,6 +278,16 @@ document.addEventListener("turbo:load", () => {
           - Anggota: Titik, M. Nur Fauzi.
 
       ================================
+      DATA PEMUDA PEMUDI BANJARSARI
+      ================================
+      - Total Keseluruhan: 154 orang.
+      - PEMUDA PEMUDI RT 01 (Jumlah: 35 orang): Sekar Asti Sani, Pranto, Islah, Amalis Saliyati, Beni, Arga Rian, M Imam Fauzi, Henik, Heru, Ipan, Afif C, Imas, Enggar, Awang, Vania, Wisnu, Shiva Amadea M, Ardan M, Titik Tiara, Vina Sinta, Wulan Agustina, M Aditya, Anam, Silvia, Rudi, Andri Ap, Mul, Diky Candra, Dika Irawan, Danar, Heri Widi Kurniawan, Willy Kurniawan, Rizky Yulia, Eka Kusuma, Naisya Happy.
+      - PEMUDA PEMUDI RT 02 (Jumlah: 25 orang): Didin, Naila Putri, Puji Purwanto, Aji Saka M, Wisnu Widi W, M Ibnu Hiban, Aifa Nuraini, Nana Mustaqimah, Danang Irawan, Indra Kurniawan, Doni Ismail, Revina Eka, Fardan Putra, Sugondo, Alwa Fiq A, Suyanto, M Naswa, Satria Nindya, Satria Juang, Iswanto, Supriyono, Lina Anggraeni, Dede Afi, V dM Nur a. Fauzi, Ahmad Ardi Cahyo.
+      - PEMUDA PEMUDI RT 03 (Jumlah: 36 orang): Rendy Gunawan, Sarmo Ipin, Angga, Harni, Takim, Isrofi, Anggi, Daniel, Fatihan, Arga, Daudi, Kevin, Ari Aflian, Amazia, Rezel, Irawan JR, Agus Munir, Agus Setiawan, Suntoko, Rifa, Ngateno, Musin, Zaki, Zahra, Nisa, Farha Kumala, Hanan, Zidan, Afiq, Alvi Nasroh, Fahim, Yusuf, Budi, Rifki, Parno, Maelandri Alfiyan.
+      - PEMUDA PEMUDI RT 04 (Jumlah: 28 orang): Roni, Sandi, Anang, Dimas, Diajeng Gendis, Fafa, Nila, Aldi, Ferlina Margha Retha, Eka Davi, Cindy Aurelia, Dava, Azizah Melan, Via, Nuril, Dani, Yudi, Miftahiyatul Jannah, Agatha, Yohan, Arlin Fatoni, Pendik, Yunita Sari, Arjuna, Nayla, Sugeng, Ipan, Hasan.
+      - PEMUDA PEMUDI RT 05 (Jumlah: 30 orang): Eva, Aji, Puput Setyasih, Endro, Alfizin, Iman Safi'i, Amin, Risa, Umatul, Laela, Pi'i, Udi, Ma'ruf, Afifah, Aziz, Angga, Sabil, Tri Hartanto, Apis, Adam, Yuris, Aven Ngesti Sawidi, Tanto, Iqin, Yuli, Fiki Nia, Johan Ngesti Avendi, Sendy, Santoso, Oliv.
+
+      ================================
       DETAIL LENGKAP KEGIATAN & ARTIKEL
       ================================
       
