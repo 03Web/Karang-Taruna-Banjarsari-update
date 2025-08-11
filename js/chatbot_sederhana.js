@@ -1,7 +1,7 @@
 document.addEventListener("turbo:load", () => {
   // --- KOMPONEN 1: PENGATURAN DASAR (Google Gemini API) ---
   const GOOGLE_AI_API_KEY = "AIzaSyApjIgQTu2rYY0h-tcDviFLerXb61WIR8s"; // Ganti dengan Kunci API Anda
-  const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${GOOGLE_AI_API_KEY}`;
+  const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GOOGLE_AI_API_KEY}`;
 
   // --- KOMPONEN 2: "PENGETAHUAN" WEBSITE (Diperbarui dari versi DeepSeek) ---
   const KNOWLEDGE_BASE = `
