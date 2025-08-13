@@ -163,21 +163,50 @@ App.initializers.galeri = async () => {
 
   const videoContainer = document.getElementById("video-grid");
   if (videoContainer && data.dokumentasiVideo) {
-    const createVideoTemplate = (video) => `
-        <div class="gallery-item video-item animate-on-scroll" data-tanggal="${
-          video.tanggal
-        }">
-            <iframe src="${video.src.replace("watch?v=", "embed/")}" title="${
-      video.title
-    }" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-        </div>`;
-    const renderVideos = (items) =>
+    // --- AWAL MODIFIKASI ---
+    const createVideoTemplate = (video) => {
+      // Cek apakah ini link embed TikTok
+      if (video.src.includes("tiktok.com/embed")) {
+        const videoId = video.src.split("/").pop().split("?")[0]; // Ambil ID video dari URL
+        return `
+            <div class="gallery-item video-item tiktok-container animate-on-scroll" data-tanggal="${video.tanggal}">
+                <blockquote class="tiktok-embed" cite="https://www.tiktok.com/video/${videoId}" data-video-id="${videoId}" style="max-width: 605px; min-width: 325px;">
+                    <section></section>
+                </blockquote>
+            </div>
+        `;
+      }
+      // Jika bukan, gunakan cara lama untuk YouTube
+      else {
+        return `
+            <div class="gallery-item video-item animate-on-scroll" data-tanggal="${
+              video.tanggal
+            }">
+                <iframe src="${video.src.replace(
+                  "watch?v=",
+                  "embed/"
+                )}" title="${
+          video.title
+        }" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+        `;
+      }
+    };
+
+    const renderVideos = (items) => {
       App.renderItems(
         videoContainer,
         items,
         createVideoTemplate,
         "Gagal memuat video."
       );
+      // Panggil script TikTok untuk merender ulang setelah video ditambahkan
+      if (typeof tiktokEmbed !== "undefined") {
+        tiktokEmbed.load();
+      }
+    };
+    // --- AKHIR MODIFIKASI ---
+
     const sorter = document.getElementById("video-sorter");
     const updateVideos = () => {
       const sortedData = [...data.dokumentasiVideo].sort((a, b) =>
