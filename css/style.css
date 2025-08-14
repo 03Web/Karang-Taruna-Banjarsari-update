@@ -1922,16 +1922,16 @@ a:hover {
 }
 
 .status-diterima-dan-akan-diterapkan {
-  background-color: #28a745; 
+  background-color: #28a745;
 }
 
 .status-sedang-didiskusikan {
-  background-color: #ffc107; 
+  background-color: #ffc107;
   color: #000;
 }
 
 .status-ditolak {
-  background-color: #dc3545; 
+  background-color: #dc3545;
 }
 
 .tanggapan-pengurus {
@@ -1948,4 +1948,72 @@ a:hover {
   font-style: italic;
   color: var(--dark-text);
   margin-top: 5px;
+}
+/* === GAYA UNTUK TEKS YANG BISA DILIPAT (COLLAPSIBLE) === */
+.collapsible-container {
+  max-width: 800px;
+  margin: 0 auto 40px auto;
+  position: relative;
+  text-align: left;
+  background-color: var(--card-bg);
+  padding: 30px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.collapsible-title {
+  text-align: center;
+  color: var(--light-text);
+  margin: 0 auto 25px auto;
+  font-size: 1.6em;
+  font-weight: bold;
+  font-style: italic;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 15px;
+}
+
+#intro-text-wrapper {
+  transition: max-height 0.7s ease-in-out;
+  overflow: hidden;
+}
+
+#intro-text-wrapper.collapsed {
+  max-height: 120px; /* Atur tinggi awal saat terlipat */
+  position: relative;
+}
+
+/* Efek gradien agar potongan teks terlihat halus */
+#intro-text-wrapper.collapsed::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(to top, var(--card-bg), transparent);
+  pointer-events: none; /* Agar tidak menghalangi seleksi teks */
+}
+
+.toggle-button {
+  background-color: transparent;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: "Poppins", sans-serif;
+  transition: all 0.3s ease;
+  display: block;
+  margin: 20px auto 0 auto; /* Memberi jarak dari teks */
+}
+
+.toggle-button:hover {
+  background-color: var(--primary-color);
+  color: var(--dark-bg);
+}
+
+/* Penyesuaian agar form tidak terlalu menempel dengan intro */
+.form-aspirasi {
+  margin-top: 40px;
 }

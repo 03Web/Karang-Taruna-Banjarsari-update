@@ -398,11 +398,35 @@ App.initializers.artikel = async () => {
     App.initScrollAnimations();
   }
 };
-// === ASPIRASI PAGE (Versi 4 - Firebase Realtime Database - FIXED) ===
+// === ASPIRASI PAGE (Versi 6 - Wrapper & Multi-paragraph) ===
 App.initializers.aspirasi = () => {
-  // --- Bagian 1: Konfigurasi dan Inisialisasi Firebase ---
+  // --- Bagian 1: Logika untuk Teks Intro Buka/Tutup ---
+  const introContainer = document.getElementById("collapsible-intro");
+  if (introContainer) {
+    // Targetkan div pembungkus yang baru
+    const textWrapper = introContainer.querySelector("#intro-text-wrapper");
+    const toggleButton = introContainer.querySelector("#toggle-intro-btn");
 
-  // Konfigurasi Anda sudah benar.
+    if (textWrapper && toggleButton) {
+      // Atur kondisi awal pada div pembungkus
+      textWrapper.classList.add("collapsed");
+
+      toggleButton.addEventListener("click", () => {
+        // Cek kondisi pada div pembungkus
+        const isCollapsed = textWrapper.classList.contains("collapsed");
+
+        if (isCollapsed) {
+          textWrapper.classList.remove("collapsed");
+          toggleButton.textContent = "Sembunyikan";
+        } else {
+          textWrapper.classList.add("collapsed");
+          toggleButton.textContent = "Baca Selengkapnya...";
+        }
+      });
+    }
+  }
+
+  // --- Bagian 2: Konfigurasi dan Inisialisasi Firebase ---
   const firebaseConfig = {
     apiKey: "AIzaSyA_SYgK13vSvwvOr6qVfbHMmYAHEIzTU7A",
     authDomain: "karang-taruna-banjarsari.firebaseapp.com",
@@ -414,28 +438,21 @@ App.initializers.aspirasi = () => {
     appId: "1:802982045794:web:953482fd61e2255a1c093b",
   };
 
-  // Kita akan menggunakan SDK global yang di-load dari file HTML,
-  // jadi kita tidak perlu 'import' di sini.
-  // Inisialisasi Firebase (hanya jika belum diinisialisasi)
   if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
   }
 
-  // --- Bagian 2: Logika Aplikasi ---
-
-  // Ambil referensi ke elemen HTML
+  // --- Bagian 3: Logika Aplikasi Firebase ---
   const aspirasiContainer = document.getElementById("aspirasi-list");
   const form = document.getElementById("aspirasi-form");
   const formStatus = document.getElementById("form-status");
   const submitButton = document.getElementById("submit-aspirasi-btn");
 
-  // Periksa apakah elemen ada sebelum melanjutkan
   if (!aspirasiContainer || !form || !submitButton) {
     console.error("Elemen penting untuk halaman aspirasi tidak ditemukan!");
     return;
   }
 
-  // Referensi ke Realtime Database
   const db = firebase.database();
   const aspirasiDbRef = db.ref("aspirasi");
 
@@ -456,7 +473,7 @@ App.initializers.aspirasi = () => {
           <h3>${escapeHtml(item.subjek)}</h3>
           <span class="status-tag status-baru-masuk">Baru Masuk</span>
         </div>
-        <div class="aspirasi-meta">
+        <div class.aspirasi-meta">
           <span>Oleh: <strong>${escapeHtml(namaPengirim)}</strong></span>
           <span>Masuk pada: ${new Date(item.tanggal_masuk).toLocaleDateString(
             "id-ID",
@@ -476,10 +493,9 @@ App.initializers.aspirasi = () => {
     `;
   };
 
-  // Mendengarkan data dari Firebase menggunakan referensi yang sudah dibuat
   const query = db.ref("aspirasi").orderByChild("tanggal_masuk");
   query.on("value", (snapshot) => {
-    aspirasiContainer.innerHTML = ""; // Kosongkan daftar sebelum mengisi ulang
+    aspirasiContainer.innerHTML = "";
     if (snapshot.exists()) {
       const data = snapshot.val();
       const aspirasiArray = Object.values(data).sort(
@@ -507,7 +523,6 @@ App.initializers.aspirasi = () => {
       tanggal_masuk: new Date().toISOString(),
     };
 
-    // Menggunakan referensi yang sudah dibuat untuk push data
     aspirasiDbRef
       .push(dataToSend)
       .then(() => {
