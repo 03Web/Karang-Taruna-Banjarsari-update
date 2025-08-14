@@ -1866,3 +1866,86 @@ a:hover {
     transform: scale(1);
   }
 }
+/* === GAYA DAFTAR ASPIRASI PUBLIK === */
+#aspirasi-list {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.aspirasi-item {
+  background-color: rgba(17, 17, 17, 0.8);
+  border-left: 5px solid var(--primary-color);
+  padding: 20px 25px;
+  border-radius: 0 8px 8px 0;
+  text-align: left;
+}
+
+.aspirasi-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.aspirasi-header h3 {
+  font-size: 1.2em;
+  color: var(--light-text);
+  margin: 0;
+}
+
+.aspirasi-meta {
+  font-size: 0.8em;
+  color: #aaa;
+  margin-bottom: 15px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.aspirasi-body p {
+  line-height: 1.7;
+  font-style: normal;
+  margin-bottom: 0;
+}
+
+.status-tag {
+  font-size: 0.75em;
+  font-weight: bold;
+  font-style: normal;
+  padding: 5px 12px;
+  border-radius: 20px;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.status-diterima-&-akan-diterapkan {
+  background-color: #28a745; /* Hijau */
+}
+
+.status-sedang-didiskusikan {
+  background-color: #ffc107; /* Kuning */
+  color: #000;
+}
+
+.status-ditolak {
+  background-color: #dc3545; /* Merah */
+}
+
+.tanggapan-pengurus {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px dashed var(--border-color);
+}
+
+.tanggapan-pengurus strong {
+  color: var(--primary-color);
+}
+
+.tanggapan-pengurus p {
+  font-style: italic;
+  color: var(--dark-text);
+  margin-top: 5px;
+}

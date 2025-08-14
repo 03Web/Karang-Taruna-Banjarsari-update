@@ -192,40 +192,6 @@ App.initializers.galeri = async () => {
   }
 };
 
-// === INFORMASI PAGE ===
-App.initializers.informasi = async () => {
-  const container = document.getElementById("info-list");
-  if (!container) return;
-
-  const createInformasiTemplate = (info) => `
-    <div class="info-item animate-on-scroll">
-      <div class="info-header">
-        <h3>${info.judul}</h3>
-        <span class="info-tag ${info.tag_class}">${info.tag}</span>
-      </div>
-      <p class="info-meta"><i class="fas fa-calendar-alt"></i> Diposting pada ${new Date(
-        info.tanggal
-      ).toLocaleDateString("id-ID", {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-      })}</p>
-      <div class="info-body">${info.konten}</div>
-    </div>`;
-
-  const originalData = await App.fetchData("informasi", "data/informasi.json");
-  if (!originalData || originalData.length === 0) {
-    container.innerHTML = "<p>Gagal memuat atau tidak ada informasi.</p>";
-    return;
-  }
-  App.renderItems(
-    container,
-    originalData,
-    createInformasiTemplate,
-    "<p>Tidak ada informasi untuk ditampilkan.</p>"
-  );
-};
-
 // === ABOUT PAGE (STRUKTUR ORGANISASI) ===
 App.initializers.about = async () => {
   const container = document.getElementById("pohon-organisasi-container");
@@ -431,4 +397,95 @@ App.initializers.artikel = async () => {
   } finally {
     App.initScrollAnimations();
   }
+};
+// === ASPIRASI PAGE (VERSION 2 - WITH PUBLIC LIST) ===
+App.initializers.aspirasi = async () => {
+  // --- Bagian 1: Menampilkan Daftar Aspirasi Publik ---
+  const aspirasiContainer = document.getElementById("aspirasi-list");
+  if (aspirasiContainer) {
+    // Template untuk setiap item aspirasi
+    const createAspirasiTemplate = (item) => {
+      // Tentukan nama pengirim, jika kosong tampilkan 'Saran Anonim'
+      const namaPengirim = item.nama ? item.nama : "Saran Anonim";
+      // Siapkan HTML untuk tanggapan jika ada
+      const tanggapanHtml = item.tanggapan_pengurus
+        ? `<div class="tanggapan-pengurus">
+             <strong>Tanggapan Pengurus:</strong>
+             <p>${item.tanggapan_pengurus}</p>
+           </div>`
+        : "";
+
+      return `
+        <div class="aspirasi-item">
+          <div class="aspirasi-header">
+            <h3>${item.subjek}</h3>
+            <span class="status-tag status-${item.status
+              .toLowerCase()
+              .replace(/\s+/g, "-")}">${item.status}</span>
+          </div>
+          <div class="aspirasi-meta">
+            <span>Oleh: <strong>${namaPengirim}</strong></span>
+            <span>Masuk pada: ${new Date(item.tanggal_masuk).toLocaleDateString(
+              "id-ID",
+              { day: "numeric", month: "long", year: "numeric" }
+            )}</span>
+          </div>
+          <div class="aspirasi-body">
+            <p>${item.pesan}</p>
+          </div>
+          ${tanggapanHtml}
+        </div>
+      `;
+    };
+
+    // Ambil dan render data
+    const aspirasiData = await App.fetchData("aspirasi", "data/aspirasi.json");
+    App.renderItems(
+      aspirasiContainer,
+      aspirasiData,
+      createAspirasiTemplate,
+      "<p>Belum ada aspirasi publik yang ditampilkan.</p>"
+    );
+  }
+
+  // --- Bagian 2: Logika Pengiriman Formulir (Tetap sama) ---
+  const form = document.getElementById("aspirasi-form");
+  const formStatus = document.getElementById("form-status");
+
+  if (!form) return;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const submitButton = form.querySelector('button[type="submit"]');
+    const formData = new FormData(form);
+
+    formStatus.textContent = "Mengirim...";
+    formStatus.className = "form-status";
+    submitButton.disabled = true;
+
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+      });
+
+      if (response.ok) {
+        formStatus.textContent = "Terima kasih! Aspirasi Anda telah terkirim.Harap tunggu  kurang lebih 3 kali 24 ";
+        formStatus.classList.add("status-sukses");
+        form.reset();
+      } else {
+        throw new Error("Gagal mengirim. Silakan coba lagi nanti.");
+      }
+    } catch (error) {
+      formStatus.textContent = error.message;
+      formStatus.classList.add("status-gagal");
+    } finally {
+      submitButton.disabled = false;
+      setTimeout(() => {
+        formStatus.textContent = "";
+        formStatus.className = "form-status";
+      }, 6000);
+    }
+  });
 };

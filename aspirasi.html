@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kotak Aspirasi - Karang Taruna Banjarsari</title>
+    <meta
+      name="description"
+      content="Sampaikan ide, kritik, dan saran Anda secara terbuka atau anonim untuk membangun Karang Taruna Banjarsari yang lebih baik. Kami mendengarkan."
+    />
+    <link rel="icon" type="image/png" href="foto/logokarangtarunabjr.jpeg" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/@hotwired/turbo@8.0.3/dist/turbo.es2017-esm.js"
+    ></script>
+    <style>
+      /* Style khusus untuk halaman ini */
+      .aspirasi-intro {
+        max-width: 800px;
+        margin: 0 auto 40px auto;
+        font-style: italic;
+        color: var(--dark-text);
+      }
+      .form-aspirasi {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: left;
+        background-color: var(--card-bg);
+        padding: 30px;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 12px;
+        background-color: var(--dark-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+        color: var(--light-text);
+        font-family: "Poppins", sans-serif;
+        font-size: 1em;
+      }
+      .form-group textarea {
+        min-height: 150px;
+        resize: vertical;
+      }
+      .submit-btn {
+        display: inline-block;
+        padding: 12px 25px;
+        background-color: var(--primary-color);
+        color: var(--light-text);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1em;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+      }
+      .submit-btn:hover {
+        background-color: #0088cc;
+      }
+      .form-status {
+        margin-top: 20px;
+        font-weight: bold;
+        text-align: center;
+      }
+      .status-sukses {
+        color: #28a745;
+      }
+      .status-gagal {
+        color: #dc3545;
+      }
+    </style>
+  </head>
+  <body data-page-id="aspirasi">
+    <div id="particles-js"></div>
+    <header id="main-header"></header>
+
+    <main>
+      <div class="container">
+        <h1 class="animate-on-scroll">Kotak Aspirasi</h1>
+        <p class="aspirasi-intro animate-on-scroll">
+          Kami percaya bahwa organisasi yang hebat dibangun di atas masukan yang
+          jujur dan transparan. Halaman ini adalah ruang aman bagi Anda untuk
+          menyampaikan ide, gagasan, kritik, atau saran untuk kemajuan Karang
+          Taruna Banjarsari. Setiap masukan, bahkan yang paling tidak
+          mengenakkan sekalipun, akan kami terima sebagai hadiah untuk
+          perbaikan. Anda boleh mengisi nama atau membiarkannya kosong (anonim).
+        </p>
+
+        <form
+          id="aspirasi-form"
+          class="form-aspirasi animate-on-scroll"
+          action="https://formspree.io/f/myzpjnqg"
+          method="POST"
+        >
+          <div class="form-group">
+            <label for="nama">Nama Anda (Opsional, boleh anonim)</label>
+            <input
+              type="text"
+              id="nama"
+              name="nama"
+              placeholder="Contoh: Budi"
+            />
+          </div>
+          <div class="form-group">
+            <label for="subjek">Subjek / Judul Masukan</label>
+            <input
+              type="text"
+              id="subjek"
+              name="subjek"
+              placeholder="Contoh: Usulan Kegiatan 17 Agustus"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="pesan">Kritik atau Saran Anda</label>
+            <textarea
+              id="pesan"
+              name="pesan"
+              placeholder="Tuliskan masukan Anda secara detail di sini..."
+              required
+            ></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Kirim Aspirasi</button>
+          <div id="form-status" class="form-status"></div>
+        </form>
+        <hr class="separator animate-on-scroll" />
+
+        <div class="daftar-aspirasi animate-on-scroll">
+          <h2><i class="fas fa-bullhorn"></i> Aspirasi Publik yang Masuk</h2>
+          <p
+            style="
+              text-align: center;
+              font-style: italic;
+              color: var(--dark-text);
+              margin-bottom: 30px;
+            "
+          >
+            Berikut adalah aspirasi yang telah kami terima dan diskusikan.
+            Transparansi adalah komitmen kami.
+          </p>
+          <div id="aspirasi-list">
+            <p>Memuat daftar aspirasi...</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer id="main-footer"></footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"
+      defer
+    ></script>
+    <script src="js/app-core.js" defer></script>
+    <script src="js/page-initializers.js" defer></script>
+    <script src="js/chatbot_sederhana.js" defer></script>
+  </body>
+</html>
