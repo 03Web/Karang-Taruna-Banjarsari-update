@@ -1922,16 +1922,16 @@ a:hover {
 }
 
 .status-diterima-dan-akan-diterapkan {
-  background-color: #28a745; /* Hijau */
+  background-color: #28a745; 
 }
 
 .status-sedang-didiskusikan {
-  background-color: #ffc107; /* Kuning */
+  background-color: #ffc107; 
   color: #000;
 }
 
 .status-ditolak {
-  background-color: #dc3545; /* Merah */
+  background-color: #dc3545; 
 }
 
 .tanggapan-pengurus {
