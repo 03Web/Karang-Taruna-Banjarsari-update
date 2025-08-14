@@ -398,94 +398,135 @@ App.initializers.artikel = async () => {
     App.initScrollAnimations();
   }
 };
-// === ASPIRASI PAGE (VERSION 2 - WITH PUBLIC LIST) ===
-App.initializers.aspirasi = async () => {
-  // --- Bagian 1: Menampilkan Daftar Aspirasi Publik ---
-  const aspirasiContainer = document.getElementById("aspirasi-list");
-  if (aspirasiContainer) {
-    // Template untuk setiap item aspirasi
-    const createAspirasiTemplate = (item) => {
-      // Tentukan nama pengirim, jika kosong tampilkan 'Saran Anonim'
-      const namaPengirim = item.nama ? item.nama : "Saran Anonim";
-      // Siapkan HTML untuk tanggapan jika ada
-      const tanggapanHtml = item.tanggapan_pengurus
-        ? `<div class="tanggapan-pengurus">
-             <strong>Tanggapan Pengurus:</strong>
-             <p>${item.tanggapan_pengurus}</p>
-           </div>`
-        : "";
+// === ASPIRASI PAGE (Versi 4 - Firebase Realtime Database - FIXED) ===
+App.initializers.aspirasi = () => {
+  // --- Bagian 1: Konfigurasi dan Inisialisasi Firebase ---
 
-      return `
-        <div class="aspirasi-item">
-          <div class="aspirasi-header">
-            <h3>${item.subjek}</h3>
-            <span class="status-tag status-${item.status
-              .toLowerCase()
-              .replace(/\s+/g, "-")}">${item.status}</span>
-          </div>
-          <div class="aspirasi-meta">
-            <span>Oleh: <strong>${namaPengirim}</strong></span>
-            <span>Masuk pada: ${new Date(item.tanggal_masuk).toLocaleDateString(
-              "id-ID",
-              { day: "numeric", month: "long", year: "numeric" }
-            )}</span>
-          </div>
-          <div class="aspirasi-body">
-            <p>${item.pesan}</p>
-          </div>
-          ${tanggapanHtml}
-        </div>
-      `;
-    };
+  // Konfigurasi Anda sudah benar.
+  const firebaseConfig = {
+    apiKey: "AIzaSyA_SYgK13vSvwvOr6qVfbHMmYAHEIzTU7A",
+    authDomain: "karang-taruna-banjarsari.firebaseapp.com",
+    databaseURL:
+      "https://karang-taruna-banjarsari-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "karang-taruna-banjarsari",
+    storageBucket: "karang-taruna-banjarsari.firebasestorage.app",
+    messagingSenderId: "802982045794",
+    appId: "1:802982045794:web:953482fd61e2255a1c093b",
+  };
 
-    // Ambil dan render data
-    const aspirasiData = await App.fetchData("aspirasi", "data/aspirasi.json");
-    App.renderItems(
-      aspirasiContainer,
-      aspirasiData,
-      createAspirasiTemplate,
-      "<p>Belum ada aspirasi publik yang ditampilkan.</p>"
-    );
+  // Kita akan menggunakan SDK global yang di-load dari file HTML,
+  // jadi kita tidak perlu 'import' di sini.
+  // Inisialisasi Firebase (hanya jika belum diinisialisasi)
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
   }
 
-  // --- Bagian 2: Logika Pengiriman Formulir (Tetap sama) ---
+  // --- Bagian 2: Logika Aplikasi ---
+
+  // Ambil referensi ke elemen HTML
+  const aspirasiContainer = document.getElementById("aspirasi-list");
   const form = document.getElementById("aspirasi-form");
   const formStatus = document.getElementById("form-status");
+  const submitButton = document.getElementById("submit-aspirasi-btn");
 
-  if (!form) return;
+  // Periksa apakah elemen ada sebelum melanjutkan
+  if (!aspirasiContainer || !form || !submitButton) {
+    console.error("Elemen penting untuk halaman aspirasi tidak ditemukan!");
+    return;
+  }
 
-  form.addEventListener("submit", async (e) => {
+  // Referensi ke Realtime Database
+  const db = firebase.database();
+  const aspirasiDbRef = db.ref("aspirasi");
+
+  const createAspirasiTemplate = (item) => {
+    const namaPengirim = item.nama ? item.nama : "Saran Anonim";
+    const escapeHtml = (unsafe) => {
+      return unsafe
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    };
+
+    return `
+      <div class="aspirasi-item">
+        <div class="aspirasi-header">
+          <h3>${escapeHtml(item.subjek)}</h3>
+          <span class="status-tag status-baru-masuk">Baru Masuk</span>
+        </div>
+        <div class="aspirasi-meta">
+          <span>Oleh: <strong>${escapeHtml(namaPengirim)}</strong></span>
+          <span>Masuk pada: ${new Date(item.tanggal_masuk).toLocaleDateString(
+            "id-ID",
+            {
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+              hour: "2-digit",
+              minute: "2-digit",
+            }
+          )}</span>
+        </div>
+        <div class="aspirasi-body">
+          <p>${escapeHtml(item.pesan)}</p>
+        </div>
+      </div>
+    `;
+  };
+
+  // Mendengarkan data dari Firebase menggunakan referensi yang sudah dibuat
+  const query = db.ref("aspirasi").orderByChild("tanggal_masuk");
+  query.on("value", (snapshot) => {
+    aspirasiContainer.innerHTML = ""; // Kosongkan daftar sebelum mengisi ulang
+    if (snapshot.exists()) {
+      const data = snapshot.val();
+      const aspirasiArray = Object.values(data).sort(
+        (a, b) => new Date(b.tanggal_masuk) - new Date(a.tanggal_masuk)
+      );
+      aspirasiArray.forEach((item) => {
+        aspirasiContainer.innerHTML += createAspirasiTemplate(item);
+      });
+    } else {
+      aspirasiContainer.innerHTML =
+        "<p>Belum ada aspirasi publik yang ditampilkan. Jadilah yang pertama!</p>";
+    }
+  });
+
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const submitButton = form.querySelector('button[type="submit"]');
-    const formData = new FormData(form);
-
+    submitButton.disabled = true;
     formStatus.textContent = "Mengirim...";
     formStatus.className = "form-status";
-    submitButton.disabled = true;
 
-    try {
-      const response = await fetch(form.action, {
-        method: "POST",
-        body: formData,
-        headers: { Accept: "application/json" },
-      });
+    const dataToSend = {
+      nama: document.getElementById("nama").value.trim(),
+      subjek: document.getElementById("subjek").value.trim(),
+      pesan: document.getElementById("pesan").value.trim(),
+      tanggal_masuk: new Date().toISOString(),
+    };
 
-      if (response.ok) {
-        formStatus.textContent = "Terima kasih! Aspirasi Anda telah terkirim.Harap tunggu  kurang lebih 3 kali 24 ";
+    // Menggunakan referensi yang sudah dibuat untuk push data
+    aspirasiDbRef
+      .push(dataToSend)
+      .then(() => {
+        formStatus.textContent =
+          "Terima kasih! Aspirasi Anda telah berhasil dipublikasikan.";
         formStatus.classList.add("status-sukses");
         form.reset();
-      } else {
-        throw new Error("Gagal mengirim. Silakan coba lagi nanti.");
-      }
-    } catch (error) {
-      formStatus.textContent = error.message;
-      formStatus.classList.add("status-gagal");
-    } finally {
-      submitButton.disabled = false;
-      setTimeout(() => {
-        formStatus.textContent = "";
-        formStatus.className = "form-status";
-      }, 6000);
-    }
+      })
+      .catch((error) => {
+        console.error("Firebase Error:", error);
+        formStatus.textContent = "Gagal mengirim aspirasi. Silakan coba lagi.";
+        formStatus.classList.add("status-gagal");
+      })
+      .finally(() => {
+        submitButton.disabled = false;
+        setTimeout(() => {
+          formStatus.textContent = "";
+          formStatus.className = "form-status";
+        }, 6000);
+      });
   });
 };
