@@ -79,7 +79,7 @@
 //       ================================
 //       DETAIL LENGKAP KEGIATAN & ARTIKEL
 //       ================================
-      
+
 //       **1. GEBYAR MERDEKA 2025 (HUT RI ke-80)**
 //       - **Nama Acara:** "GEBYAR MERDEKA 17 AGUSTUS 2025"
 //       - **Deskripsi:** Perayaan akbar HUT RI ke-80 untuk memperkokoh persatuan, membangkitkan gotong royong, dan merayakan keberagaman.
@@ -106,7 +106,7 @@
 //       - **Tanggal Pelaksanaan:** 17 Agustus 2024.
 //       - **Jenis Lomba yang Diadakan:** Lomba makan kerupuk, balap karung, dan panjat pinang.
 //       - **Tujuan:** Mempererat tali silaturahmi dan memupuk semangat gotong royong.
-      
+
 //       **3. Artikel Lainnya di Website:**
 //       - **Bendera One Piece, Abad yang Hilang, dan Sensor Sejarah di Indonesia:** Sebuah artikel analogi tentang keresahan bendera anime yang dianggap simbol pemberontakan.
 //       - **Lampu Merah Pengangguran Sarjana:** Membahas keresahan tentang disrupsi AI yang menggantikan pekerjaan level pemula (entry-level).
@@ -131,7 +131,7 @@
 //       - Video Tari Topeng Ireng (Tanggal: 2024-08-03)
 //       - Video Kegiatan Mei (Tanggal: 2024-08-02)
 //       - Video Kegiatan April (Tanggal: 2010-08-01)
-      
+
 //       ================================
 //       NARAHUBUNG & KONTAK RESMI
 //       ================================
@@ -403,11 +403,15 @@ document.addEventListener("turbo:load", () => {
       - **Lampu Merah Pengangguran Sarjana:** Membahas keresahan tentang disrupsi AI yang menggantikan pekerjaan level pemula (entry-level).
 
       ================================
-      INFORMASI & PENGUMUMAN (BERDASARKAN CONTOH)
+      Aspirasi
       ================================
-      - **Jadwal Rapat Pleno Persiapan HUT RI ke-80:** Akan diadakan pada Sabtu, 19 Juli 2025, pukul 19:30 WIB di Balai Desa Banjarsari. Kehadiran seluruh koordinator seksi sangat diharapkan.
-      - **Pendaftaran Lomba Cerdas Cermat:** Telah dibuka hingga tanggal 25 Juli 2025.
-      - **Update Desain Kaos Resmi Karang Taruna 2025:** Ada sedikit penyesuaian pada desain akhir kaos, informasi pre-order akan diinfokan lebih lanjut.
+       **1.Filosofi kenap halaman ini bisa ada
+      - **Di tengah gema dan narasi besar Indonesia Emas 2045, kita, para pemuda, berdiri di garda terdepan. Data statistik memproyeksikan bahwa pada tahun itu, mayoritas populasi kita—diperkirakan hampir 70% atau sekitar 225 juta jiwa—akan berada di usia produktif, dan kitalah yang menjadi tulang punggungnya. Pilihan ada di tangan kita bersama (entah itu akan menjadi bonus demografi atau malah jadi beban demografi, we don't know): kita tidak sedang memimpikan mimpi yang indah, tetapi sedang memperjuangkan masa depan yang mungkin. Kita tahu, perubahan tidak datang begitu saja tanpa melakukan apa pun dan tidak selalu dinyalakan oleh obor yang menyala-nyala. Seringkali, ia lahir dari satu percikan kecil yang berani menyulut kesadaran. Arah tujuan juga penting. Kita ingin sampai ke tujuan A, tetapi jalan yang kita tempuh tidak mengarahkan kita ke sana, malah mengarah sebaliknya (on the wrong track). Karena itulah, ruang ini kami ciptakan. Ini lebih dari sekadar halaman web; ini adalah panggung bagi percikan-percikan itu. Suarakan Tanpa Rasa Takut: Opsi Anonim Untukmu Kami paham. Terkadang ada rasa sungkan, khawatir dihakimi, atau sekadar tidak nyaman untuk berbicara terus terang. Itu manusiawi. Oleh karena itu, kami menyediakan pilihan bagimu untuk bersuara secara ANONIM. Bagi kami, yang terpenting bukanlah siapa yang berbicara, melainkan apa isi gagasannya. Identitasmu boleh tersembunyi, tetapi idemu akan bersinar terang. Gunakan fitur ini sebagai perisaimu agar kejujuranmu bisa tersampaikan tanpa beban. Kesalahan Adalah Arsitek Kemajuan Lihatlah sekeliling kita. Dunia yang kita kenal hari ini tidak dibangun di atas kesempurnaan tanpa cacat & kesalahan. Setiap kemajuan—dalam ilmu pengetahuan, teknologi, seni, bahkan karakter kita sendiri—lahir dari siklus abadi: kesalahan, kritik, koreksi, dan pertumbuhan. Kritik dan teguran bukanlah tanda kegagalan. Ia adalah denyut nadi kehidupan, bukti bahwa kita masih peduli dan ingin menjadi lebih baik. Tanpa ada yang berani menunjukkan di mana letak retaknya, kita tidak akan pernah bisa membangun sesuatu yang lebih kokoh. Organisasi yang berhenti menerima kritik adalah organisasi yang sedang menuju kematiannya. Transparansi Ide, Bukan Identitas
+          Setiap masukan—baik dengan nama ataupun anonim—akan tetap ditampilkan secara publik. Mengapa? Btw, ngomongin soal ini saya jadi teringat dan suka banget sama analogi sejarah keemasan Islam, yang puncaknya itu sekitar abad ke-8 hingga ke-13. Periode itu disebut 'masa keemasan' karena para ilmuwan dan pemikirnya sangat terbuka. Di tempat seperti Baitul Hikmah (Rumah Kebijaksanaan) di Baghdad, mereka tidak hanya menerjemahkan ilmu dari peradaban lain, tapi juga aktif berdebat, mengkritik, dan mengembangkan ide-ide itu.Hasilnya apa? Lahirlah aljabar, kemajuan besar di bidang kedokteran, astronomi, dan filsafat. Mereka bisa maju pesat justru karena keterbukaan ide dan debat filosofis jadi hal yang biasa. Nah, karena itulah, transparansi ini bukan untuk menghakimi individu, tetapi untuk memberdayakan ide secara kolektif. Dengan melihat semua gagasan secara terbuka, kita bisa belajar bersama, berdebat secara sehat, dan mengawal setiap percikan agar tidak padam sia-sia.
+          Take to action
+          Maka, jangan biarkan rasa takut membungkam suaramu. Jangan biarkan keraguan memadamkan percikan apimu. Entah dengan namamu terpampang atau dalam heningnya anonimitas, sampaikanlah. Satu gagasan jujur darimu bisa menjadi koreksi yang paling kita butuhkan. Dan satu koreksi adalah langkah pertama menuju versi terbaik dari Karang Taruna Banjarsari. Mari kita bangun masa depan itu bersama. Satu kritik, satu saran, satu ide pada satu waktu.
+       **2.ada 3 form yang harus di isi form pertama berisi nama atau bisa anomin.form ke dua supjek/judul masukan contoh : "saya mau usul tentang saya mau mengusulkan mengadakan diskusi terkait pengembangan pola pikir karang taruna banjarsari". form ke tiga form untuk kritik dan saran tuliskan dengan lengkap apa saran,kritik,masukan dan lain sebaginya.
+      
 
       ================================
       GALERI FOTO & VIDEO
