@@ -792,48 +792,7 @@ document.addEventListener("turbo:load", () => {
       1.  **Perkuat Pasar Domestik:** Agar mampu menyerap produk industri dalam negeri yang terdampak perang tarif.
       2.  **Diversifikasi Pasar Ekspor:** Mencari pasar baru di luar Amerika.
       3.  **Ciptakan Iklim Investasi Kondusif:** Melalui deregulasi dan penegakan hukum yang adil untuk mendorong investor domestik menciptakan lapangan kerja di dalam negeri.
-
-       ================================
-  ARTIKEL: Analisis Korupsi di Indonesia
-  ================================
-
-  **Judul Artikel:** Korupsi Tidak Mengenal Umur
-  
-  **Tanggal Publikasi:** 11 Agustus 2025
-  
-  **Sumber Materi:** Pandji Pragiwaksono (Koruptor Umur 24 Tahun)
-  
-  **Sinopsis Utama:** Membedah realita bahwa korupsi bukanlah penyakit generasi tua, dengan menggunakan kasus Nur Afifah Balqis sebagai cermin. Artikel ini berargumen bahwa akar masalahnya adalah mental korup, dinasti politik, dan politik uang yang merajalela di semua tingkatan masyarakat.
-  
-  ---
-  
-  **1. MITOS KORUPSI GENERASI TUA**
-  - **Topik Utama:** Membantah anggapan naif bahwa Indonesia akan bebas korupsi jika generasi tua yang korup digantikan oleh anak muda.
-  - **Argumen Utama:** Pandangan ini disebut "tolol" karena korupsi tidak mengenal usia. Menyalahkan generasi tua adalah bentuk **"agist"** atau diskriminasi berdasarkan umur.
-  - **Pesan Kunci:** Karakter korup tidak dibatasi oleh umur, jenis kelamin, atau generasi. Jika seseorang memiliki mental korup, ia akan korup.
-
-  ---
-  
-  **2. STUDI KASUS: NUR AFIFAH BALQIS**
-  - **Topik Utama:** Kasus Nur Afifah Balqis menjadi bukti nyata bahwa korupsi telah merasuki generasi muda.
-  - **Profil:** Bendahara Umum DPC Partai Demokrat Balikpapan, ditangkap KPK pada usia **24 tahun** pada Januari 2022.
-  - **Peran Sentral:** Menjadi pengelola aliran dana suap untuk Bupati Penajam Paser Utara (PPU) dari proyek senilai total Rp112 miliar. Uang haram disimpan di rekening pribadinya.
-  - **Contoh Lain Koruptor Muda:** Gayus Tambunan (31 tahun) dan Nazaruddin (33 tahun).
-
-  ---
-
-  **3. AKAR MASALAH: DINASTI POLITIK & POLITIK UANG**
-  - **Topik Utama:** Kasus ini mengungkap masalah yang lebih dalam yaitu dinasti politik dan politik uang yang mengakar kuat.
-  - **Contoh Dinasti Politik:** Keluarga Mas'ud di Kalimantan Timur yang menguasai berbagai posisi strategis (gubernur, walikota, pimpinan DPRD).
-  - **Praktik Politik Uang:** Masyarakat diberi uang sebesar Rp200.000 - Rp250.000 per orang untuk memilih calon tertentu. Ini menciptakan lingkaran setan di mana rakyat menerima uang dan politisi mendapatkan kuasa.
       
-  ---
-  
-  **4. KESIMPULAN & KRITIK TERHADAP MASYARAKAT**
-  - **Topik Utama:** Kondisi politik dan pemerintahan adalah cerminan langsung dari sikap dan pilihan rakyatnya.
-  - **Kritik Utama:** Masyarakat sering menuntut perubahan dan menyalahkan politisi, namun lupa bahwa kondisi saat ini adalah konsekuensi dari pilihan kolektif, termasuk menerima politik uang.
-  - **Analogi:** Kita seperti orang yang buang air besar sembarangan di kamar kos, lalu marah-marah karena baunya menyebar dan menyalahkan orang lain.
-  - **Pesan Akhir:** Perubahan harus dimulai dari diri sendiri. Hal baik akan datang sebagai konsekuensi jika kita bersikap lebih baik dalam berdemokrasi. Setiap pilihan memiliki konsekuensinya.
   `;
 
   // Ambil elemen-elemen dari HTML
