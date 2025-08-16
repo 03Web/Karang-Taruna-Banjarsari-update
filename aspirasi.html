@@ -409,23 +409,5 @@
     <script src="js/app-core.js" defer></script>
     <script src="js/page-initializers.js" defer></script>
     <script src="js/chatbot_sederhana.js" defer></script>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Fungsi ini akan mencoba memanggil initializer aspirasi setelah jeda singkat
-        // untuk memberi waktu skrip lain dimuat.
-        setTimeout(function () {
-          if (
-            window.App &&
-            typeof window.App.initializers.aspirasi === "function"
-          ) {
-            console.log("Memaksa pemuatan data aspirasi...");
-            window.App.initializers.aspirasi();
-          } else {
-            console.log("Menunggu App.initializers.aspirasi tersedia...");
-          }
-        }, 500); // Jeda 500 milidetik
-      });
-    </script>
   </body>
 </html>
