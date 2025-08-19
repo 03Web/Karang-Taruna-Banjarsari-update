@@ -398,23 +398,18 @@ App.initializers.artikel = async () => {
     App.initScrollAnimations();
   }
 };
-// === ASPIRASI PAGE (Versi 6 - Wrapper & Multi-paragraph) ===
+
+// === ASPIRASI PAGE (SOLUSI DEFINITIF) ===
 App.initializers.aspirasi = () => {
   // --- Bagian 1: Logika untuk Teks Intro Buka/Tutup ---
   const introContainer = document.getElementById("collapsible-intro");
   if (introContainer) {
-    // Targetkan div pembungkus yang baru
     const textWrapper = introContainer.querySelector("#intro-text-wrapper");
     const toggleButton = introContainer.querySelector("#toggle-intro-btn");
-
     if (textWrapper && toggleButton) {
-      // Atur kondisi awal pada div pembungkus
       textWrapper.classList.add("collapsed");
-
       toggleButton.addEventListener("click", () => {
-        // Cek kondisi pada div pembungkus
         const isCollapsed = textWrapper.classList.contains("collapsed");
-
         if (isCollapsed) {
           textWrapper.classList.remove("collapsed");
           toggleButton.textContent = "Sembunyikan";
@@ -426,7 +421,28 @@ App.initializers.aspirasi = () => {
     }
   }
 
-  // --- Bagian 2: Konfigurasi dan Inisialisasi Firebase ---
+  // --- Bagian 2: Inisialisasi dan Logika Firebase ---
+  const aspirasiContainer = document.getElementById("aspirasi-list");
+  const form = document.getElementById("aspirasi-form");
+  const formStatus = document.getElementById("form-status");
+  const submitButton = document.getElementById("submit-aspirasi-btn");
+
+  if (!aspirasiContainer || !form || !submitButton) {
+    console.error("Elemen penting untuk halaman aspirasi tidak ditemukan!");
+    return;
+  }
+
+  // Pastikan objek firebase ada sebelum melanjutkan
+  if (typeof firebase === "undefined") {
+    console.error(
+      "Firebase tidak termuat. Pastikan skrip Firebase ada di aspirasi.html."
+    );
+    aspirasiContainer.innerHTML =
+      "<p style='color:red;'>Error: Komponen utama (Firebase) gagal dimuat.</p>";
+    return;
+  }
+
+  // Konfigurasi Firebase
   const firebaseConfig = {
     apiKey: "AIzaSyA_SYgK13vSvwvOr6qVfbHMmYAHEIzTU7A",
     authDomain: "karang-taruna-banjarsari.firebaseapp.com",
@@ -438,19 +454,9 @@ App.initializers.aspirasi = () => {
     appId: "1:802982045794:web:953482fd61e2255a1c093b",
   };
 
+  // Inisialisasi Firebase (aman untuk dipanggil berulang kali)
   if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
-  }
-
-  // --- Bagian 3: Logika Aplikasi Firebase ---
-  const aspirasiContainer = document.getElementById("aspirasi-list");
-  const form = document.getElementById("aspirasi-form");
-  const formStatus = document.getElementById("form-status");
-  const submitButton = document.getElementById("submit-aspirasi-btn");
-
-  if (!aspirasiContainer || !form || !submitButton) {
-    console.error("Elemen penting untuk halaman aspirasi tidak ditemukan!");
-    return;
   }
 
   const db = firebase.database();
@@ -467,13 +473,34 @@ App.initializers.aspirasi = () => {
         .replace(/'/g, "&#039;");
     };
 
+    // Logika untuk status dan tanggapan
+    const statusClass = item.status
+      ? `status-${item.status
+          .toLowerCase()
+          .replace(/ & /g, "-and-")
+          .replace(/\s+/g, "-")}`
+      : "status-baru-masuk";
+    const statusText = item.status || "Baru Masuk";
+
+    let tanggapanHtml = "";
+    if (item.tanggapan) {
+      tanggapanHtml = `
+        <div class="tanggapan-pengurus">
+          <strong>Tanggapan Pengurus:</strong>
+          <p>"${escapeHtml(item.tanggapan)}"</p>
+        </div>
+      `;
+    }
+
     return `
       <div class="aspirasi-item">
         <div class="aspirasi-header">
           <h3>${escapeHtml(item.subjek)}</h3>
-          <span class="status-tag status-baru-masuk">Baru Masuk</span>
+          <span class="status-tag ${statusClass}">${escapeHtml(
+      statusText
+    )}</span>
         </div>
-        <div class.aspirasi-meta">
+        <div class="aspirasi-meta">
           <span>Oleh: <strong>${escapeHtml(namaPengirim)}</strong></span>
           <span>Masuk pada: ${new Date(item.tanggal_masuk).toLocaleDateString(
             "id-ID",
@@ -489,27 +516,38 @@ App.initializers.aspirasi = () => {
         <div class="aspirasi-body">
           <p>${escapeHtml(item.pesan)}</p>
         </div>
+        ${tanggapanHtml}
       </div>
     `;
   };
 
-  const query = db.ref("aspirasi").orderByChild("tanggal_masuk");
-  query.on("value", (snapshot) => {
-    aspirasiContainer.innerHTML = "";
-    if (snapshot.exists()) {
-      const data = snapshot.val();
-      const aspirasiArray = Object.values(data).sort(
-        (a, b) => new Date(b.tanggal_masuk) - new Date(a.tanggal_masuk)
-      );
-      aspirasiArray.forEach((item) => {
-        aspirasiContainer.innerHTML += createAspirasiTemplate(item);
-      });
-    } else {
+  // Ambil dan tampilkan data
+  const query = aspirasiDbRef.orderByChild("tanggal_masuk");
+  query.on(
+    "value",
+    (snapshot) => {
+      aspirasiContainer.innerHTML = "";
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        const aspirasiArray = Object.values(data).sort(
+          (a, b) => new Date(b.tanggal_masuk) - new Date(a.tanggal_masuk)
+        );
+        aspirasiContainer.innerHTML = aspirasiArray
+          .map(createAspirasiTemplate)
+          .join("");
+      } else {
+        aspirasiContainer.innerHTML =
+          "<p>Belum ada aspirasi publik yang ditampilkan. Jadilah yang pertama!</p>";
+      }
+    },
+    (error) => {
+      console.error("Firebase read failed:", error);
       aspirasiContainer.innerHTML =
-        "<p>Belum ada aspirasi publik yang ditampilkan. Jadilah yang pertama!</p>";
+        "<p style='color:red;'>Gagal memuat data aspirasi. Periksa koneksi atau coba lagi nanti.</p>";
     }
-  });
+  );
 
+  // Logika pengiriman form
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     submitButton.disabled = true;
@@ -517,10 +555,12 @@ App.initializers.aspirasi = () => {
     formStatus.className = "form-status";
 
     const dataToSend = {
-      nama: document.getElementById("nama").value.trim(),
+      nama: document.getElementById("nama").value.trim() || "Anonim",
       subjek: document.getElementById("subjek").value.trim(),
       pesan: document.getElementById("pesan").value.trim(),
       tanggal_masuk: new Date().toISOString(),
+      status: "Baru Masuk",
+      tanggapan: "",
     };
 
     aspirasiDbRef
