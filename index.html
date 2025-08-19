@@ -31,8 +31,8 @@
         right: 20px;
         width: 350px;
         max-width: 90vw;
-        background-color: #111111;
-        border: 1px solid #333333;
+        background-color: #111;
+        border: 1px solid #333;
         border-radius: 10px;
         box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
         display: none;
@@ -42,19 +42,19 @@
       }
       #chatbot-header {
         background-color: #00aaff;
-        color: white;
+        color: #fff;
         padding: 10px 15px;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        font-weight: bold;
+        font-weight: 700;
       }
       #chatbot-header #close-chatbot {
-        background: none;
+        background: 0 0;
         border: none;
-        color: white;
+        color: #fff;
         font-size: 1.5em;
         cursor: pointer;
       }
@@ -76,33 +76,33 @@
       }
       .user-message {
         background-color: #00aaff;
-        color: white;
+        color: #fff;
         align-self: flex-end;
         border-bottom-right-radius: 3px;
       }
       .bot-message {
         background-color: #333;
-        color: #ffffff;
+        color: #fff;
         align-self: flex-start;
         border-bottom-left-radius: 3px;
       }
       #chat-input-container {
         display: flex;
         padding: 10px;
-        border-top: 1px solid #333333;
+        border-top: 1px solid #333;
       }
       #chat-input {
         flex-grow: 1;
         border: none;
         background-color: #222;
-        color: white;
+        color: #fff;
         padding: 8px;
         border-radius: 5px;
       }
       #send-chat-btn {
         background-color: #00aaff;
         border: none;
-        color: white;
+        color: #fff;
         padding: 0 15px;
         margin-left: 10px;
         border-radius: 5px;
@@ -110,14 +110,13 @@
       }
       #open-chatbot-btn {
         position: fixed;
-        /* DESKTOP: Digeser sedikit ke kiri */
         bottom: 30px;
         right: 40px;
         width: 60px;
         height: 60px;
         border-radius: 50%;
         background-color: #00aaff;
-        color: white;
+        color: #fff;
         border: none;
         font-size: 2em;
         cursor: pointer;
@@ -128,15 +127,11 @@
         align-items: center;
         transition: all 0.3s ease;
       }
-
-      /* Aturan khusus untuk layar mobile */
       @media (max-width: 768px) {
         #open-chatbot-btn {
-          /* MOBILE: Digeser ke atas agar tidak menutupi menu bawah */
           bottom: 80px;
           right: 20px;
         }
-
         #chatbot-container {
           bottom: 80px;
           right: 20px;
@@ -171,9 +166,6 @@
                 <option value="Naturalisasi😂">Naturalisasi 😂</option>
               </select>
             </div>
-            <div class="action centered-flex">
-              <label for="remember" class="centered-flex"> </label>
-            </div>
             <div class="btn-container">
               <input type="submit" id="login-btn" value="Masuk Web" />
             </div>
@@ -187,20 +179,76 @@
         </div>
       </div>
     </div>
+
     <div id="particles-js"></div>
     <header id="main-header"></header>
+
     <main>
-      <div id="logo-container">
-        <img
-          id="animated-logo"
-          src="foto/ChatGPTlogokarangtaruna.png"
-          alt="Logo Animasi Karang Taruna Banjarsari"
-        />
+      <div class="container">
+        <section class="hero-section animate-on-scroll">
+          <div class="hero-content">
+            <h1>Membangun Pemuda, Mengabdi pada Desa</h1>
+            <p>
+              Selamat datang di pusat aktivitas digital Karang Taruna
+              Banjarsari. Temukan info terbaru, suarakan aspirasi, dan jadilah
+              bagian dari gerakan kami.
+            </p>
+            <a href="about.html" class="hero-button"
+              >Selengkapnya Tentang Kami</a
+            >
+          </div>
+          <div class="hero-image">
+            <img
+              src="foto/ChatGPTlogokarangtaruna.png"
+              alt="Logo Karang Taruna Banjarsari"
+            />
+          </div>
+        </section>
+
+        <hr class="separator animate-on-scroll" />
+
+        <section class="quick-links-section animate-on-scroll">
+          <h2>Jelajahi Website Kami</h2>
+          <div class="quick-links-grid">
+            <a href="about.html" class="quick-link-item">
+              <i class="fas fa-info-circle"></i>
+              <span>Tentang Kami</span>
+            </a>
+            <a href="galeri.html" class="quick-link-item">
+              <i class="fas fa-camera-retro"></i>
+              <span>Galeri Foto & Video</span>
+            </a>  
+            <a href="kegiatan.html" class="quick-link-item">
+              <i class="fas fa-calendar-alt"></i>
+              <span>Artikel & Kegiatan</span>
+            </a>
+
+            <a href="aspirasi.html" class="quick-link-item">
+              <i class="fas fa-lightbulb"></i>
+              <span>Kotak Aspirasi</span>
+            </a>
+
+            <a href="kontak.html" class="quick-link-item">
+              <i class="fas fa-comments"></i>
+              <span>Hubungi Kami</span>
+            </a>
+          </div>
+        </section>
+
+        <hr class="separator animate-on-scroll" />
+
+        <section class="highlight-section animate-on-scroll">
+          <h2><i class="fas fa-newspaper"></i> Artikel & Kegiatan Terkini</h2>
+          <div class="kegiatan-list-home" id="kegiatan-terbaru">
+            <p>Memuat kegiatan terbaru...</p>
+          </div>
+          <a href="kegiatan.html" class="view-all-button"
+            >Lihat Semua Artikel <i class="fas fa-arrow-right"></i
+          ></a>
+        </section>
       </div>
-      <h1 style="display: none">
-        Selamat Datang di Website Karang Taruna Banjarsari
-      </h1>
     </main>
+    <footer id="main-footer"></footer>
 
     <div id="chatbot-container">
       <div id="chatbot-header">
@@ -209,10 +257,7 @@
       <div id="chatbot-body">
         <div id="chat-window">
           <div class="bot-message">
-            Halo! Ada yang bisa saya bantu seputar Karang Taruna
-            Banjarsari?apapun pertanyaan-mu tentang karang taruna akan saya coba
-            jawab se-bisa mungkin.ada pepatah bilang "Malu bertanya sesat di
-            jalan" so,jangan sungkan untuk bertanya.
+            Halo! Ada yang bisa saya bantu seputar Karang Taruna Banjarsari?
           </div>
         </div>
         <div id="chat-input-container">
