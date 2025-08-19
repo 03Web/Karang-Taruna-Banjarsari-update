@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
-/* Variabel CSS untuk konsistensi tema */
 :root {
   --primary-color: #00aaff;
-  --dark-bg: #000000;
-  --light-text: #ffffff;
-  --dark-text: #cccccc;
-  --card-bg: #111111;
+  --secondary-color: #f7b733;
+  --dark-bg: #0f0f0f;
+  --light-text: #e0e0e0;
+  --dark-text: #a0a0a0;
+  --card-bg: #1a1a1a;
   --border-color: #333333;
 }
 
@@ -21,14 +21,23 @@
 
 body {
   background-color: var(--dark-bg);
-  color: var(--light-text);
+  color: var(--light-text); /* Gunakan warna teks baru */
   font-family: "Poppins", sans-serif;
-  line-height: 1.6;
+  line-height: 1.7; /* Jarak antar baris yang lebih nyaman */
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  font-size: 14px; /* Ukuran font dasar sedikit diperkecil */
-  padding-top: 85px; /* Memberi ruang untuk header di desktop */
+  font-size: 14px;
+  padding-top: 85px;
+}
+
+/* TAMBAHKAN KODE INI DI BAWAH 'body' */
+h1,
+h2,
+h3,
+h4 {
+  color: #ffffff;
+  letter-spacing: -0.5px;
 }
 
 /* ========================================= */
@@ -2262,4 +2271,45 @@ a:hover {
     order: -1;
     width: 200px;
   }
+}
+/* ========================================= */
+/* ===      GAYA KOMPONEN TERPADU        === */
+/* ========================================= */
+
+/* Gaya Tombol Terpadu */
+.btn {
+  display: inline-block;
+  padding: 10px 24px;
+  border-radius: 50px; /* Membuat tombol lebih modern (bentuk pil) */
+  text-decoration: none;
+  font-weight: bold;
+  font-style: normal;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #000;
+}
+
+.btn-primary:hover {
+  background-color: #0099e6;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 170, 255, 0.2);
+}
+
+/* Gaya Kartu Terpadu */
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px; /* Sudut lebih tumpul dan modern */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  border-color: var(--primary-color);
 }
