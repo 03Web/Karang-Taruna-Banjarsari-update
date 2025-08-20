@@ -294,8 +294,6 @@ document.addEventListener("turbo:load", () => {
   const DEEPSEEK_API_KEY = "sk-fcf076aa559c4100a1fa478d3b0855dd";
   const API_URL = "https://api.deepseek.com/v1/chat/completions";
 
-
-
   // Ambil elemen-elemen dari HTML
   const sendBtn = document.getElementById("send-chat-btn");
   const chatInput = document.getElementById("chat-input");
