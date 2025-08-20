@@ -415,19 +415,61 @@ App.initializers.artikel = async () => {
     const words = contentContainer.innerText.split(/\s+/).length;
     const readingTime = Math.ceil(words / 200);
 
+    // --- START PERUBAHAN ---
+
+    // 1. Membuat dan menambahkan Schema Script
+    const schemaScript = document.createElement("script");
+    schemaScript.type = "application/ld+json";
+
+    // Ambil tanggal dari file JSON kegiatan untuk format ISO yang benar
+    const allKegiatan = await App.fetchData("kegiatan", "data/kegiatan.json");
+    const currentArtikelData = allKegiatan.find((item) =>
+      item.link.includes(slug)
+    );
+    const publishDate = currentArtikelData
+      ? new Date(currentArtikelData.tanggal).toISOString()
+      : new Date().toISOString();
+    const mainImage =
+      doc.querySelector(".slideshow-container img")?.src ||
+      "https://karangtarunabanjarsari.fun/foto/logokarangtarunabjr.jpeg";
+
+    const schemaData = {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      headline: title,
+      image: [mainImage],
+      datePublished: publishDate,
+      author: {
+        "@type": "Organization",
+        name: "Karang Taruna Banjarsari",
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "Karang Taruna Banjarsari",
+        logo: {
+          "@type": "ImageObject",
+          url: "https://karangtarunabanjarsari.fun/foto/logokarangtarunabjr.jpeg",
+        },
+      },
+    };
+
+    schemaScript.textContent = JSON.stringify(schemaData);
+    document.head.appendChild(schemaScript);
+
     document.title = `${title} - Karang Taruna Banjarsari`;
     container.innerHTML = `
-            <div class="artikel-header">
-                <h1>${title}</h1>
-                <div class="artikel-meta-info">
-                    <span><i class="fas fa-calendar-alt"></i> ${date}</span>
-                    <span><i class="fas fa-clock"></i> Estimasi ${readingTime} menit baca</span>
-                </div>
+        <div class="artikel-header">
+            <h1>${title}</h1>
+            <div class="artikel-meta-info">
+                <span><i class="fas fa-calendar-alt"></i> ${date}</span>
+                <span><i class="fas fa-clock"></i> Estimasi ${readingTime} menit baca</span>
             </div>
-            ${doc.querySelector(".slideshow-container")?.outerHTML || ""}
-            <div class="artikel-konten">${contentContainer.innerHTML}</div>
-            <a href="kegiatan.html" class="tombol-kembali"><i class="fas fa-arrow-left"></i> Kembali ke Daftar Kegiatan</a>
-        `;
+        </div>
+        ${doc.querySelector(".slideshow-container")?.outerHTML || ""}
+        <div class="artikel-konten">${contentContainer.innerHTML}</div>
+        <a href="kegiatan.html" class="tombol-kembali"><i class="fas fa-arrow-left"></i> Kembali ke Daftar Kegiatan</a>
+    `;
+
     initSlideshow();
   } catch (error) {
     console.error("Gagal memuat artikel:", error);
