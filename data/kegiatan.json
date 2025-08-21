@@ -1,5 +1,4 @@
 [
-  
   {
     "tanggal": "2025-08-06",
     "gambar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrVQgIyVbHtooB1uOO1hJlDpuQNG_KXNVSXg&s",
@@ -106,6 +105,15 @@
     "judul": "Grafik Kependudukan Banjarsari",
     "deskripsi": "Data kependudukan Banjarsari mencakup jumlah penduduk, usia, jenis kelamin, pendidikan, pekerjaan, dan lainnya. Data ini penting untuk perencanaan pembangunan desa.",
     "link": "https://banjarsari-kandangan.temanggungkab.go.id/frontend/demografi",
+    "kategori": "Tentang Banjarsari"
+  },
+  {
+    "tanggal": "2025-08-10",
+    "gambar": "https://jurnallugas.com/wp-content/uploads/2025/05/Struktur-Pemerintahan-Desa-Lengkap-JurnalLugas.jpg",
+    "alt_gambar": "perangkat desa banjarsari",
+    "judul": "kepala desa & staf desa banjarsari",
+    "deskripsi": "Kepala Desa Banjarsari adalah pemimpin desa yang bertanggung jawab atas pemerintahan, pembangunan, dan kesejahteraan masyarakat desa. Staf desa membantu kepala desa dalam menjalankan tugas-tugas administratif dan pelayanan publik.",
+    "link": "https://banjarsari-kandangan.temanggungkab.go.id/frontend/pegawai",
     "kategori": "Tentang Banjarsari"
   },
   {
