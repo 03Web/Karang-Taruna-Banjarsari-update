@@ -3,6 +3,35 @@
  * @description Script inti untuk fungsionalitas website. Mengelola state, komponen, dan inisialisasi dasar.
  * @version 8.2.1 (Sync with Karang Taruna branding & Formspree integration)
  */
+// ===================================================================================
+// === FUNGSI BARU: CACHE BUSTER OTOMATIS ===
+// ===================================================================================
+// Fungsi ini akan secara otomatis menambahkan timestamp unik ke file CSS dan JS
+// untuk memastikan browser selalu memuat versi terbaru setelah Anda melakukan update.
+function applyCacheBuster() {
+  const timestamp = new Date().getTime();
+  // Menargetkan semua tag <link> yang memuat file CSS
+  document.querySelectorAll('link[href*=".css"]').forEach((link) => {
+    const url = new URL(link.href);
+    if (!url.searchParams.has("v")) {
+      // Hanya tambahkan jika belum ada versi
+      url.searchParams.append("v", timestamp);
+      link.href = url.href;
+    }
+  });
+  // Menargetkan semua tag <script> yang memuat file JS
+  document.querySelectorAll('script[src*=".js"]').forEach((script) => {
+    const url = new URL(script.src);
+    if (!url.searchParams.has("v")) {
+      // Hanya tambahkan jika belum ada versi
+      url.searchParams.append("v", timestamp);
+      script.src = url.href;
+    }
+  });
+}
+
+// Panggil fungsi cache buster ini segera saat script dimuat
+applyCacheBuster();
 
 const App = (() => {
   // === STATE & CACHE ===
