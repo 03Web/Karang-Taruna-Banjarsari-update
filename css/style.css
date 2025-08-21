@@ -3,10 +3,10 @@
 :root {
   --primary-color: #00aaff;
   --secondary-color: #f7b733;
-  --dark-bg: #0f0f0f;
+  --dark-bg: #000000; /* <-- Warna baru HITAM PEKAT */
   --light-text: #e0e0e0;
   --dark-text: #a0a0a0;
-  --card-bg: #1a1a1a;
+  --card-bg: #1a1a1a; /* <-- Warna kartu tetap agar ada sedikit kontras */
   --border-color: #333333;
 }
 

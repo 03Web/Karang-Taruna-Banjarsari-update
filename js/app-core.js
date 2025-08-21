@@ -292,44 +292,41 @@ const App = (() => {
       );
       return;
     }
+
     tsParticles.load("particles-js", {
+      background: {
+        color: "#000000",
+      },
       particles: {
-        number: { value: 50, density: { enable: true, value_area: 800 } },
-        color: { value: "#ffffff" },
-        shape: { type: "circle" },
-        opacity: {
-          value: 0.4,
-          random: true,
-          anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false },
+        number: {
+          value: 80, // Jumlah bintang minimalis
         },
-        size: { value: 2, random: true },
-        line_linked: {
-          enable: true,
-          distance: 150,
-          color: "#ffffff",
-          opacity: 0.2,
-          width: 1,
+        color: {
+          value: "#ffffff",
+        },
+        shape: {
+          type: "circle",
+        },
+        opacity: {
+          value: { min: 0.1, max: 0.4 },
+        },
+        size: {
+          value: { min: 1, max: 2 },
         },
         move: {
-          enable: true,
-          speed: 1,
-          direction: "none",
-          random: false,
-          straight: false,
-          out_mode: "out",
+          enable: false,
+        },
+        // Efek kelip yang sederhana
+        twinkle: {
+          particles: {
+            enable: true,
+            frequency: 0.05,
+            opacity: 1,
+          },
         },
       },
       interactivity: {
-        detect_on: "canvas",
-        events: {
-          onhover: { enable: true, mode: "repulse" },
-          onclick: { enable: true, mode: "push" },
-          resize: true,
-        },
-        modes: {
-          repulse: { distance: 100, duration: 0.4 },
-          push: { particles_nb: 4 },
-        },
+        enable: false,
       },
       retina_detect: true,
     });
