@@ -27,44 +27,99 @@ function applyCacheBuster() {
 }
 applyCacheBuster();
 // ===================================================================================
-// === FUNGSI BARU (VERSI 3): PAKSA BUKA DI CHROME (ANDROID & IOS) ===
+// === FUNGSI FINAL (VERSI 4): INTERSTITIAL "BUKA DI BROWSER" ===
 // ===================================================================================
-// Fungsi ini mendeteksi OS dan mencoba membuka URL di Chrome untuk Android & iOS.
-function forceOpenInChrome() {
+// Fungsi ini akan menampilkan halaman perantara yang meminta izin pengguna
+// untuk membuka link di browser eksternal (Chrome atau Brave).
+
+function setupBrowserInterceptor() {
   const userAgent = navigator.userAgent || navigator.vendor || window.opera;
   const isInApp = /Instagram|FBAN|FBAV|WebView|GSA/i.test(userAgent);
 
   if (isInApp) {
-    const currentUrl = window.location.href;
+    // Buat dan tampilkan overlay
+    const overlayHTML = `
+      <div id="browser-interceptor-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); z-index: 99999; display: flex; align-items: center; justify-content: center; font-family: 'Poppins', sans-serif; color: white; text-align: center; padding: 20px;">
+        <div style="max-width: 320px;">
+          <img src="foto/ChatGPTlogokarangtaruna.png" alt="Logo Karang Taruna" style="width: 100px; height: 100px; margin-bottom: 20px;">
+          <h3 style="font-size: 22px; margin-bottom: 10px;">Pengalaman Terbaik di Browser</h3>
+          <p style="font-size: 16px; color: #ccc; margin-bottom: 30px;">Situs ini bekerja lebih baik di browser terpisah. Silakan pilih salah satu untuk melanjutkan.</p>
+          <div id="browser-buttons-container" style="display: flex; flex-direction: column; gap: 15px;">
+            </div>
+        </div>
+      </div>
+    `;
+    document.body.innerHTML += overlayHTML;
 
-    // --- LOGIKA BARU UNTUK DETEKSI OS ---
-    // Cek apakah pengguna menggunakan iPhone/iPad/iPod
-    const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
-
-    if (isIOS) {
-      // Jika iOS, coba buka dengan format URL Scheme untuk iOS
-      // Formatnya: googlechrome://https://www.reddit.com/r/browsers/comments/1p45bk/how_do_you_go_to_http_instead_of_https/
-      const iosUrl = `googlechrome://${currentUrl.replace(/https?:\/\//i, "")}`;
-      window.location.href = iosUrl;
-    } else {
-      // Jika bukan iOS (kita asumsikan Android), gunakan format Intent
-      const androidUrl = `intent://${currentUrl.replace(
-        /https?:\/\//i,
-        ""
-      )}#Intent;scheme=https;package=com.android.chrome;end`;
-      window.location.href = androidUrl;
-    }
-    // --- AKHIR DARI LOGIKA BARU ---
-
-    // Pesan cadangan tetap sama, akan muncul jika redirect gagal di kedua OS
-    setTimeout(() => {
-      showFallbackMessageForChrome();
-    }, 1200);
+    // Tentukan tombol berdasarkan sistem operasi
+    generateBrowserButtons();
   }
 }
-// Fungsi showFallbackMessageForChrome() biarkan sama, tidak perlu diubah.
-// ...
-document.addEventListener("DOMContentLoaded", forceOpenInChrome);
+
+function generateBrowserButtons() {
+  const container = document.getElementById("browser-buttons-container");
+  const currentUrl = window.location.href;
+  const isIOS =
+    /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+  // --- Tombol Google Chrome ---
+  const chromeBtn = document.createElement("a");
+  chromeBtn.innerText = "Buka di Google Chrome";
+  if (isIOS) {
+    // Skema untuk iOS
+    chromeBtn.href = `googlechrome://${currentUrl.replace(/https?:\/\//i, "")}`;
+  } else {
+    // Skema Intent untuk Android
+    chromeBtn.href = `intent://${currentUrl.replace(
+      /https?:\/\//i,
+      ""
+    )}#Intent;scheme=https;package=com.android.chrome;end`;
+  }
+  styleBrowserButton(chromeBtn, "#4285F4");
+  container.appendChild(chromeBtn);
+
+  // --- Tombol Brave Browser ---
+  const braveBtn = document.createElement("a");
+  braveBtn.innerText = "Buka di Brave";
+  if (isIOS) {
+    // Skema untuk iOS
+    braveBtn.href = `brave://open-url?url=${encodeURIComponent(currentUrl)}`;
+  } else {
+    // Skema Intent untuk Android
+    braveBtn.href = `intent://${currentUrl.replace(
+      /https?:\/\//i,
+      ""
+    )}#Intent;scheme=https;package=com.brave.browser;end`;
+  }
+  styleBrowserButton(braveBtn, "#FB542B");
+  container.appendChild(braveBtn);
+}
+
+function styleBrowserButton(button, bgColor) {
+  button.style.cssText = `
+        display: block;
+        padding: 15px;
+        background-color: ${bgColor};
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: 16px;
+        transition: transform 0.2s;
+    `;
+  button.onmouseover = () => {
+    button.style.transform = "scale(1.05)";
+  };
+  button.onmouseout = () => {
+    button.style.transform = "scale(1)";
+  };
+}
+
+// Panggil fungsi utama saat dokumen selesai dimuat
+document.addEventListener("DOMContentLoaded", setupBrowserInterceptor);
+// ===================================================================================
+// === AKHIR DARI FUNGSI FINAL (VERSI 4) ===
+// ===================================================================================
 
 const App = (() => {
   // === STATE & CACHE ===
