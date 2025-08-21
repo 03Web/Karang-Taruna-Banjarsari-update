@@ -299,7 +299,7 @@ const App = (() => {
       },
       particles: {
         number: {
-          value: 80, // Jumlah bintang minimalis
+          value: 50, // Jumlah bintang minimalis
         },
         color: {
           value: "#ffffff",
