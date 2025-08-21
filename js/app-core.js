@@ -3,11 +3,7 @@
  * @description Script inti untuk fungsionalitas website. Mengelola state, komponen, dan inisialisasi dasar.
  * @version 8.2.1 (Sync with Karang Taruna branding & Formspree integration)
  */
-// ===================================================================================
-// === FUNGSI BARU: CACHE BUSTER OTOMATIS ===
-// ===================================================================================
-// Fungsi ini akan secara otomatis menambahkan timestamp unik ke file CSS dan JS
-// untuk memastikan browser selalu memuat versi terbaru setelah Anda melakukan update.
+
 function applyCacheBuster() {
   const timestamp = new Date().getTime();
   // Menargetkan semua tag <link> yang memuat file CSS
@@ -29,9 +25,46 @@ function applyCacheBuster() {
     }
   });
 }
-
-// Panggil fungsi cache buster ini segera saat script dimuat
 applyCacheBuster();
+// ===================================================================================
+// === FUNGSI BARU (VERSI 3): PAKSA BUKA DI CHROME (ANDROID & IOS) ===
+// ===================================================================================
+// Fungsi ini mendeteksi OS dan mencoba membuka URL di Chrome untuk Android & iOS.
+function forceOpenInChrome() {
+  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+  const isInApp = /Instagram|FBAN|FBAV|WebView|GSA/i.test(userAgent);
+
+  if (isInApp) {
+    const currentUrl = window.location.href;
+
+    // --- LOGIKA BARU UNTUK DETEKSI OS ---
+    // Cek apakah pengguna menggunakan iPhone/iPad/iPod
+    const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+
+    if (isIOS) {
+      // Jika iOS, coba buka dengan format URL Scheme untuk iOS
+      // Formatnya: googlechrome://https://www.reddit.com/r/browsers/comments/1p45bk/how_do_you_go_to_http_instead_of_https/
+      const iosUrl = `googlechrome://${currentUrl.replace(/https?:\/\//i, "")}`;
+      window.location.href = iosUrl;
+    } else {
+      // Jika bukan iOS (kita asumsikan Android), gunakan format Intent
+      const androidUrl = `intent://${currentUrl.replace(
+        /https?:\/\//i,
+        ""
+      )}#Intent;scheme=https;package=com.android.chrome;end`;
+      window.location.href = androidUrl;
+    }
+    // --- AKHIR DARI LOGIKA BARU ---
+
+    // Pesan cadangan tetap sama, akan muncul jika redirect gagal di kedua OS
+    setTimeout(() => {
+      showFallbackMessageForChrome();
+    }, 1200);
+  }
+}
+// Fungsi showFallbackMessageForChrome() biarkan sama, tidak perlu diubah.
+// ...
+document.addEventListener("DOMContentLoaded", forceOpenInChrome);
 
 const App = (() => {
   // === STATE & CACHE ===
