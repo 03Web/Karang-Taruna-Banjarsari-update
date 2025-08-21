@@ -1,14 +1,5 @@
 [
   {
-    "tanggal": "2025-08-15",
-    "gambar": "https://cdn.myportfolio.com/7110bd9a9c83d97ed90b4758be565c85/a31a124a-7d0a-4c91-aadd-4009e53f1165_rw_1920.jpg?h=2d31865d569e8c058b89860bb527ba82",
-    "alt_gambar": "Anak-anak di pedesaan Indonesia yang menggambarkan wajah ketimpangan",
-    "judul": "Wajah ketimpangan indonesia",
-    "deskripsi": "Ketimpangan yang dibiarkan mengakar akan menjadi bom waktu sosial. Ia mengikis kohesi sosial, menumbuhkan rasa ketidakadilan, kecemburuan, dan potensi konflik horizontal.",
-    "link": "https://03web.github.io/amazia/artikel.html?slug=Artikel-Link-Karang-Taruna-Banjarsari/wajah-ketimpangan-diindonesia&access_key=5895732857248594725894725984579452749857498",
-    "kategori": "Opini"
-  },
-  {
     "tanggal": "2025-08-06",
     "gambar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrVQgIyVbHtooB1uOO1hJlDpuQNG_KXNVSXg&s",
     "alt_gambar": "Bendera bajak laut Topi Jerami dari anime One Piece",
@@ -17,14 +8,22 @@
     "link": "artikel.html?slug=opini/bendera_onepiece_pemerintah",
     "kategori": "Opini"
   },
-
+  {
+    "tanggal": "2025-08-15",
+    "gambar": "https://cdn.myportfolio.com/7110bd9a9c83d97ed90b4758be565c85/a31a124a-7d0a-4c91-aadd-4009e53f1165_rw_1920.jpg?h=2d31865d569e8c058b89860bb527ba82",
+    "alt_gambar": "Anak-anak di pedesaan Indonesia yang menggambarkan wajah ketimpangan",
+    "judul": "Wajah ketimpangan indonesia",
+    "deskripsi": "Ketimpangan yang dibiarkan mengakar akan menjadi bom waktu sosial. Ia mengikis kohesi sosial, menumbuhkan rasa ketidakadilan, kecemburuan, dan potensi konflik horizontal.",
+    "link": "artikel.html?slug=berita/wajah_ketimpangan_indonesia",
+    "kategori": "Berita"
+  },
   {
     "tanggal": "2025-08-07",
     "gambar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkM5_tpiwsnFM4-EGYb8i2jjQJFG1lSrAY5A&s",
     "alt_gambar": "Ilustrasi lampu merah sebagai simbol pengangguran sarjana di Indonesia",
     "judul": "Lampu Merah Pengangguran Sarjana",
     "deskripsi": "Disrupsi Kecerdasan Buatan (AI) Pekerjaan level pemula (entry-level) yang bersifat repetitif kini mulai digantikan oleh AI.",
-    "link": "https://03web.github.io/amazia/artikel.html?slug=Artikel-Link-Karang-Taruna-Banjarsari/lampu-merah-pengangguran-sarjana&access_key=5895732857248594725894725984579452749857498",
+    "link": "artikel.html?slug=berita/lampu_merah_pengangguran_sarjana",
     "kategori": "Berita"
   },
   {
@@ -33,7 +32,7 @@
     "alt_gambar": "Nur Afifah Balqis, politikus muda yang terjerat kasus korupsi",
     "judul": "Korupsi Tidak Mengenal Umur",
     "deskripsi": "Kasus Nur Afifah ini menjadi tamparan keras bagi kita. Ia membuktikan bahwa korupsi tidak mengenal usia.....",
-    "link": "https://03web.github.io/amazia/artikel.html?slug=Artikel-Link-Karang-Taruna-Banjarsari/Korupsi-Tidak-Mengenal-Usia&access_key=5895732857248594725894725984579452749857498",
+    "link": "artikel.html?slug=berita/Korupsi-Tidak-Mengenal-Usia",
     "kategori": "Berita"
   },
   {
@@ -42,7 +41,7 @@
     "alt_gambar": "Seseorang sedang melamun, menggambarkan manfaat dari kebosanan",
     "judul": "Mengapa Kebosanan Itu Baik Bagi anda?",
     "deskripsi": "Namun, apa sebenarnya kebosanan itu? Kebosanan bukanlah kondisi di mana tidak ada sama sekali yang bisa dilakukan....",
-    "link": "https://03web.github.io/amazia/artikel.html?slug=Artikel-Link-Karang-Taruna-Banjarsari/Why-Boredom-is-Good-For-You&access_key=5895732857248594725894725984579452749857498",
+    "link": "artikel.html?slug=edukasi/Why-Boredom-is-Good-For-You",
     "kategori": "Edukasi"
   },
   {
@@ -60,7 +59,7 @@
     "alt_gambar": "Ilustrasi otak manusia dan kompleksitas tes IQ",
     "judul": "Memahami Tes IQ & masalah dari test IQ",
     "deskripsi": "Sayangnya, sejarah tes IQ juga diwarnai oleh babak kelam. Di Amerika Serikat, konsep IQ disalahgunakan untuk melegitimasi gerakan eugenika...",
-    "link": "https://03web.github.io/amazia/artikel.html?slug=Artikel-Link-Karang-Taruna-Banjarsari/The-Problem-With-IQ-Tests&access_key=5895732857248594725894725984579452749857498",
+    "link": "artikel.html?slug=edukasi/The-Problem-With-IQ-Tests",
     "kategori": "Edukasi"
   },
   {
@@ -69,7 +68,7 @@
     "alt_gambar": "Jalan bercabang yang melambangkan paradoks antara kerja keras dan keberuntungan",
     "judul": "The success Paradox (Hard work or lucky)",
     "deskripsi": "Kita seringkali terjebak dalam memandang kesuksesan sebagai hasil murni dari kerja keras dan kemampuan diri sendiri....",
-    "link": "https://03web.github.io/amazia/artikel.html?slug=Artikel-Link-Karang-Taruna-Banjarsari/The-success-Paradox&access_key=5895732857248594725894725984579452749857498",
+    "link": "artikel.html?slug=edukasi/The-success-Paradox",
     "kategori": "Edukasi"
   },
   {
@@ -78,8 +77,8 @@
     "alt_gambar": "Siswa-siswi di Indonesia belajar menggunakan laptop, simbol disrupsi AI dalam pendidikan",
     "judul": "bagaimana disrupsi AI akan mengubah system pendidikan",
     "deskripsi": " jalan menuju Indonesia sebagai pemain teknologi global bukanlah jalan tol yang mulus dan instan, melainkan pendakian yang membutuhkan kesabaran, visi, dan fondasi yang kuat.....",
-    "link": "https://03web.github.io/amazia/artikel.html?slug=Artikel-Link-Karang-Taruna-Banjarsari/why-indonesian-education-system&access_key=5895732857248594725894725984579452749857498",
-    "kategori": "Edukasi"
+    "link": "artikel.html?slug=opini/why-indonesian-education-system",
+    "kategori": "Opini"
   },
   {
     "tanggal": "2025-08-17",
@@ -87,7 +86,7 @@
     "alt_gambar": "Ilustrasi kapal era kolonialisme sebagai representasi sejarah Indonesia",
     "judul": "Indonesia, Apa Adanya: Dari Kolonialisme Hingga Panggung Demokrasi",
     "deskripsi": "Di Eropa abad pertengahan, aroma dari Nusantara adalah aroma surga sekaligus kekayaan. Cengkih, pala,....",
-    "link": "https://03web.github.io/amazia/artikel.html?slug=history/Indonesia-Apa-Adanya-Dari-Kolonialisme-Hingga-Panggung-Demokrasi&access_key=5895732857248594725894725984579452749857498",
+    "link": "artikel.html?slug=edukasi/Indonesia-Apa-Adanya-Dari-Kolonialisme-Hingga-Panggung-Demokrasi",
     "kategori": "Edukasi"
   },
   {
@@ -98,6 +97,15 @@
     "deskripsi": "GEBYAR MERDEKA 17 AGUSTUS 2025. Acara ini didedikasikan untuk menyemarakkan peringatan Hari Ulang Tahun (HUT) Kemerdekaan Republik Indonesia yang ke-80...",
     "link": "artikel.html?slug=gebyar-merdeka-2025",
     "kategori": "Acara"
+  },
+  {
+    "tanggal": "2025-08-10",
+    "gambar": "https://berita.sulbarprov.go.id/media/k2/items/cache/88c8acd23703263c3337f366e33481ec_XL.jpg",
+    "alt_gambar": "foto data statistik banjarsari",
+    "judul": "Data Kependudukan Banjarsari",
+    "deskripsi": "Data kependudukan Banjarsari mencakup jumlah penduduk, usia, jenis kelamin, pendidikan, pekerjaan, dan lainnya. Data ini penting untuk perencanaan pembangunan desa.",
+    "link": "https://banjarsari-kandangan.temanggungkab.go.id/frontend/demografi",
+    "kategori": "Tentang Banjarsari"
   },
   {
     "tanggal": "2024-08-17",
