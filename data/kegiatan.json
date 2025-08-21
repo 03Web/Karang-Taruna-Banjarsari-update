@@ -1,4 +1,5 @@
 [
+  
   {
     "tanggal": "2025-08-06",
     "gambar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrVQgIyVbHtooB1uOO1hJlDpuQNG_KXNVSXg&s",
@@ -102,7 +103,7 @@
     "tanggal": "2025-08-10",
     "gambar": "https://berita.sulbarprov.go.id/media/k2/items/cache/88c8acd23703263c3337f366e33481ec_XL.jpg",
     "alt_gambar": "foto data statistik banjarsari",
-    "judul": "Data Kependudukan Banjarsari",
+    "judul": "Grafik Kependudukan Banjarsari",
     "deskripsi": "Data kependudukan Banjarsari mencakup jumlah penduduk, usia, jenis kelamin, pendidikan, pekerjaan, dan lainnya. Data ini penting untuk perencanaan pembangunan desa.",
     "link": "https://banjarsari-kandangan.temanggungkab.go.id/frontend/demografi",
     "kategori": "Tentang Banjarsari"
