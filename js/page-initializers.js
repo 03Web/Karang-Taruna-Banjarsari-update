@@ -47,6 +47,7 @@ App.initializers.kegiatan = async () => {
   if (!container) return;
 
   const sorter = document.getElementById("kegiatan-sorter");
+  const kategoriFilter = document.getElementById("kategori-filter");
 
   const createKegiatanTemplate = (item) => `
     <article class="kegiatan-item animate-on-scroll" data-tanggal="${
@@ -79,7 +80,16 @@ App.initializers.kegiatan = async () => {
 
   const updateList = () => {
     const sortOrder = sorter.value;
-    const sortedData = [...originalData].sort((a, b) =>
+    const selectedKategori = kategoriFilter.value;
+
+    // 1. Filter berdasarkan kategori
+    const filteredData =
+      selectedKategori === "semua"
+        ? [...originalData]
+        : originalData.filter((item) => item.kategori === selectedKategori);
+
+    // 2. Urutkan data yang sudah difilter
+    const sortedData = filteredData.sort((a, b) =>
       sortOrder === "terbaru"
         ? new Date(b.tanggal) - new Date(a.tanggal)
         : new Date(a.tanggal) - new Date(b.tanggal)
@@ -88,11 +98,12 @@ App.initializers.kegiatan = async () => {
       container,
       sortedData,
       createKegiatanTemplate,
-      "<p>Tidak ada kegiatan untuk ditampilkan.</p>"
+      "<p>Tidak ada kegiatan untuk ditampilkan dalam kategori ini.</p>"
     );
   };
 
   sorter.addEventListener("change", updateList);
+  kategoriFilter.addEventListener("change", updateList);
   updateList();
 };
 
@@ -553,7 +564,7 @@ App.initializers.aspirasi = () => {
           <h3>${escapeHtml(item.subjek)}</h3>
           <span class="status-tag status-baru-masuk">Baru Masuk</span>
         </div>
-        <div class.aspirasi-meta">
+        <div class="aspirasi-meta">
           <span>Oleh: <strong>${escapeHtml(namaPengirim)}</strong></span>
           <span>Masuk pada: ${new Date(item.tanggal_masuk).toLocaleDateString(
             "id-ID",

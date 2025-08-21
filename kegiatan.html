@@ -33,12 +33,24 @@
           "berhubungan dengan karang taruna,topik sedang ramai di bicarakan,dan
           random artikel."
         </p>
-        <div class="sort-container animate-on-scroll">
-          <label for="kegiatan-sorter">Urutkan berdasarkan:</label>
-          <select id="kegiatan-sorter" class="sorter">
-            <option value="terbaru">Terbaru ke Lama</option>
-            <option value="terlama">Lama ke Terbaru</option>
-          </select>
+        <div class="filter-container animate-on-scroll">
+          <div class="sort-container">
+            <label for="kategori-filter">Kategori:</label>
+            <select id="kategori-filter" class="sorter">
+              <option value="semua">Semua Kategori</option>
+              <option value="Acara">Acara</option>
+              <option value="Opini">Opini</option>
+              <option value="Edukasi">Edukasi</option>
+              <option value="Berita">Berita</option>
+            </select>
+          </div>
+          <div class="sort-container">
+            <label for="kegiatan-sorter">Urutkan berdasarkan:</label>
+            <select id="kegiatan-sorter" class="sorter">
+              <option value="terbaru">Terbaru ke Lama</option>
+              <option value="terlama">Lama ke Terbaru</option>
+            </select>
+          </div>
         </div>
         <div class="kegiatan-list" id="kegiatan-list"></div>
       </div>
