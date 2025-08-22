@@ -62,34 +62,36 @@ function generateBrowserButtons() {
   const isIOS =
     /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
-  // --- Tombol Google Chrome ---
+  // --- Tombol Google Chrome (Mode Samaran untuk Android) ---
   const chromeBtn = document.createElement("a");
-  chromeBtn.innerText = "Buka di Google Chrome";
   if (isIOS) {
-    // Skema untuk iOS
+    // Mode samaran TIDAK didukung di iOS. Buka mode normal.
+    chromeBtn.innerText = "Buka di Google Chrome";
     chromeBtn.href = `googlechrome://${currentUrl.replace(/https?:\/\//i, "")}`;
   } else {
-    // Skema Intent untuk Android
+    // Intent Android dengan flag untuk mode Incognito
+    chromeBtn.innerText = "Buka di Chrome (Samaran)";
     chromeBtn.href = `intent://${currentUrl.replace(
       /https?:\/\//i,
       ""
-    )}#Intent;scheme=https;package=com.android.chrome;end`;
+    )}#Intent;scheme=https;package=com.android.chrome;S.browser_application_id=com.android.chrome;B.com.android.browser.incognito=true;end`;
   }
   styleBrowserButton(chromeBtn, "#4285F4");
   container.appendChild(chromeBtn);
 
-  // --- Tombol Brave Browser ---
+  // --- Tombol Brave Browser (Mode Samaran untuk Android) ---
   const braveBtn = document.createElement("a");
-  braveBtn.innerText = "Buka di Brave";
   if (isIOS) {
-    // Skema untuk iOS
+    // Mode samaran TIDAK didukung di iOS. Buka mode normal.
+    braveBtn.innerText = "Buka di Brave";
     braveBtn.href = `brave://open-url?url=${encodeURIComponent(currentUrl)}`;
   } else {
-    // Skema Intent untuk Android
+    // Intent Android dengan flag untuk mode Incognito
+    braveBtn.innerText = "Buka di Brave (Samaran)";
     braveBtn.href = `intent://${currentUrl.replace(
       /https?:\/\//i,
       ""
-    )}#Intent;scheme=https;package=com.brave.browser;end`;
+    )}#Intent;scheme=https;package=com.brave.browser;S.browser_application_id=com.brave.browser;B.com.android.browser.incognito=true;end`;
   }
   styleBrowserButton(braveBtn, "#FB542B");
   container.appendChild(braveBtn);
