@@ -44,7 +44,6 @@ App.initializers.home = async () => {
         .map(createTestimonialTemplate)
         .join("");
 
-      // Menjalankan logika slider setelah browser sempat merender elemen
       setTimeout(() => {
         let currentIndex = 0;
         let autoSlideInterval;
@@ -53,8 +52,8 @@ App.initializers.home = async () => {
         if (items.length === 0) return;
 
         const totalItems = items.length;
-        const cardWidth = items[0].offsetWidth; // Sekarang ukurannya sudah benar
-        const gap = 25; // Sesuai gap di CSS
+        const cardWidth = items[0].offsetWidth;
+        const gap = 25;
 
         function goToSlide(index) {
           currentIndex = (index + totalItems) % totalItems;
@@ -87,7 +86,7 @@ App.initializers.home = async () => {
         wrapper.addEventListener("mouseleave", startAutoSlide);
 
         startAutoSlide();
-      }, 100); // Memberi jeda 100 milidetik untuk memastikan render selesai
+      }, 100);
     } else {
       testimonialContainer.innerHTML =
         "<p>Gagal memuat testimoni atau data kosong.</p>";
@@ -131,6 +130,7 @@ App.initializers.home = async () => {
     }
   }
 };
+
 // === KEGIATAN PAGE ===
 App.initializers.kegiatan = async () => {
   const container = document.getElementById("kegiatan-list");
@@ -195,6 +195,7 @@ App.initializers.kegiatan = async () => {
   kategoriFilter.addEventListener("change", renderKegiatan);
   renderKegiatan();
 };
+
 // === GALERI PAGE (USING LIGHTGALLERY) ===
 App.initializers.galeri = async () => {
   const data = await App.fetchData("galeri", "data/galeri.json");
@@ -468,70 +469,7 @@ App.initializers.kontak = async () => {
     "Gagal memuat daftar narahubung."
   );
 };
-// === KEGIATAN PAGE ===
-App.initializers.kegiatan = async () => {
-  const container = document.getElementById("kegiatan-list");
-  const sorter = document.getElementById("kegiatan-sorter");
-  const kategoriFilter = document.getElementById("kategori-filter");
 
-  if (!container || !sorter || !kategoriFilter) return;
-
-  const data = await App.fetchData("kegiatan", "data/kegiatan.json");
-  if (!data) {
-    container.innerHTML = "<p>Gagal memuat daftar kegiatan.</p>";
-    return;
-  }
-
-  const createKegiatanTemplate = (item) => `
-    <a href="${
-      item.link
-    }" class="kegiatan-item animate-on-scroll" data-kategori="${
-    item.kategori
-  }" data-tanggal="${item.tanggal}">
-      <div class="kegiatan-foto">
-        <img src="${item.gambar}" alt="${
-    item.alt_gambar || "Gambar " + item.judul
-  }" loading="lazy">
-      </div>
-      <div class="kegiatan-konten">
-        <h3>${item.judul}</h3>
-        <span class="kegiatan-meta">${new Date(item.tanggal).toLocaleDateString(
-          "id-ID",
-          { day: "numeric", month: "long", year: "numeric" }
-        )}</span>
-        <p>${item.deskripsi}</p>
-        <span class="kegiatan-tombol">Baca Selengkapnya</span>
-      </div>
-    </a>
-  `;
-
-  const renderKegiatan = () => {
-    const sortOrder = sorter.value;
-    const selectedKategori = kategoriFilter.value;
-
-    const filteredData = data.filter(
-      (item) =>
-        selectedKategori === "semua" || item.kategori === selectedKategori
-    );
-
-    const sortedData = [...filteredData].sort((a, b) => {
-      const dateA = new Date(a.tanggal);
-      const dateB = new Date(b.tanggal);
-      return sortOrder === "terbaru" ? dateB - dateA : dateA - dateB;
-    });
-
-    App.renderItems(
-      container,
-      sortedData,
-      createKegiatanTemplate,
-      "Tidak ada kegiatan yang cocok dengan filter Anda."
-    );
-  };
-
-  sorter.addEventListener("change", renderKegiatan);
-  kategoriFilter.addEventListener("change", renderKegiatan);
-  renderKegiatan();
-};
 // === ARTIKEL PAGE ===
 App.initializers.artikel = async () => {
   const container = document.getElementById("artikel-dinamis-container");
