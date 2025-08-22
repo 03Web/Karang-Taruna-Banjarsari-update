@@ -1,9 +1,99 @@
 /**
  * @file page-initializers.js
  * @description Inisialisasi spesifik untuk setiap halaman Karang Taruna (UI Amazia).
+ * @version Perbaikan 23-08-2025
  */
-// Tambahkan inisialisasi baru untuk 'home'
+
+// === HOME PAGE INITIALIZER (PERBAIKAN FINAL DENGAN TIMEOUT) ===
 App.initializers.home = async () => {
+  // --- Inisialisasi Testimoni (Mengambil dari JSON) ---
+  const wrapper = document.querySelector(".testimonial-carousel-wrapper");
+  const testimonialContainer = document.getElementById(
+    "testimonial-carousel-container"
+  );
+  const prevBtn = document.getElementById("testimonial-prev-btn");
+  const nextBtn = document.getElementById("testimonial-next-btn");
+
+  if (testimonialContainer && prevBtn && nextBtn) {
+    const testimonialData = await App.fetchData(
+      "testimonials",
+      "data/testimonials.json"
+    );
+
+    if (testimonialData && testimonialData.length > 0) {
+      const createTestimonialTemplate = (item) => `
+      <div class="testimonial-card">
+          <div class="testimonial-close-icon">x</div>
+          <div class="testimonial-header">
+            <img src="${item.avatar}" alt="Avatar ${item.name}" loading="lazy">
+            <div class="testimonial-user">
+              <div class="name">${item.name}</div>
+              <div class="handle">${item.handle}</div>
+            </div>
+          </div>
+          <div class="testimonial-body">
+            <p>"${item.text}"</p>
+          </div>
+          <div class="testimonial-footer">
+            <a href="${item.link}" target="_blank" rel="noopener noreferrer">Read More on X</a>
+          </div>
+        </div>
+      `;
+
+      testimonialContainer.innerHTML = testimonialData
+        .map(createTestimonialTemplate)
+        .join("");
+
+      // Menjalankan logika slider setelah browser sempat merender elemen
+      setTimeout(() => {
+        let currentIndex = 0;
+        let autoSlideInterval;
+        const items =
+          testimonialContainer.querySelectorAll(".testimonial-card");
+        if (items.length === 0) return;
+
+        const totalItems = items.length;
+        const cardWidth = items[0].offsetWidth; // Sekarang ukurannya sudah benar
+        const gap = 25; // Sesuai gap di CSS
+
+        function goToSlide(index) {
+          currentIndex = (index + totalItems) % totalItems;
+          const offset = -currentIndex * (cardWidth + gap);
+          testimonialContainer.style.transform = `translateX(${offset}px)`;
+        }
+
+        function startAutoSlide() {
+          stopAutoSlide();
+          autoSlideInterval = setInterval(() => {
+            goToSlide(currentIndex + 1);
+          }, 5000);
+        }
+
+        function stopAutoSlide() {
+          clearInterval(autoSlideInterval);
+        }
+
+        nextBtn.addEventListener("click", () => {
+          goToSlide(currentIndex + 1);
+          startAutoSlide();
+        });
+
+        prevBtn.addEventListener("click", () => {
+          goToSlide(currentIndex - 1);
+          startAutoSlide();
+        });
+
+        wrapper.addEventListener("mouseenter", stopAutoSlide);
+        wrapper.addEventListener("mouseleave", startAutoSlide);
+
+        startAutoSlide();
+      }, 100); // Memberi jeda 100 milidetik untuk memastikan render selesai
+    } else {
+      testimonialContainer.innerHTML =
+        "<p>Gagal memuat testimoni atau data kosong.</p>";
+    }
+  }
+
   // --- Inisialisasi Kegiatan Terbaru ---
   const kegiatanContainer = document.getElementById("kegiatan-terbaru");
   if (kegiatanContainer) {
@@ -12,7 +102,7 @@ App.initializers.home = async () => {
       const sortedKegiatan = [...kegiatanData].sort(
         (a, b) => new Date(b.tanggal) - new Date(a.tanggal)
       );
-      const terbaru = sortedKegiatan.slice(0, 3); // Ambil 3 artikel terbaru
+      const terbaru = sortedKegiatan.slice(0, 3);
 
       const createKegiatanTemplate = (item) => `
         <article class="kegiatan-item" style="display: flex; flex-direction: column;">
@@ -40,71 +130,6 @@ App.initializers.home = async () => {
       kegiatanContainer.innerHTML = "<p>Gagal memuat kegiatan.</p>";
     }
   }
-};
-// === KEGIATAN PAGE ===
-App.initializers.kegiatan = async () => {
-  const container = document.getElementById("kegiatan-list");
-  if (!container) return;
-
-  const sorter = document.getElementById("kegiatan-sorter");
-  const kategoriFilter = document.getElementById("kategori-filter");
-
-  const createKegiatanTemplate = (item) => `
-    <article class="kegiatan-item animate-on-scroll" data-tanggal="${
-      item.tanggal
-    }">
-      <div class="kegiatan-foto">
-        <img src="${item.gambar}" alt="${
-    item.alt_gambar || "Gambar Kegiatan " + item.judul
-  }" loading="lazy">
-      </div>
-      <div class="kegiatan-konten">
-        <h2>${item.judul}</h2>
-        <p class="kegiatan-meta"><i class="fas fa-calendar-alt"></i> ${new Date(
-          item.tanggal
-        ).toLocaleDateString("id-ID", {
-          day: "numeric",
-          month: "long",
-          year: "numeric",
-        })}</p>
-        <p>${item.deskripsi}</p>
-        <a href="${item.link}" class="kegiatan-tombol">Baca Selengkapnya</a>
-      </div>
-    </article>`;
-
-  const originalData = await App.fetchData("kegiatan", "data/kegiatan.json");
-  if (!originalData) {
-    container.innerHTML = "<p>Gagal memuat daftar kegiatan.</p>";
-    return;
-  }
-
-  const updateList = () => {
-    const sortOrder = sorter.value;
-    const selectedKategori = kategoriFilter.value;
-
-    // 1. Filter berdasarkan kategori
-    const filteredData =
-      selectedKategori === "semua"
-        ? [...originalData]
-        : originalData.filter((item) => item.kategori === selectedKategori);
-
-    // 2. Urutkan data yang sudah difilter
-    const sortedData = filteredData.sort((a, b) =>
-      sortOrder === "terbaru"
-        ? new Date(b.tanggal) - new Date(a.tanggal)
-        : new Date(a.tanggal) - new Date(b.tanggal)
-    );
-    App.renderItems(
-      container,
-      sortedData,
-      createKegiatanTemplate,
-      "<p>Tidak ada kegiatan untuk ditampilkan dalam kategori ini.</p>"
-    );
-  };
-
-  sorter.addEventListener("change", updateList);
-  kategoriFilter.addEventListener("change", updateList);
-  updateList();
 };
 
 // === GALERI PAGE (USING LIGHTGALLERY) ===
@@ -426,13 +451,9 @@ App.initializers.artikel = async () => {
     const words = contentContainer.innerText.split(/\s+/).length;
     const readingTime = Math.ceil(words / 200);
 
-    // --- START PERUBAHAN ---
-
-    // 1. Membuat dan menambahkan Schema Script
     const schemaScript = document.createElement("script");
     schemaScript.type = "application/ld+json";
 
-    // Ambil tanggal dari file JSON kegiatan untuk format ISO yang benar
     const allKegiatan = await App.fetchData("kegiatan", "data/kegiatan.json");
     const currentArtikelData = allKegiatan.find((item) =>
       item.link.includes(slug)
@@ -489,23 +510,18 @@ App.initializers.artikel = async () => {
     App.initScrollAnimations();
   }
 };
-// === ASPIRASI PAGE (Versi 6 - Wrapper & Multi-paragraph) ===
+
+// === ASPIRASI PAGE ===
 App.initializers.aspirasi = () => {
-  // --- Bagian 1: Logika untuk Teks Intro Buka/Tutup ---
   const introContainer = document.getElementById("collapsible-intro");
   if (introContainer) {
-    // Targetkan div pembungkus yang baru
     const textWrapper = introContainer.querySelector("#intro-text-wrapper");
     const toggleButton = introContainer.querySelector("#toggle-intro-btn");
 
     if (textWrapper && toggleButton) {
-      // Atur kondisi awal pada div pembungkus
       textWrapper.classList.add("collapsed");
-
       toggleButton.addEventListener("click", () => {
-        // Cek kondisi pada div pembungkus
         const isCollapsed = textWrapper.classList.contains("collapsed");
-
         if (isCollapsed) {
           textWrapper.classList.remove("collapsed");
           toggleButton.textContent = "Sembunyikan";
@@ -517,7 +533,6 @@ App.initializers.aspirasi = () => {
     }
   }
 
-  // --- Bagian 2: Konfigurasi dan Inisialisasi Firebase ---
   const firebaseConfig = {
     apiKey: "AIzaSyA_SYgK13vSvwvOr6qVfbHMmYAHEIzTU7A",
     authDomain: "karang-taruna-banjarsari.firebaseapp.com",
@@ -533,7 +548,6 @@ App.initializers.aspirasi = () => {
     firebase.initializeApp(firebaseConfig);
   }
 
-  // --- Bagian 3: Logika Aplikasi Firebase ---
   const aspirasiContainer = document.getElementById("aspirasi-list");
   const form = document.getElementById("aspirasi-form");
   const formStatus = document.getElementById("form-status");
@@ -635,59 +649,4 @@ App.initializers.aspirasi = () => {
         }, 6000);
       });
   });
-};
-App.initializers.home = async () => {
-  // --- Inisialisasi Kegiatan Terbaru ---
-  const kegiatanContainer = document.getElementById("kegiatan-terbaru");
-  if (kegiatanContainer) {
-    const kegiatanData = await App.fetchData("kegiatan", "data/kegiatan.json");
-    if (kegiatanData) {
-      const sortedKegiatan = [...kegiatanData].sort(
-        (a, b) => new Date(b.tanggal) - new Date(a.tanggal)
-      );
-      const terbaru = sortedKegiatan.slice(0, 3); // Ambil 3 artikel terbaru
-
-      const createKegiatanTemplate = (item) => `
-        <article class="kegiatan-item" style="grid-template-columns: 1fr;">
-          <div class="kegiatan-foto" style="width:100%; height: 180px;">
-            <img src="${item.gambar}" alt="${
-        item.alt_gambar || "Gambar Kegiatan " + item.judul
-      }" loading="lazy">
-          </div>
-          <div class="kegiatan-konten">
-            <h2>${item.judul}</h2>
-            <p class="kegiatan-meta"><i class="fas fa-calendar-alt"></i> ${new Date(
-              item.tanggal
-            ).toLocaleDateString("id-ID", {
-              day: "numeric",
-              month: "long",
-              year: "numeric",
-            })}</p>
-            <p>${item.deskripsi}</p>
-            <a href="${item.link}" class="kegiatan-tombol">Baca Selengkapnya</a>
-          </div>
-        </article>`;
-      App.renderItems(kegiatanContainer, terbaru, createKegiatanTemplate, "");
-    } else {
-      kegiatanContainer.innerHTML = "<p>Gagal memuat kegiatan.</p>";
-    }
-  }
-
-  // --- Inisialisasi Galeri Terbaru ---
-  const galeriContainer = document.getElementById("galeri-terbaru");
-  if (galeriContainer) {
-    const galeriData = await App.fetchData("galeri", "data/galeri.json");
-    if (galeriData && galeriData.albumFoto) {
-      // Ambil 6 foto pertama dari album pertama sebagai contoh
-      const fotoTerbaru = galeriData.albumFoto[0].foto.slice(0, 6);
-      galeriContainer.innerHTML = fotoTerbaru
-        .map(
-          (foto) =>
-            `<a href="galeri.html"><img src="${foto.src}" alt="${foto.title}" loading="lazy"></a>`
-        )
-        .join("");
-    } else {
-      galeriContainer.innerHTML = "<p>Gagal memuat galeri.</p>";
-    }
-  }
 };

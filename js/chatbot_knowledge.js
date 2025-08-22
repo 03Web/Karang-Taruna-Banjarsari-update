@@ -17,6 +17,27 @@ const KNOWLEDGE_BASE = `
           - TikTok: Belum tersedia.
           - YouTube: Belum tersedia.
 
+
+      ================================
+      DATA GRAFIK KEPENDUDUKAN DESA BANJARSARI SUMBER DARI DATA BASE TEMANGGNG CO.ID
+      ================================
+      GRAFIK  DATA JENIS KELAMIN
+      - laki-laki : 902 orang(48.8%)
+      - perempuan : 947 orang(51.2%)
+      
+      GRAFIK DATA AGAMA:
+       - ISLAM : 1692 ORANG (91.5%)
+       - KRISTEN : 92 ORANG (5.0%)
+       - KATOLIK : 65 ORANG (3.5%)
+
+       GRAFIK STATUS PERKAWINAN:
+       - CERAI MATI : 84 ORANG (4.5%)
+       - BELUM KAWAIN : 716 ORANG (38.7%)
+       - KAWIN : 1035 ORANG (56.0%)
+       - CERAI HIDUP : 14 ORANG (0.8%)
+
+       
+
       ================================
       STRUKTUR ORGANISASI LENGKAP
       ================================

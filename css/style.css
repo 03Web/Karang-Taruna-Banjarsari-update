@@ -2313,3 +2313,166 @@ a:hover {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
   border-color: var(--primary-color);
 }
+/* =================================================== */
+/* === BAGIAN TESTIMONI (PERBAIKAN FINAL MOBILE) === */
+/* =================================================== */
+
+.testimonial-section h2 {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 10px;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+}
+
+.testimonial-carousel-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 5%,
+    black 95%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 5%,
+    black 95%,
+    transparent 100%
+  );
+}
+
+.testimonial-carousel {
+  display: flex;
+  gap: 25px;
+  transition: transform 0.5s ease-in-out;
+}
+
+.testimonial-card {
+  position: relative;
+  flex-shrink: 0; /* Mencegah kartu menyusut */
+  width: 380px; /* Lebar kartu tetap */
+  background-color: #1c1c1e;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  box-sizing: border-box;
+}
+
+.testimonial-close-icon {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  color: var(--dark-text);
+  font-size: 1.2em;
+  font-family: sans-serif;
+  cursor: pointer;
+}
+
+.testimonial-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.testimonial-header img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.testimonial-user {
+  font-style: normal;
+}
+
+.testimonial-user .name {
+  font-weight: bold;
+  font-size: 1em;
+  color: var(--light-text);
+}
+
+.testimonial-user .handle {
+  font-size: 0.9em;
+  color: var(--dark-text);
+}
+
+.testimonial-body {
+  font-style: normal;
+  color: #d1d1d6;
+  line-height: 1.6;
+  flex-grow: 1;
+  font-size: 0.95em;
+  text-align: left;
+}
+
+.testimonial-footer a {
+  display: block;
+  text-align: center;
+  padding: 8px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: #58a6ff;
+  text-decoration: none;
+  font-weight: bold;
+  font-style: normal;
+  transition: background-color 0.2s ease;
+}
+
+.testimonial-footer a:hover {
+  background-color: rgba(88, 166, 255, 0.1);
+}
+
+.carousel-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(28, 28, 30, 0.7);
+  border: 1px solid var(--border-color);
+  color: var(--light-text);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.5em;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  transition: background-color 0.2s ease;
+  user-select: none;
+}
+
+.carousel-nav-btn:hover {
+  background-color: var(--primary-color);
+  color: #000;
+}
+
+.carousel-nav-btn.prev {
+  left: 10px;
+}
+
+.carousel-nav-btn.next {
+  right: 10px;
+}
+
+/* KODE PERBAIKAN UNTUK MOBILE */
+@media (max-width: 900px) {
+  .testimonial-carousel-wrapper {
+    /* Batasi lebar wrapper agar hanya pas untuk satu kartu */
+    max-width: 380px;
+    margin: 0 auto; /* Pusatkan wrapper */
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .carousel-nav-btn {
+    display: none;
+  }
+}
