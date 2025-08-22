@@ -527,5 +527,5 @@ const App = (() => {
   };
 })();
 
-// Event listener untuk Turbo
-document.addEventListener("turbo:load", App.init);
+// Event listener standar browser
+document.addEventListener("DOMContentLoaded", App.init);
