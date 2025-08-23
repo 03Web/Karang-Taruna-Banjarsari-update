@@ -32,61 +32,144 @@ App.initializers.home = async () => {
             </div>
           </div>
           <div class="testimonial-body">
-            <p>"${item.text}"</p>
+            <p data-fulltext="${item.text}"></p>
           </div>
-          <div class="testimonial-footer">
-            <a href="${item.link}" target="_blank" rel="noopener noreferrer">Read More on X</a>
+         <div class="testimonial-footer">
+            <a href="${item.link}" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter"></i> Lihat di X</a>
           </div>
         </div>
       `;
+
+      // ... kode `createTestimonialTemplate` tetap sama ...
 
       testimonialContainer.innerHTML = testimonialData
         .map(createTestimonialTemplate)
         .join("");
 
+      // === LOGIKA CAROUSEL BARU (DIMULAI DARI SINI) ===
       setTimeout(() => {
-        let currentIndex = 0;
-        let autoSlideInterval;
-        const items =
-          testimonialContainer.querySelectorAll(".testimonial-card");
-        if (items.length === 0) return;
+        const carousel = testimonialContainer;
+        const items = carousel.querySelectorAll(".testimonial-card");
+        if (items.length <= 1) return; // Jangan jalankan jika item terlalu sedikit
 
-        const totalItems = items.length;
-        const cardWidth = items[0].offsetWidth;
-        const gap = 25;
+        let autoPlayInterval;
+        const firstItem = items[0];
 
-        function goToSlide(index) {
-          currentIndex = (index + totalItems) % totalItems;
-          const offset = -currentIndex * (cardWidth + gap);
-          testimonialContainer.style.transform = `translateX(${offset}px)`;
-        }
+        // GANTI SELURUH BLOK setTimeout DENGAN INI
+        setTimeout(() => {
+          const carousel = testimonialContainer;
+          const items = carousel.querySelectorAll(".testimonial-card");
+          if (items.length <= 1) return;
 
-        function startAutoSlide() {
-          stopAutoSlide();
-          autoSlideInterval = setInterval(() => {
-            goToSlide(currentIndex + 1);
-          }, 5000);
-        }
+          let autoPlayInterval;
+          const firstItem = items[0];
 
-        function stopAutoSlide() {
-          clearInterval(autoSlideInterval);
-        }
+          // --- FUNGSI BARU UNTUK "BACA SELENGKAPNYA" ---
+          const initializeReadMore = () => {
+            const charLimit = 150; // Batas karakter sebelum dipotong
 
+            items.forEach((card) => {
+              const body = card.querySelector(".testimonial-body");
+              const p = body.querySelector("p");
+              const fullText = p.getAttribute("data-fulltext");
+
+              if (fullText.length > charLimit) {
+                const shortText = fullText.substring(0, charLimit);
+
+                p.innerHTML = `
+                <span class="short-text">"${shortText}..."</span>
+                <span class="full-text">"${fullText}"</span>
+                <button class="read-more-btn">selengkapnya</button>
+              `;
+
+                const readMoreBtn = p.querySelector(".read-more-btn");
+                readMoreBtn.addEventListener("click", () => {
+                  body.classList.add("expanded"); // Tampilkan teks penuh
+                  stopAutoPlay(); // HENTIKAN CAROUSEL SAAT TOMBOL DIKLIK
+                });
+              } else {
+                p.innerHTML = `"${fullText}"`; // Tampilkan biasa jika pendek
+              }
+            });
+          };
+
+          const startAutoPlay = () => {
+            stopAutoPlay();
+            autoPlayInterval = setInterval(() => {
+              const scrollAmount = firstItem.offsetWidth + 25;
+              const isAtEnd =
+                carousel.scrollLeft + carousel.clientWidth >=
+                carousel.scrollWidth - 1;
+              if (isAtEnd) {
+                carousel.scrollTo({ left: 0, behavior: "smooth" });
+              } else {
+                carousel.scrollBy({ left: scrollAmount, behavior: "smooth" });
+              }
+            }, 5000);
+          };
+
+          const stopAutoPlay = () => clearInterval(autoPlayInterval);
+
+          nextBtn.addEventListener("click", () => {
+            const scrollAmount = firstItem.offsetWidth + 25;
+            carousel.scrollBy({ left: scrollAmount, behavior: "smooth" });
+          });
+
+          prevBtn.addEventListener("click", () => {
+            const scrollAmount = firstItem.offsetWidth + 25;
+            carousel.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+          });
+
+          wrapper.addEventListener("mouseenter", stopAutoPlay);
+          wrapper.addEventListener("mouseleave", startAutoPlay);
+
+          // Panggil fungsi "Baca Selengkapnya" setelah kartu dibuat
+          initializeReadMore();
+
+          // Baru mulai auto-play setelah semuanya siap
+          startAutoPlay();
+        }, 100);
+
+        // Fungsi untuk memulai auto-play
+        const startAutoPlay = () => {
+          stopAutoPlay(); // Hentikan dulu jika sudah ada
+          autoPlayInterval = setInterval(() => {
+            const scrollAmount = firstItem.offsetWidth + 25; // 25 adalah gap
+            // Jika sudah di ujung, kembali ke awal
+            const isAtEnd =
+              carousel.scrollLeft + carousel.clientWidth >=
+              carousel.scrollWidth - 1;
+            if (isAtEnd) {
+              carousel.scrollTo({ left: 0, behavior: "smooth" });
+            } else {
+              carousel.scrollBy({ left: scrollAmount, behavior: "smooth" });
+            }
+          }, 5000); // Ganti slide setiap 5 detik
+        };
+
+        // Fungsi untuk menghentikan auto-play
+        const stopAutoPlay = () => clearInterval(autoPlayInterval);
+
+        // Logika untuk tombol navigasi
         nextBtn.addEventListener("click", () => {
-          goToSlide(currentIndex + 1);
-          startAutoSlide();
+          const scrollAmount = firstItem.offsetWidth + 25;
+          carousel.scrollBy({ left: scrollAmount, behavior: "smooth" });
         });
 
         prevBtn.addEventListener("click", () => {
-          goToSlide(currentIndex - 1);
-          startAutoSlide();
+          const scrollAmount = firstItem.offsetWidth + 25;
+          carousel.scrollBy({ left: -scrollAmount, behavior: "smooth" });
         });
 
-        wrapper.addEventListener("mouseenter", stopAutoSlide);
-        wrapper.addEventListener("mouseleave", startAutoSlide);
+        // Hentikan auto-play saat mouse di atas carousel
+        wrapper.addEventListener("mouseenter", stopAutoPlay);
+        // Mulai lagi saat mouse keluar
+        wrapper.addEventListener("mouseleave", startAutoPlay);
 
-        startAutoSlide();
+        // Mulai auto-play saat halaman dimuat
+        startAutoPlay();
       }, 100);
+      // === AKHIR LOGIKA CAROUSEL BARU ===
     } else {
       testimonialContainer.innerHTML =
         "<p>Gagal memuat testimoni atau data kosong.</p>";

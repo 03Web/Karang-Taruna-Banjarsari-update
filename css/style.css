@@ -2314,7 +2314,7 @@ a:hover {
   border-color: var(--primary-color);
 }
 /* =================================================== */
-/* === BAGIAN TESTIMONI (PERBAIKAN FINAL MOBILE) === */
+/* === BAGIAN TESTIMONI (GAYA CAROUSEL BARU) === */
 /* =================================================== */
 
 .testimonial-section h2 {
@@ -2327,34 +2327,29 @@ a:hover {
 
 .testimonial-carousel-wrapper {
   position: relative;
-  width: 100%;
-  overflow: hidden;
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    black 5%,
-    black 95%,
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    black 5%,
-    black 95%,
-    transparent 100%
-  );
+  margin-top: 20px;
 }
 
 .testimonial-carousel {
   display: flex;
   gap: 25px;
-  transition: transform 0.5s ease-in-out;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 15px;
+  margin: 0 -15px;
+  scroll-snap-type: x mandatory;
+}
+
+.testimonial-carousel::-webkit-scrollbar {
+  display: none;
 }
 
 .testimonial-card {
-  position: relative;
-  flex-shrink: 0; /* Mencegah kartu menyusut */
-  width: 380px; /* Lebar kartu tetap */
+  flex: 0 0 auto; /* Penting untuk carousel */
+  width: 300px; /* Menyamakan lebar dengan album foto */
+  scroll-snap-align: start;
   background-color: #1c1c1e;
   border: 1px solid var(--border-color);
   border-radius: 12px;
@@ -2363,16 +2358,6 @@ a:hover {
   flex-direction: column;
   gap: 15px;
   box-sizing: border-box;
-}
-
-.testimonial-close-icon {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  color: var(--dark-text);
-  font-size: 1.2em;
-  font-family: sans-serif;
-  cursor: pointer;
 }
 
 .testimonial-header {
@@ -2414,7 +2399,10 @@ a:hover {
 }
 
 .testimonial-footer a {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   text-align: center;
   padding: 8px 15px;
   border: 1px solid var(--border-color);
@@ -2430,6 +2418,7 @@ a:hover {
   background-color: rgba(88, 166, 255, 0.1);
 }
 
+/* Tombol Navigasi (Sama seperti galeri) */
 .carousel-nav-btn {
   position: absolute;
   top: 50%;
@@ -2442,9 +2431,6 @@ a:hover {
   border-radius: 50%;
   font-size: 1.5em;
   cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   z-index: 10;
   transition: background-color 0.2s ease;
   user-select: none;
@@ -2456,24 +2442,56 @@ a:hover {
 }
 
 .carousel-nav-btn.prev {
-  left: 10px;
+  left: -20px;
 }
 
 .carousel-nav-btn.next {
-  right: 10px;
+  right: -20px;
 }
 
-/* KODE PERBAIKAN UNTUK MOBILE */
-@media (max-width: 900px) {
-  .testimonial-carousel-wrapper {
-    /* Batasi lebar wrapper agar hanya pas untuk satu kartu */
-    max-width: 380px;
-    margin: 0 auto; /* Pusatkan wrapper */
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
-
+/* Sembunyikan tombol di mobile, biarkan scroll manual */
+@media (max-width: 768px) {
   .carousel-nav-btn {
     display: none;
   }
+  .testimonial-card {
+    width: 80vw;
+    max-width: 280px;
+  }
+}
+/* =================================================== */
+/* === GAYA UNTUK FITUR "BACA SELENGKAPNYA"      === */
+/* =================================================== */
+
+.testimonial-body .full-text {
+  display: none; /* Sembunyikan teks lengkap secara default */
+}
+
+.testimonial-body.expanded .short-text {
+  display: none; /* Sembunyikan teks pendek saat dibuka */
+}
+
+.testimonial-body.expanded .full-text {
+  display: inline; /* Tampilkan teks lengkap saat dibuka */
+}
+
+.read-more-btn {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 5px; /* Jarak dari teks */
+  font-family: "Poppins", sans-serif;
+  font-size: 0.95em; /* Samakan dengan font body */
+  font-style: normal;
+}
+
+.read-more-btn:hover {
+  text-decoration: underline;
+}
+
+.testimonial-body.expanded .read-more-btn {
+  display: none; /* Sembunyikan tombol saat sudah dibuka */
 }
