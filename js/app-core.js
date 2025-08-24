@@ -68,6 +68,43 @@ const App = (() => {
     window.location.href = "index.html";
   }
 
+  async function showContributionModal() {
+    const modal = document.getElementById("contribution-modal");
+    if (!modal) return;
+
+    const kontakData = await fetchData("kontak", "data/kontak.json");
+    const admin = kontakData.find((k) => k.jabatan === "Admin Website");
+
+    if (!admin) {
+      console.error("Data admin website tidak ditemukan!");
+      return;
+    }
+
+    const yesBtn = document.getElementById("contribute-yes-btn");
+    const noBtn = document.getElementById("contribute-no-btn");
+    const closeBtn = modal.querySelector(".modal-close-btn");
+
+    const closeModal = () => {
+      const welcomeOverlay = document.getElementById("welcome-overlay");
+      modal.classList.add("hidden");
+      if (welcomeOverlay) welcomeOverlay.classList.add("hidden");
+      startInactivityTracker();
+    };
+
+    yesBtn.onclick = () => {
+      const waLink = `https://wa.me/${admin.whatsapp}?text=${encodeURIComponent(
+        "Halo Admin, saya tertarik untuk berkontribusi dalam pengembangan web Karang Taruna Banjarsari."
+      )}`;
+      window.open(waLink, "_blank");
+      closeModal();
+    };
+
+    noBtn.onclick = closeModal;
+    closeBtn.onclick = closeModal;
+
+    modal.classList.remove("hidden");
+  }
+
   function initWelcomeScreen() {
     const overlay = document.getElementById("welcome-overlay");
     if (!overlay) return;
@@ -159,13 +196,9 @@ const App = (() => {
         });
 
         if (response.ok) {
-          msg.innerText =
-            "Anda di ijinkan masuk oleh admin! Anda akan dialihkan...";
-          setTimeout(() => {
-            sessionStorage.setItem("isLoggedIn", "true");
-            overlay.classList.add("hidden");
-            startInactivityTracker();
-          }, 1500);
+          sessionStorage.setItem("isLoggedIn", "true");
+          // Tampilkan modal kontribusi, jangan langsung sembunyikan overlay
+          showContributionModal();
         } else {
           throw new Error("Gagal mengirim data.");
         }
