@@ -1,7 +1,7 @@
 /**
  * @file page-initializers.js
  * @description Inisialisasi spesifik untuk setiap halaman Karang Taruna (UI Amazia).
- * @version Perbaikan 23-08-2025
+ * @version Perbaikan 24-08-2025
  */
 
 // === HOME PAGE INITIALIZER (PERBAIKAN FINAL DENGAN TIMEOUT) ===
@@ -23,7 +23,6 @@ App.initializers.home = async () => {
     if (testimonialData && testimonialData.length > 0) {
       const createTestimonialTemplate = (item) => `
       <div class="testimonial-card">
-          <div class="testimonial-close-icon">x</div>
           <div class="testimonial-header">
             <img src="${item.avatar}" alt="Avatar ${item.name}" loading="lazy">
             <div class="testimonial-user">
@@ -40,102 +39,61 @@ App.initializers.home = async () => {
         </div>
       `;
 
-      // ... kode `createTestimonialTemplate` tetap sama ...
-
       testimonialContainer.innerHTML = testimonialData
         .map(createTestimonialTemplate)
         .join("");
 
-      // === LOGIKA CAROUSEL BARU (DIMULAI DARI SINI) ===
+      // === LOGIKA CAROUSEL DAN BACA SELENGKAPNYA ===
       setTimeout(() => {
         const carousel = testimonialContainer;
         const items = carousel.querySelectorAll(".testimonial-card");
-        if (items.length <= 1) return; // Jangan jalankan jika item terlalu sedikit
+        if (items.length <= 1) return;
 
         let autoPlayInterval;
         const firstItem = items[0];
 
-        // GANTI SELURUH BLOK setTimeout DENGAN INI
-        setTimeout(() => {
-          const carousel = testimonialContainer;
-          const items = carousel.querySelectorAll(".testimonial-card");
-          if (items.length <= 1) return;
+        // --- FUNGSI BARU UNTUK "BACA SELENGKAPNYA" DENGAN LOGIKA AKORDEON ---
+        const initializeReadMore = () => {
+          const charLimit = 150;
 
-          let autoPlayInterval;
-          const firstItem = items[0];
+          items.forEach((card) => {
+            const body = card.querySelector(".testimonial-body");
+            const p = body.querySelector("p");
+            const fullText = p.getAttribute("data-fulltext");
 
-          // --- FUNGSI BARU UNTUK "BACA SELENGKAPNYA" ---
-          const initializeReadMore = () => {
-            const charLimit = 150; // Batas karakter sebelum dipotong
-
-            items.forEach((card) => {
-              const body = card.querySelector(".testimonial-body");
-              const p = body.querySelector("p");
-              const fullText = p.getAttribute("data-fulltext");
-
-              if (fullText.length > charLimit) {
-                const shortText = fullText.substring(0, charLimit);
-
-                p.innerHTML = `
+            if (fullText.length > charLimit) {
+              const shortText = fullText.substring(0, charLimit);
+              p.innerHTML = `
                 <span class="short-text">"${shortText}..."</span>
                 <span class="full-text">"${fullText}"</span>
                 <button class="read-more-btn">selengkapnya</button>
               `;
 
-                const readMoreBtn = p.querySelector(".read-more-btn");
-                readMoreBtn.addEventListener("click", () => {
-                  body.classList.add("expanded"); // Tampilkan teks penuh
-                  stopAutoPlay(); // HENTIKAN CAROUSEL SAAT TOMBOL DIKLIK
+              const readMoreBtn = p.querySelector(".read-more-btn");
+              readMoreBtn.addEventListener("click", () => {
+                // Tutup semua kartu lain yang sedang terbuka
+                items.forEach((otherCard) => {
+                  if (otherCard !== card) {
+                    otherCard
+                      .querySelector(".testimonial-body")
+                      .classList.remove("expanded");
+                  }
                 });
-              } else {
-                p.innerHTML = `"${fullText}"`; // Tampilkan biasa jika pendek
-              }
-            });
-          };
 
-          const startAutoPlay = () => {
-            stopAutoPlay();
-            autoPlayInterval = setInterval(() => {
-              const scrollAmount = firstItem.offsetWidth + 25;
-              const isAtEnd =
-                carousel.scrollLeft + carousel.clientWidth >=
-                carousel.scrollWidth - 1;
-              if (isAtEnd) {
-                carousel.scrollTo({ left: 0, behavior: "smooth" });
-              } else {
-                carousel.scrollBy({ left: scrollAmount, behavior: "smooth" });
-              }
-            }, 5000);
-          };
-
-          const stopAutoPlay = () => clearInterval(autoPlayInterval);
-
-          nextBtn.addEventListener("click", () => {
-            const scrollAmount = firstItem.offsetWidth + 25;
-            carousel.scrollBy({ left: scrollAmount, behavior: "smooth" });
+                // Buka atau tutup kartu yang diklik
+                body.classList.toggle("expanded");
+                stopAutoPlay();
+              });
+            } else {
+              p.innerHTML = `"${fullText}"`;
+            }
           });
+        };
 
-          prevBtn.addEventListener("click", () => {
-            const scrollAmount = firstItem.offsetWidth + 25;
-            carousel.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-          });
-
-          wrapper.addEventListener("mouseenter", stopAutoPlay);
-          wrapper.addEventListener("mouseleave", startAutoPlay);
-
-          // Panggil fungsi "Baca Selengkapnya" setelah kartu dibuat
-          initializeReadMore();
-
-          // Baru mulai auto-play setelah semuanya siap
-          startAutoPlay();
-        }, 100);
-
-        // Fungsi untuk memulai auto-play
         const startAutoPlay = () => {
-          stopAutoPlay(); // Hentikan dulu jika sudah ada
+          stopAutoPlay();
           autoPlayInterval = setInterval(() => {
-            const scrollAmount = firstItem.offsetWidth + 25; // 25 adalah gap
-            // Jika sudah di ujung, kembali ke awal
+            const scrollAmount = firstItem.offsetWidth + 25;
             const isAtEnd =
               carousel.scrollLeft + carousel.clientWidth >=
               carousel.scrollWidth - 1;
@@ -144,13 +102,11 @@ App.initializers.home = async () => {
             } else {
               carousel.scrollBy({ left: scrollAmount, behavior: "smooth" });
             }
-          }, 5000); // Ganti slide setiap 5 detik
+          }, 5000);
         };
 
-        // Fungsi untuk menghentikan auto-play
         const stopAutoPlay = () => clearInterval(autoPlayInterval);
 
-        // Logika untuk tombol navigasi
         nextBtn.addEventListener("click", () => {
           const scrollAmount = firstItem.offsetWidth + 25;
           carousel.scrollBy({ left: scrollAmount, behavior: "smooth" });
@@ -161,15 +117,12 @@ App.initializers.home = async () => {
           carousel.scrollBy({ left: -scrollAmount, behavior: "smooth" });
         });
 
-        // Hentikan auto-play saat mouse di atas carousel
         wrapper.addEventListener("mouseenter", stopAutoPlay);
-        // Mulai lagi saat mouse keluar
         wrapper.addEventListener("mouseleave", startAutoPlay);
 
-        // Mulai auto-play saat halaman dimuat
+        initializeReadMore();
         startAutoPlay();
       }, 100);
-      // === AKHIR LOGIKA CAROUSEL BARU ===
     } else {
       testimonialContainer.innerHTML =
         "<p>Gagal memuat testimoni atau data kosong.</p>";

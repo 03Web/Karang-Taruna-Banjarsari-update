@@ -2313,6 +2313,8 @@ a:hover {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
   border-color: var(--primary-color);
 }
+/* ... CSS lainnya ... */
+
 /* =================================================== */
 /* === BAGIAN TESTIMONI (GAYA CAROUSEL BARU) === */
 /* =================================================== */
@@ -2340,6 +2342,7 @@ a:hover {
   padding: 15px;
   margin: 0 -15px;
   scroll-snap-type: x mandatory;
+  align-items: flex-start; /* <<< INI PERBAIKANNYA */
 }
 
 .testimonial-carousel::-webkit-scrollbar {
@@ -2347,8 +2350,8 @@ a:hover {
 }
 
 .testimonial-card {
-  flex: 0 0 auto; /* Penting untuk carousel */
-  width: 300px; /* Menyamakan lebar dengan album foto */
+  flex: 0 0 auto;
+  width: 300px;
   scroll-snap-align: start;
   background-color: #1c1c1e;
   border: 1px solid var(--border-color);
@@ -2396,6 +2399,8 @@ a:hover {
   flex-grow: 1;
   font-size: 0.95em;
   text-align: left;
+  transition: max-height 0.5s ease-in-out; /* Animasi untuk teks */
+  overflow: hidden; /* Sembunyikan teks yang meluap */
 }
 
 .testimonial-footer a {
@@ -2475,6 +2480,14 @@ a:hover {
   display: inline; /* Tampilkan teks lengkap saat dibuka */
 }
 
+.testimonial-body .read-more-btn {
+  display: inline;
+}
+
+.testimonial-body.expanded .read-more-btn {
+  display: none; /* Sembunyikan tombol saat sudah dibuka */
+}
+
 .read-more-btn {
   background: none;
   border: none;
@@ -2490,8 +2503,4 @@ a:hover {
 
 .read-more-btn:hover {
   text-decoration: underline;
-}
-
-.testimonial-body.expanded .read-more-btn {
-  display: none; /* Sembunyikan tombol saat sudah dibuka */
 }
