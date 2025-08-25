@@ -290,11 +290,12 @@
 // File: js/chatbot_sederhana.js (Versi dengan DeepSeek API)
 
 // --- KOMPONEN 1: PENGATURAN DASAR (DIUBAH UNTUK DEEPSEEK) ---
-document.addEventListener("turbo:load", () => {
+document.addEventListener("DOMContentLoaded", () => {
+  // --- PENGATURAN DASAR ---
   const DEEPSEEK_API_KEY = "sk-fcf076aa559c4100a1fa478d3b0855dd";
   const API_URL = "https://api.deepseek.com/v1/chat/completions";
 
-  // Ambil elemen-elemen dari HTML
+  // --- Ambil elemen-elemen dari HTML ---
   const sendBtn = document.getElementById("send-chat-btn");
   const chatInput = document.getElementById("chat-input");
   const chatWindow = document.getElementById("chat-window");
@@ -302,20 +303,25 @@ document.addEventListener("turbo:load", () => {
   const closeBtn = document.getElementById("close-chatbot");
   const chatbotContainer = document.getElementById("chatbot-container");
 
-  if (!sendBtn) return;
+  // Hentikan eksekusi jika elemen penting tidak ditemukan
+  if (!sendBtn || !chatInput || !chatWindow || !openBtn || !closeBtn || !chatbotContainer) {
+    console.error("Salah satu elemen chatbot tidak ditemukan. Inisialisasi dibatalkan.");
+    return;
+  }
 
+  // --- Fungsi untuk menampilkan dan menyembunyikan chatbot ---
   openBtn.addEventListener("click", () => {
     chatbotContainer.style.display = "flex";
     openBtn.style.display = "none";
   });
+
   closeBtn.addEventListener("click", () => {
     chatbotContainer.style.display = "none";
     openBtn.style.display = "block";
   });
 
-  // --- KOMPONEN 3: "JEMBATAN" PENGHUBUNG KE AI (DIUBAH UNTUK DEEPSEEK) ---
+  // --- Fungsi untuk mendapatkan respon dari AI ---
   async function getAiResponse(userQuestion) {
-    // Instruksi sistem untuk AI
     const system_prompt = `
 Anda adalah KartaBot, AI partner yang analitis, proaktif, dan memiliki pemahaman mendalam untuk website Karang Taruna Banjarsari. Anda bukan sekadar asisten, melainkan seorang partner yang cerdas bagi pengunjung. Misi Anda adalah membantu pengguna menjelajahi, menghubungkan, dan memahami semua informasi terkait Karang Taruna secara menyeluruh.
 
@@ -362,7 +368,7 @@ FORMAT & GAYA PENYAJIAN
 
 Tujuan akhir Anda adalah mengubah setiap interaksi dari sekadar sesi tanya-jawab menjadi sebuah pengalaman yang informatif dan efisien bagi setiap pengguna website.
 `;
-    // Pertanyaan pengguna digabung dengan konteks
+
     const user_prompt = `
             KNOWLEDGE_BASE:
             ${KNOWLEDGE_BASE}
@@ -376,10 +382,10 @@ Tujuan akhir Anda adalah mengubah setiap interaksi dari sekadar sesi tanya-jawab
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${DEEPSEEK_API_KEY}`, // Format otorisasi diubah
+          "Authorization": `Bearer ${DEEPSEEK_API_KEY}`,
         },
         body: JSON.stringify({
-          model: "deepseek-chat", // Model yang digunakan
+          model: "deepseek-chat",
           messages: [
             { role: "system", content: system_prompt },
             { role: "user", content: user_prompt },
@@ -394,50 +400,44 @@ Tujuan akhir Anda adalah mengubah setiap interaksi dari sekadar sesi tanya-jawab
       }
 
       const data = await response.json();
-      // Cara mengambil jawaban dari DeepSeek API
       return data.choices[0].message.content;
+
     } catch (error) {
       console.error("Gagal menghubungi AI:", error);
       return "Terjadi kesalahan koneksi. Pastikan internet Anda stabil.";
     }
   }
 
+  // --- Fungsi untuk menangani pengiriman pesan ---
   const handleSendMessage = async () => {
     const question = chatInput.value.trim();
     if (!question) return;
 
     addMessageToWindow(question, "user-message");
     chatInput.value = "";
-    // Panggil indicator loading tanpa teks
-    addMessageToWindow("", "bot-message", true);
+    addMessageToWindow("", "bot-message", true); // Menampilkan indikator loading
 
     const answer = await getAiResponse(question);
 
-    // Hapus indicator loading sebelum menampilkan jawaban
-    document.getElementById("loading-indicator")?.remove();
+    document.getElementById("loading-indicator")?.remove(); // Hapus indikator loading
     addMessageToWindow(answer, "bot-message");
   };
 
+  // --- Fungsi untuk menambahkan pesan ke jendela chat ---
   const addMessageToWindow = (message, className, isLoading = false) => {
     const messageDiv = document.createElement("div");
-    // Jangan tambahkan kelas 'bot-message' ke container indicator
-    // agar tidak ada background dan padding default
-    messageDiv.className = isLoading ? "loading-container" : className;
+    messageDiv.className = className;
 
     if (isLoading) {
-      // Jika loading, buat struktur HTML untuk animasi titik-titik
       messageDiv.id = "loading-indicator";
       messageDiv.innerHTML = `
-      <div class="bot-message" style="display: inline-block; padding: 8px 12px;">
         <div class="typing-indicator">
           <span></span>
           <span></span>
           <span></span>
         </div>
-      </div>
-    `;
+      `;
     } else {
-      // Jika bukan loading, tampilkan pesan seperti biasa
       messageDiv.textContent = message;
     }
 
@@ -445,6 +445,7 @@ Tujuan akhir Anda adalah mengubah setiap interaksi dari sekadar sesi tanya-jawab
     chatWindow.scrollTop = chatWindow.scrollHeight;
   };
 
+  // --- Tambahkan event listeners ke tombol dan input ---
   sendBtn.addEventListener("click", handleSendMessage);
   chatInput.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {

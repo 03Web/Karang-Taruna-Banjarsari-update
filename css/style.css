@@ -2637,3 +2637,182 @@ a:hover {
     padding: 12px;
   }
 }
+/* ========================================= */
+/* ===   PENYESUAIAN TAMPILAN MOBILE     === */
+/* ========================================= */
+
+@media (max-width: 768px) {
+  /* MODIFIKASI UNTUK FILTER ARTIKEL DI MOBILE */
+  .filter-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Membuat 2 kolom dengan lebar sama */
+    gap: 15px; /* Jarak antar filter */
+  }
+
+  .sort-container {
+    text-align: left; /* Memastikan label tetap rata kiri */
+  }
+
+  .sort-container select.sorter {
+    width: 100%; /* Membuat select box mengisi lebar kolomnya */
+  }
+}
+/* ========================================= */
+/* ===   GAYA BARU UNTUK FILTER ARTIKEL  === */
+/* ========================================= */
+
+/* 1. Sembunyikan label bawaan karena teks sudah ada di dalam select box */
+.sort-container label {
+  display: none;
+}
+
+/* 2. Atur ulang jarak antar elemen */
+.filter-container {
+  gap: 15px;
+}
+.sort-container {
+  margin: 0;
+}
+
+/* 3. Ubah total tampilan select box agar seperti tombol */
+select.sorter {
+  /* Hapus tampilan default browser */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  /* Ubah warna dan bentuk */
+  background-color: #2a2a2a; /* Warna latar sedikit lebih terang */
+  border: 1px solid var(--border-color);
+  border-radius: 20px; /* Membuatnya berbentuk pil */
+  color: var(--light-text);
+  font-weight: bold;
+  margin-left: 0; /* Hapus margin sisa dari label */
+
+  /* Atur padding agar ada ruang untuk panah kustom */
+  padding: 8px 35px 8px 15px;
+
+  /* Ganti panah default dengan panah kustom (SVG) */
+  background-image: url("data:image/svg+xml;charset=UTF8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e0e0e0'%3E%3Cpath d='M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 24px;
+  transition: background-color 0.3s ease;
+}
+
+select.sorter:hover {
+  background-color: #333; /* Efek hover agar lebih interaktif */
+}
+/* ================================================= */
+/* === IMPROVEMENT GAYA HALAMAN ASPIRASI (BARU)  === */
+/* ================================================= */
+
+/* Penyesuaian umum untuk pembungkus utama */
+body[data-page-id="aspirasi"] .container {
+  max-width: 900px; /* Sedikit lebih lebar untuk kenyamanan membaca */
+}
+
+/* 1. Perbaikan Kartu Aspirasi yang Sudah Masuk */
+.aspirasi-item {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color); /* Ganti border kiri menjadi border penuh */
+  border-radius: 12px; /* Sudut lebih modern */
+  padding: 0; /* Hapus padding lama untuk struktur baru */
+  overflow: hidden; /* Pastikan konten tetap di dalam border radius */
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.aspirasi-item:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.aspirasi-header {
+  padding: 20px 25px;
+  background-color: rgba(255, 255, 255, 0.03); /* Latar header sedikit beda */
+  border-bottom: 1px solid var(--border-color);
+  flex-wrap: nowrap; /* Agar judul dan status tidak turun */
+  align-items: center;
+}
+
+.aspirasi-header h3 {
+  font-size: 1.1em; /* Sedikit lebih kecil agar proporsional */
+  flex-grow: 1; /* Biarkan judul mengambil ruang sisa */
+}
+
+.aspirasi-body {
+  padding: 25px;
+  font-size: 0.95em;
+}
+
+.aspirasi-body p {
+  margin-bottom: 0;
+  white-space: pre-wrap; /* Jaga format paragraf dari pengguna */
+  word-wrap: break-word;
+}
+
+.aspirasi-meta {
+  padding: 0 25px 20px 25px;
+  gap: 10px 25px; /* Jarak vertikal dan horizontal */
+  opacity: 0.8; /* Buat meta data sedikit lebih subtil */
+}
+
+.aspirasi-meta span {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Jarak antara ikon dan teks */
+}
+
+/* 2. Gaya Baru untuk Status Aspirasi */
+.status-tag {
+  font-size: 0.7em;
+  padding: 4px 10px;
+  text-transform: uppercase; /* Teks kapital agar lebih tegas */
+  letter-spacing: 0.5px;
+}
+
+/* Ganti nama kelas agar lebih jelas (opsional, tapi disarankan) */
+.status-baru-masuk {
+  background-color: var(--primary-color);
+  color: #000;
+}
+
+/* 3. Perbaikan Tampilan Form Aspirasi */
+.form-aspirasi {
+  border-radius: 12px;
+  padding: 35px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 170, 255, 0.2); /* Efek glow saat di-klik */
+}
+
+.submit-btn {
+  border-radius: 50px; /* Tombol berbentuk pil */
+  padding: 12px 30px;
+  font-size: 0.95em;
+}
+
+/* 4. Penyesuaian untuk Intro Filosofi */
+.collapsible-container {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin-bottom: 40px;
+}
+
+.collapsible-title {
+  font-size: 1.4em;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+#intro-text-wrapper.collapsed {
+  max-height: 100px; /* Sedikit lebih pendek */
+}
+
+#intro-text-wrapper.collapsed::after {
+  background: linear-gradient(to top, var(--dark-bg), transparent);
+}
